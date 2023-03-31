@@ -1,2 +1,45 @@
-<!-- Add this inside the <head> tag -->
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+body {
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
+a {
+  color: #90caf9;
+}
+
+a:hover {
+  color: #5c9eff;
+}
+
+.btn-primary {
+  background-color: #90caf9;
+  border-color: #90caf9;
+}
+
+.btn-primary:hover {
+  background-color: #5c9eff;
+  border-color: #5c9eff;
+}
+
+.form-control {
+  background-color: #495057;
+  border-color: #495057;
+  color: #f8f9fa;
+}
+
+.form-control:focus {
+  background-color: #495057;
+  border-color: #495057;
+  color: #f8f9fa;
+  box-shadow: 0 0 0 0.2rem rgba(144, 202, 249, 0.25);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+}

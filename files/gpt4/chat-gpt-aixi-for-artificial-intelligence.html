@@ -1,0 +1,686 @@
+<!DOCTYPE html><html><head>  <meta charset="utf-8"/>  <title>Chat GPT: AIXI for Artificial Intelligence.</title>  <meta name="generator" content="chatGPT Saving Bookmark"/><style>body {  background-color: rgb(32,33,35);  color: rgb(236,236,241);  font-size: 16px;  font-family: sans-serif;  line-height: 28px;  margin: 0;}body > .w-full {  padding: 30px;}/* prompt */body > .w-full:nth-child(2n+1) {  background: rgb(52,53,65);}/* response */body > .w-full:nth-child(2n+2) {  background: rgb(68,70,84);}a, a:visited {  color: #7792cd;}pre {  margin: 0 0 1em 0;  display: inline-block;  width: 100%;}pre code.hljs {  margin-bottom: 1em;  border-radius: 5px;}.whitespace-pre-wrap {  white-space: pre-wrap;}.flex-col {  max-width: 850px;  margin: 0px auto;}*, :after, :before {    border: 0 solid #d9d9e3;    box-sizing: border-box;}table {    border-collapse: collapse;    border-color: inherit;    text-indent: 0;}.markdown table {    --tw-border-spacing-x: 0px;    --tw-border-spacing-y: 0px;    border-collapse: separate;    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);    width: 100%}.markdown th {    background-color: rgba(236,236,241,.2);    border-bottom-width: 1px;    border-left-width: 1px;    border-top-width: 1px;    padding: .25rem .75rem}.markdown th:first-child {    border-top-left-radius: .375rem}.markdown th:last-child {    border-right-width: 1px;    border-top-right-radius: .375rem}.markdown td {    border-bottom-width: 1px;    border-left-width: 1px;    padding: .25rem .75rem}.markdown td:last-child {    border-right-width: 1px}.markdown tbody tr:last-child td:first-child {    border-bottom-left-radius: .375rem}.markdown tbody tr:last-child td:last-child {    border-bottom-right-radius: .375rem}/* chatGPT code color theme */code.hljs,code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;overflow:auto}:not(pre)>code.hljs,:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.hljs-comment{color:hsla(0,0%,100%,.5)}.hljs-meta{color:hsla(0,0%,100%,.6)}.hljs-built_in,.hljs-class .hljs-title{color:#e9950c}.hljs-doctag,.hljs-formula,.hljs-keyword,.hljs-literal{color:#2e95d3}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#00a67d}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#df3079}.hljs-bullet,.hljs-link,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#f22c3d}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#a9aec1}.token.punctuation{color:#fefefe}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#abe338}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.important,.token.regex{color:gold}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast:active){code[class*=language-],pre[class*=language-]{background:window;color:windowText}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:400}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:700}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:400}}/* style of the code snippets */.rounded-md {    border-radius: 0.375rem;}.mb-4 {    margin-bottom: 1rem;}.p-4 {    padding: 1rem;}.py-2 {    padding-bottom: 0.5rem;    padding-top: 0.5rem;}.px-4 {    padding-left: 1rem;    padding-right: 1rem;}.text-xs {    font-size: .75rem;    line-height: 1rem;}.bg-black {    --tw-bg-opacity: 1;    background-color: rgba(0,0,0,var(--tw-bg-opacity));}.text-gray-200 {    --tw-text-opacity: 1;    color: rgba(217,217,227,var(--tw-text-opacity));}.bg-gray-800 {    --tw-bg-opacity: 1;    background-color: rgba(52,53,65,var(--tw-bg-opacity));}.rounded-t-md {    border-top-left-radius: 0.375rem;    border-top-right-radius: 0.375rem;}code.hljs, code[class*=language-], pre[class*=language-] {    word-wrap: normal;    background: none;    color: #fff;    -webkit-hyphens: none;    hyphens: none;    line-height: 1.5;    tab-size: 4;    text-align: left;    white-space: pre;    word-break: normal;    word-spacing: normal;}.prose :where(code):not(:where([class~=not-prose] *)) {    color: var(--tw-prose-code);    font-size: .875em;    font-weight: 600;}.prose :where(pre):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0.375rem;    color: currentColor;    font-size: .875em;    font-weight: 400;    line-height: 1.7142857;    margin: 0;    overflow-x: auto;    padding: 0;}.prose :where(pre code):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0;    border-width: 0;    color: inherit;    font-family: inherit;    font-size: inherit;    font-weight: inherit;    line-height: inherit;    padding: 0;}.\!whitespace-pre {    white-space: pre!important;}.overflow-y-auto {    overflow-y: auto;}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"/></head><body><div class="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">Model: GPT-4</div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Let's talk about this Wikipedia article:
+
+AIXI ['ai̯k͡siː] is a theoretical mathematical formalism for artificial general intelligence. It combines Solomonoff induction with sequential decision theory. AIXI was first proposed by Marcus Hutter in 2000[1] and several results regarding AIXI are proved in Hutter's 2005 book Universal Artificial Intelligence.[2]
+
+AIXI is a reinforcement learning (RL) agent. It maximizes the expected total rewards received from the environment. Intuitively, it simultaneously considers every computable hypothesis (or environment). In each time step, it looks at every possible program and evaluates how many rewards that program generates depending on the next action taken. The promised rewards are then weighted by the subjective belief that this program constitutes the true environment. This belief is computed from the length of the program: longer programs are considered less likely, in line with Occam's razor. AIXI then selects the action that has the highest expected total reward in the weighted sum of all these programs.
+
+Definition
+AIXI is a reinforcement learning agent that interacts with some stochastic and unknown but computable environment 
+�\mu . The interaction proceeds in time steps, from 
+�
+=
+1
+t=1 to 
+�
+=
+�
+{\displaystyle t=m}, where 
+�
+∈
+�
+m\in \mathbb {N}  is the lifespan of the AIXI agent. At time step t, the agent chooses an action 
+�
+�
+∈
+�
+{\displaystyle a_{t}\in {\mathcal {A}}} (e.g. a limb movement) and executes it in the environment, and the environment responds with a "percept" 
+�
+�
+∈
+�
+=
+�
+×
+�
+{\displaystyle e_{t}\in {\mathcal {E}}={\mathcal {O}}\times \mathbb {R} }, which consists of an "observation" 
+�
+�
+∈
+�
+{\displaystyle o_{t}\in {\mathcal {O}}} (e.g., a camera image) and a reward 
+�
+�
+∈
+�
+{\displaystyle r_{t}\in \mathbb {R} }, distributed according to the conditional probability 
+�
+(
+�
+�
+�
+�
+|
+�
+1
+�
+1
+�
+1
+.
+.
+.
+�
+�
+−
+1
+�
+�
+−
+1
+�
+�
+−
+1
+�
+�
+)
+\mu (o_{t}r_{t}|a_{1}o_{1}r_{1}...a_{{t-1}}o_{{t-1}}r_{{t-1}}a_{t}), where 
+�
+1
+�
+1
+�
+1
+.
+.
+.
+�
+�
+−
+1
+�
+�
+−
+1
+�
+�
+−
+1
+�
+�
+{\displaystyle a_{1}o_{1}r_{1}...a_{t-1}o_{t-1}r_{t-1}a_{t}} is the "history" of actions, observations and rewards. The environment 
+�\mu  is thus mathematically represented as a probability distribution over "percepts" (observations and rewards) which depend on the full history, so there is no Markov assumption (as opposed to other RL algorithms). Note again that this probability distribution is unknown to the AIXI agent. Furthermore, note again that 
+�\mu  is computable, that is, the observations and rewards received by the agent from the environment 
+�\mu  can be computed by some program (which runs on a Turing machine), given the past actions of the AIXI agent.[3]
+
+The only goal of the AIXI agent is to maximise 
+∑
+�
+=
+1
+�
+�
+�
+{\displaystyle \sum _{t=1}^{m}r_{t}}, that is, the sum of rewards from time step 1 to m.
+
+The AIXI agent is associated with a stochastic policy 
+�
+:
+(
+�
+×
+�
+)
+∗
+→
+�
+{\displaystyle \pi :({\mathcal {A}}\times {\mathcal {E}})^{*}\rightarrow {\mathcal {A}}}, which is the function it uses to choose actions at every time step, where 
+�
+{\mathcal {A}} is the space of all possible actions that AIXI can take and 
+�
+{\mathcal {E}} is the space of all possible "percepts" that can be produced by the environment. The environment (or probability distribution) 
+�\mu  can also be thought of as a stochastic policy (which is a function): 
+�
+:
+(
+�
+×
+�
+)
+∗
+×
+�
+→
+�
+{\displaystyle \mu :({\mathcal {A}}\times {\mathcal {E}})^{*}\times {\mathcal {A}}\rightarrow {\mathcal {E}}}, where the 
+∗* is the Kleene star operation.
+
+In general, at time step 
+�
+t (which ranges from 1 to m), AIXI, having previously executed actions 
+�
+1
+…
+�
+�
+−
+1
+{\displaystyle a_{1}\dots a_{t-1}} (which is often abbreviated in the literature as 
+�
+&lt;
+�
+{\displaystyle a_{&lt;t}}) and having observed the history of percepts 
+�
+1
+�
+1
+.
+.
+.
+�
+�
+−
+1
+�
+�
+−
+1
+{\displaystyle o_{1}r_{1}...o_{t-1}r_{t-1}} (which can be abbreviated as 
+�
+&lt;
+�
+{\displaystyle e_{&lt;t}}), chooses and executes in the environment the action, 
+�
+�
+a_{t}, defined as follows [4]
+
+�
+�
+:=
+arg
+⁡
+max
+�
+�
+∑
+�
+�
+�
+�
+…
+max
+�
+�
+∑
+�
+�
+�
+�
+[
+�
+�
++
+…
++
+�
+�
+]
+∑
+�
+:
+�
+(
+�
+,
+�
+1
+…
+�
+�
+)
+=
+�
+1
+�
+1
+…
+�
+�
+�
+�
+2
+−
+length
+(
+�
+)
+{\displaystyle a_{t}:=\arg \max _{a_{t}}\sum _{o_{t}r_{t}}\ldots \max _{a_{m}}\sum _{o_{m}r_{m}}[r_{t}+\ldots +r_{m}]\sum _{q:\;U(q,a_{1}\ldots a_{m})=o_{1}r_{1}\ldots o_{m}r_{m}}2^{-{\textrm {length}}(q)}}
+or, using parentheses, to disambiguate the precedences
+
+�
+�
+:=
+arg
+⁡
+max
+�
+�
+(
+∑
+�
+�
+�
+�
+…
+(
+max
+�
+�
+∑
+�
+�
+�
+�
+[
+�
+�
++
+…
++
+�
+�
+]
+(
+∑
+�
+:
+�
+(
+�
+,
+�
+1
+…
+�
+�
+)
+=
+�
+1
+�
+1
+…
+�
+�
+�
+�
+2
+−
+length
+(
+�
+)
+)
+)
+)
+{\displaystyle a_{t}:=\arg \max _{a_{t}}\left(\sum _{o_{t}r_{t}}\ldots \left(\max _{a_{m}}\sum _{o_{m}r_{m}}[r_{t}+\ldots +r_{m}]\left(\sum _{q:\;U(q,a_{1}\ldots a_{m})=o_{1}r_{1}\ldots o_{m}r_{m}}2^{-{\textrm {length}}(q)}\right)\right)\right)}
+Intuitively, in the definition above, AIXI considers the sum of the total reward over all possible "futures" up to 
+�
+−
+�
+{\displaystyle m-t} time steps ahead (that is, from 
+�
+t to 
+�
+m), weighs each of them by the complexity of programs 
+�
+q (that is, by 
+2
+−
+length
+(
+�
+)
+{\displaystyle 2^{-{\textrm {length}}(q)}}) consistent with the agent's past (that is, the previously executed actions, 
+�
+&lt;
+�
+{\displaystyle a_{&lt;t}}, and received percepts, 
+�
+&lt;
+�
+{\displaystyle e_{&lt;t}}) that can generate that future, and then picks the action that maximises expected future rewards.[3]
+
+Let us break this definition down in order to attempt to fully understand it.
+
+�
+�
+�
+�
+{\displaystyle o_{t}r_{t}} is the "percept" (which consists of the observation 
+�
+�
+o_{t} and reward 
+�
+�
+r_{t}) received by the AIXI agent at time step 
+�
+t from the environment (which is unknown and stochastic). Similarly, 
+�
+�
+�
+�
+{\displaystyle o_{m}r_{m}} is the percept received by AIXI at time step 
+�
+m (the last time step where AIXI is active).
+
+�
+�
++
+…
++
+�
+�
+r_{t}+\ldots +r_{m} is the sum of rewards from time step 
+�
+t to time step 
+�
+m, so AIXI needs to look into the future to choose its action at time step 
+�
+t.
+
+�
+U denotes a monotone universal Turing machine, and 
+�
+q ranges over all (deterministic) programs on the universal machine 
+�
+U, which receives as input the program 
+�
+q and the sequence of actions 
+�
+1
+…
+�
+�
+{\displaystyle a_{1}\dots a_{m}} (that is, all actions), and produces the sequence of percepts 
+�
+1
+�
+1
+…
+�
+�
+�
+�
+{\displaystyle o_{1}r_{1}\ldots o_{m}r_{m}}. The universal Turing machine 
+�
+U is thus used to "simulate" or compute the environment responses or percepts, given the program 
+�
+q (which "models" the environment) and all actions of the AIXI agent: in this sense, the environment is "computable" (as stated above). Note that, in general, the program which "models" the current and actual environment (where AIXI needs to act) is unknown because the current environment is also unknown.
+
+length
+(
+�
+)
+{\displaystyle {\textrm {length}}(q)} is the length of the program 
+�
+q (which is encoded as a string of bits). Note that 
+2
+−
+length
+(
+�
+)
+=
+1
+2
+length
+(
+�
+)
+{\displaystyle 2^{-{\textrm {length}}(q)}={\frac {1}{2^{{\textrm {length}}(q)}}}}. Hence, in the definition above, 
+∑
+�
+:
+�
+(
+�
+,
+�
+1
+…
+�
+�
+)
+=
+�
+1
+�
+1
+…
+�
+�
+�
+�
+2
+−
+length
+(
+�
+)
+{\displaystyle \sum _{q:\;U(q,a_{1}\ldots a_{m})=o_{1}r_{1}\ldots o_{m}r_{m}}2^{-{\textrm {length}}(q)}} should be interpreted as a mixture (in this case, a sum) over all computable environments (which are consistent with the agent's past), each weighted by its complexity 
+2
+−
+length
+(
+�
+)
+{\displaystyle 2^{-{\textrm {length}}(q)}}. Note that 
+�
+1
+…
+�
+�
+{\displaystyle a_{1}\ldots a_{m}} can also be written as 
+�
+1
+…
+�
+�
+−
+1
+�
+�
+…
+�
+�
+{\displaystyle a_{1}\ldots a_{t-1}a_{t}\ldots a_{m}}, and 
+�
+1
+…
+�
+�
+−
+1
+=
+�
+&lt;
+�
+{\displaystyle a_{1}\ldots a_{t-1}=a_{&lt;t}} is the sequence of actions already executed in the environment by the AIXI agent. Similarly, 
+�
+1
+�
+1
+…
+�
+�
+�
+�
+=
+�
+1
+�
+1
+…
+�
+�
+−
+1
+�
+�
+−
+1
+�
+�
+�
+�
+…
+�
+�
+�
+�
+{\displaystyle o_{1}r_{1}\ldots o_{m}r_{m}=o_{1}r_{1}\ldots o_{t-1}r_{t-1}o_{t}r_{t}\ldots o_{m}r_{m}}, and 
+�
+1
+�
+1
+…
+�
+�
+−
+1
+�
+�
+−
+1
+{\displaystyle o_{1}r_{1}\ldots o_{t-1}r_{t-1}} is the sequence of percepts produced by the environment so far.
+
+Let us now put all these components together in order to understand this equation or definition.
+
+At time step t, AIXI chooses the action 
+�
+�
+a_{t} where the function 
+∑
+�
+�
+�
+�
+…
+max
+�
+�
+∑
+�
+�
+�
+�
+[
+�
+�
++
+…
++
+�
+�
+]
+∑
+�
+:
+�
+(
+�
+,
+�
+1
+…
+�
+�
+)
+=
+�
+1
+�
+1
+…
+�
+�
+�
+�
+2
+−
+length
+(
+�
+)
+{\displaystyle \sum _{o_{t}r_{t}}\ldots \max _{a_{m}}\sum _{o_{m}r_{m}}[r_{t}+\ldots +r_{m}]\sum _{q:\;U(q,a_{1}\ldots a_{m})=o_{1}r_{1}\ldots o_{m}r_{m}}2^{-{\textrm {length}}(q)}} attains its maximum.
+
+Wiki letter w.svg
+This article is missing information about description of the selection of actions. Please expand the article to include this information. Further details may exist on the talk page. (February 2019)
+Parameters
+The parameters to AIXI are the universal Turing machine U and the agent's lifetime m, which need to be chosen. The latter parameter can be removed by the use of discounting.
+
+The meaning of the word AIXI
+According to Hutter, the word "AIXI" can have several interpretations. AIXI can stand for AI based on Solomonoff's distribution, denoted by 
+�\xi  (which is the Greek letter xi), or e.g. it can stand for AI "crossed" (X) with induction (I). There are other interpretations.
+
+Optimality
+AIXI's performance is measured by the expected total number of rewards it receives. AIXI has been proven to be optimal in the following ways.[2]
+
+Pareto optimality: there is no other agent that performs at least as well as AIXI in all environments while performing strictly better in at least one environment.[citation needed]
+Balanced Pareto optimality: like Pareto optimality, but considering a weighted sum of environments.
+Self-optimizing: a policy p is called self-optimizing for an environment 
+�\mu  if the performance of p approaches the theoretical maximum for 
+�\mu  when the length of the agent's lifetime (not time) goes to infinity. For environment classes where self-optimizing policies exist, AIXI is self-optimizing.
+It was later shown by Hutter and Jan Leike that balanced Pareto optimality is subjective and that any policy can be considered Pareto optimal, which they describe as undermining all previous optimality claims for AIXI.[5]
+
+However, AIXI does have limitations. It is restricted to maximizing rewards based on percepts as opposed to external states. It also assumes it interacts with the environment solely through action and percept channels, preventing it from considering the possibility of being damaged or modified. Colloquially, this means that it doesn't consider itself to be contained by the environment it interacts with. It also assumes the environment is computable.[6]
+
+Computational aspects
+Like Solomonoff induction, AIXI is incomputable. However, there are computable approximations of it. One such approximation is AIXItl, which performs at least as well as the provably best time t and space l limited agent.[2] Another approximation to AIXI with a restricted environment class is MC-AIXI (FAC-CTW) (which stands for Monte Carlo AIXI FAC-Context-Tree Weighting), which has had some success playing simple games such as partially observable Pac-Man.[3][7]
+
+See also
+Gödel machine</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>AIXI is a theoretical framework for artificial general intelligence that combines Solomonoff induction with sequential decision theory. It was first proposed by Marcus Hutter in 2000, with several results presented in his 2005 book Universal Artificial Intelligence.</p><p>As a reinforcement learning (RL) agent, AIXI aims to maximize the expected total rewards it receives from its environment. It considers all possible computable hypotheses or environments and evaluates each possible program based on the rewards generated by the next action. The expected rewards are weighted by the subjective belief that the program represents the true environment, with longer programs deemed less likely, in line with Occam's razor. AIXI then selects the action with the highest expected total reward in the weighted sum of all programs.</p><p>The AIXI agent interacts with a stochastic and unknown but computable environment through a series of time steps, taking actions and receiving percepts (comprised of observations and rewards) from the environment. Its goal is to maximize the sum of rewards from the beginning to the end of its lifespan.</p><p>AIXI uses a stochastic policy to choose actions at each time step, and the environment can be thought of as another stochastic policy. The agent's decision-making process involves considering the sum of total rewards over all possible futures, weighting them by the complexity of the programs consistent with its past, and selecting the action that maximizes expected future rewards.</p><p>Despite its theoretical elegance, AIXI is not directly implementable in practice due to its computational intractability. It requires an exhaustive search over all possible programs, which is impossible for any real-world computing system. Nonetheless, AIXI serves as an idealized model for understanding the fundamental principles of artificial general intelligence and provides insights that can guide the development of more practical algorithms and systems.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Give me the basic algorithm in python.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Due to the computationally intractable nature of AIXI, it's not possible to provide a direct implementation of the AIXI algorithm in Python. However, I can provide you with an example of a Monte Carlo Tree Search (MCTS) algorithm, which is a more feasible approximation used in practice for reinforcement learning problems.</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>python</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-python"><span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> math
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, state, parent=<span class="hljs-literal">None</span></span>):
+        self.state = state
+        self.parent = parent
+        self.children = []
+        self.visits = <span class="hljs-number">0</span>
+        self.value = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">uct</span>(<span class="hljs-params">node</span>):
+    exploration_weight = <span class="hljs-number">1</span>
+    exploitation = node.value / node.visits
+    exploration = math.sqrt(math.log(node.parent.visits) / node.visits)
+    <span class="hljs-keyword">return</span> exploitation + exploration_weight * exploration
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">select</span>(<span class="hljs-params">node</span>):
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> node.state.is_terminal():
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">all</span>(child.state <span class="hljs-keyword">in</span> [c.state <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> node.children] <span class="hljs-keyword">for</span> child <span class="hljs-keyword">in</span> node.state.get_children()):
+            <span class="hljs-keyword">return</span> expand(node)
+        node = <span class="hljs-built_in">max</span>(node.children, key=uct)
+    <span class="hljs-keyword">return</span> node
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">expand</span>(<span class="hljs-params">node</span>):
+    tried_children = [child.state <span class="hljs-keyword">for</span> child <span class="hljs-keyword">in</span> node.children]
+    new_state = random.choice([state <span class="hljs-keyword">for</span> state <span class="hljs-keyword">in</span> node.state.get_children() <span class="hljs-keyword">if</span> state <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> tried_children])
+    new_node = Node(new_state, parent=node)
+    node.children.append(new_node)
+    <span class="hljs-keyword">return</span> new_node
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">simulate</span>(<span class="hljs-params">node</span>):
+    current_state = node.state
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> current_state.is_terminal():
+        current_state = random.choice(current_state.get_children())
+    <span class="hljs-keyword">return</span> current_state.reward()
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">backpropagate</span>(<span class="hljs-params">node, reward</span>):
+    <span class="hljs-keyword">while</span> node <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+        node.visits += <span class="hljs-number">1</span>
+        node.value += reward
+        node = node.parent
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">mcts</span>(<span class="hljs-params">root_state, num_simulations</span>):
+    root = Node(root_state)
+
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_simulations):
+        selected_node = select(root)
+        reward = simulate(selected_node)
+        backpropagate(selected_node, reward)
+
+    best_child = <span class="hljs-built_in">max</span>(root.children, key=<span class="hljs-keyword">lambda</span> c: c.visits)
+    <span class="hljs-keyword">return</span> best_child.state
+</code></div></div></pre><p>Replace <code>root_state</code> with your own environment state representation, and make sure your state representation has the following methods:</p><ol><li><code>is_terminal()</code>: Returns a boolean indicating if the state is a terminal state.</li><li><code>get_children()</code>: Returns a list of all possible next states.</li><li><code>reward()</code>: Returns the reward associated with the state.</li></ol><p>You can use this <code>mcts</code> function for action selection by running a set number of simulations, e.g., <code>num_simulations = 1000</code>, and then selecting the best action based on the state returned by <code>mcts</code>.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div></body></html>

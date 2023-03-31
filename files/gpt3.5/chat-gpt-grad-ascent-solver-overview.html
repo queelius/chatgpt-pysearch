@@ -1,0 +1,240 @@
+<!DOCTYPE html><html><head>  <meta charset="utf-8"/>  <title>Chat GPT: Grad Ascent Solver Overview</title>  <meta name="generator" content="chatGPT Saving Bookmark"/><style>body {  background-color: rgb(32,33,35);  color: rgb(236,236,241);  font-size: 16px;  font-family: sans-serif;  line-height: 28px;  margin: 0;}body > .w-full {  padding: 30px;}/* prompt */body > .w-full:nth-child(2n+1) {  background: rgb(52,53,65);}/* response */body > .w-full:nth-child(2n+2) {  background: rgb(68,70,84);}a, a:visited {  color: #7792cd;}pre {  margin: 0 0 1em 0;  display: inline-block;  width: 100%;}pre code.hljs {  margin-bottom: 1em;  border-radius: 5px;}.whitespace-pre-wrap {  white-space: pre-wrap;}.flex-col {  max-width: 850px;  margin: 0px auto;}*, :after, :before {    border: 0 solid #d9d9e3;    box-sizing: border-box;}table {    border-collapse: collapse;    border-color: inherit;    text-indent: 0;}.markdown table {    --tw-border-spacing-x: 0px;    --tw-border-spacing-y: 0px;    border-collapse: separate;    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);    width: 100%}.markdown th {    background-color: rgba(236,236,241,.2);    border-bottom-width: 1px;    border-left-width: 1px;    border-top-width: 1px;    padding: .25rem .75rem}.markdown th:first-child {    border-top-left-radius: .375rem}.markdown th:last-child {    border-right-width: 1px;    border-top-right-radius: .375rem}.markdown td {    border-bottom-width: 1px;    border-left-width: 1px;    padding: .25rem .75rem}.markdown td:last-child {    border-right-width: 1px}.markdown tbody tr:last-child td:first-child {    border-bottom-left-radius: .375rem}.markdown tbody tr:last-child td:last-child {    border-bottom-right-radius: .375rem}/* chatGPT code color theme */code.hljs,code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;overflow:auto}:not(pre)>code.hljs,:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.hljs-comment{color:hsla(0,0%,100%,.5)}.hljs-meta{color:hsla(0,0%,100%,.6)}.hljs-built_in,.hljs-class .hljs-title{color:#e9950c}.hljs-doctag,.hljs-formula,.hljs-keyword,.hljs-literal{color:#2e95d3}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#00a67d}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#df3079}.hljs-bullet,.hljs-link,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#f22c3d}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#a9aec1}.token.punctuation{color:#fefefe}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#abe338}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.important,.token.regex{color:gold}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast:active){code[class*=language-],pre[class*=language-]{background:window;color:windowText}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:400}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:700}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:400}}/* style of the code snippets */.rounded-md {    border-radius: 0.375rem;}.mb-4 {    margin-bottom: 1rem;}.p-4 {    padding: 1rem;}.py-2 {    padding-bottom: 0.5rem;    padding-top: 0.5rem;}.px-4 {    padding-left: 1rem;    padding-right: 1rem;}.text-xs {    font-size: .75rem;    line-height: 1rem;}.bg-black {    --tw-bg-opacity: 1;    background-color: rgba(0,0,0,var(--tw-bg-opacity));}.text-gray-200 {    --tw-text-opacity: 1;    color: rgba(217,217,227,var(--tw-text-opacity));}.bg-gray-800 {    --tw-bg-opacity: 1;    background-color: rgba(52,53,65,var(--tw-bg-opacity));}.rounded-t-md {    border-top-left-radius: 0.375rem;    border-top-right-radius: 0.375rem;}code.hljs, code[class*=language-], pre[class*=language-] {    word-wrap: normal;    background: none;    color: #fff;    -webkit-hyphens: none;    hyphens: none;    line-height: 1.5;    tab-size: 4;    text-align: left;    white-space: pre;    word-break: normal;    word-spacing: normal;}.prose :where(code):not(:where([class~=not-prose] *)) {    color: var(--tw-prose-code);    font-size: .875em;    font-weight: 600;}.prose :where(pre):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0.375rem;    color: currentColor;    font-size: .875em;    font-weight: 400;    line-height: 1.7142857;    margin: 0;    overflow-x: auto;    padding: 0;}.prose :where(pre code):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0;    border-width: 0;    color: inherit;    font-family: inherit;    font-size: inherit;    font-weight: inherit;    line-height: inherit;    padding: 0;}.\!whitespace-pre {    white-space: pre!important;}.overflow-y-auto {    overflow-y: auto;}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"/></head><body><div class="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">Model: Default (GPT-3.5)</div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Concepts are a new feature in C++20.
+
+They allow us to require that certain conditions be satisfied on parameter types,
+i.e., they are predicates.
+
+I would like to make is to that X template parameter in the main solver for grad_ascent_solver supports the operations given to it, and that F satisfies
+the requirements for a function with the operations used on it.
+
+```cpp
+	template &lt;typename X, typename Y&gt;
+	struct opt_sol
+	{
+		X x0;
+		Y y0;
+		int iter;
+
+		auto max() { return y0; }
+		auto arg_max() { return x0; }
+		auto iterations() { return iter; }
+	};
+
+
+/**
+ * @brief Gradient ascent solver with backtracking line search.
+ */
+struct grad_ascent_solver
+{
+/**
+ * @brief Solve the optimization problem.
+ *  This function solves the optimization problem
+ *  \f[ \max_{x \in \mathcal{D}} f(x) \f] 
+ * 
+ * It is not guaranteed to converge to a local maximum.
+ * 
+ * @param x0 Initial guess.
+ * @param f Objective function.
+ * @param alpha Step size.
+ * @param iter Number of iterations.
+ * @return a solution object.
+ */
+    template &lt;typename X, typename F&gt;
+	auto operator()(X x0, F f, X alpha, int iter = 100)
+	{
+		auto df = deriv(f);
+		auto y0 = f(x0);
+		auto dom = domain(f);
+
+		for (int i = 0; i &lt; iter; ++i)
+		{
+			auto a = alpha;
+			auto g = df(x0);
+			while (true)
+			{
+                // project x1 onto the domain of f
+				auto x1 = proj(dom,x0+a*g);
+				auto y1 = f(x1);
+				if (y1 &gt;= y0)
+				{
+					x0 = x1;
+					y0 = y1;
+					break;
+				}
+				a = half(a);
+			}
+		}
+
+		return opt_sol&lt;X,decltype(y0)&gt;{x0,y0,iter};
+	}
+};
+```</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> F&gt;
+<span class="hljs-keyword">concept</span> <span class="hljs-type">bool</span> Function = <span class="hljs-built_in">requires</span>(X x, F f) {
+  { <span class="hljs-built_in">f</span>(x) } -&gt; <span class="hljs-keyword">typename</span> Y;
+  { <span class="hljs-built_in">deriv</span>(f) } -&gt; <span class="hljs-keyword">typename</span> DF;
+  { <span class="hljs-built_in">domain</span>(f) } -&gt; <span class="hljs-keyword">typename</span> D;
+};
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> F&gt;
+<span class="hljs-function"><span class="hljs-keyword">requires</span> Function&lt;X,F&gt;
+<span class="hljs-keyword">auto</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(X x0, F f, X alpha, <span class="hljs-type">int</span> iter = <span class="hljs-number">100</span>)</span>
+</span>{
+  <span class="hljs-comment">// rest of the implementation...</span>
+}
+</code></div></div></pre><p>With this concept, we ensure that <code>F</code> must be a type that satisfies the requirements of a function with the operations used on it. Similarly, we can add a concept for <code>X</code> to make sure that it supports the necessary operations.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">What about `proj`?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> D&gt;
+<span class="hljs-keyword">concept</span> <span class="hljs-type">bool</span> Projectable = <span class="hljs-built_in">requires</span>(X x, D d) {
+  { <span class="hljs-built_in">proj</span>(d, x) } -&gt; <span class="hljs-keyword">typename</span> X;
+};
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> F&gt;
+<span class="hljs-function"><span class="hljs-keyword">requires</span> Function&lt;X,F&gt; &amp;&amp; Projectable&lt;X, <span class="hljs-keyword">typename</span> <span class="hljs-title">decltype</span><span class="hljs-params">(domain(f))</span>::type&gt;
+<span class="hljs-keyword">auto</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(X x0, F f, X alpha, <span class="hljs-type">int</span> iter = <span class="hljs-number">100</span>)</span>
+</span>{
+  <span class="hljs-comment">// rest of the implementation...</span>
+}
+</code></div></div></pre><p>With this concept, we ensure that <code>X</code> must be a type that supports the <code>proj</code> operation with the <code>D</code> type representing the domain of the function <code>f</code>.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">What about `x0+a*g`?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> Y&gt;
+<span class="hljs-keyword">concept</span> <span class="hljs-type">bool</span> Addable = <span class="hljs-built_in">requires</span>(X x, Y y) {
+  { x + y } -&gt; <span class="hljs-keyword">typename</span> X;
+};
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> Y&gt;
+<span class="hljs-keyword">concept</span> <span class="hljs-type">bool</span> Scalable = <span class="hljs-built_in">requires</span>(X x, Y y) {
+  { x * y } -&gt; <span class="hljs-keyword">typename</span> X;
+};
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> F&gt;
+<span class="hljs-function"><span class="hljs-keyword">requires</span> Function&lt;X,F&gt; &amp;&amp; Projectable&lt;X, <span class="hljs-keyword">typename</span> <span class="hljs-title">decltype</span><span class="hljs-params">(domain(f))</span>::type&gt; &amp;&amp; Addable&lt;X, X&gt; &amp;&amp; Scalable&lt;X, X&gt;
+<span class="hljs-keyword">auto</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(X x0, F f, X alpha, <span class="hljs-type">int</span> iter = <span class="hljs-number">100</span>)</span>
+</span>{
+  <span class="hljs-comment">// rest of the implementation...</span>
+}
+</code></div></div></pre><p>With this concept, we ensure that <code>X</code> must support addition and scalar multiplication operations to perform <code>x0 + a * g</code>.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Anything I'm missing? Maybe with the greater-thans?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> Y&gt;
+<span class="hljs-keyword">concept</span> <span class="hljs-type">bool</span> Comparable = <span class="hljs-built_in">requires</span>(X x, Y y) {
+  { x &gt;= y } -&gt; <span class="hljs-type">bool</span>;
+};
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> F&gt;
+<span class="hljs-function"><span class="hljs-keyword">requires</span> Function&lt;X,F&gt; &amp;&amp; Projectable&lt;X, <span class="hljs-keyword">typename</span> <span class="hljs-title">decltype</span><span class="hljs-params">(domain(f))</span>::type&gt; &amp;&amp; Addable&lt;X, X&gt; &amp;&amp; Scalable&lt;X, X&gt; &amp;&amp; Comparable&lt;<span class="hljs-title">decltype</span><span class="hljs-params">(f(x0))</span>, <span class="hljs-title">decltype</span><span class="hljs-params">(f(x1))</span>&gt;
+<span class="hljs-keyword">auto</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(X x0, F f, X alpha, <span class="hljs-type">int</span> iter = <span class="hljs-number">100</span>)</span>
+</span>{
+  <span class="hljs-comment">// rest of the implementation...</span>
+}
+</code></div></div></pre><p>With this concept, we ensure that the return value of <code>f</code> must support the greater-than-or-equal-to comparison operation.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">I'd like to provide a default implementation for any type `A` that is like a floating point number type. Just add a concept requirement on `A`. I think there is something in the standard library already...
+
+```cpp
+template &lt;typename A&gt;
+auto half(A a) { return a / A(2); }
+```</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You can use the <code>FloatingPoint</code> concept from the standard library to check if <code>A</code> is like a floating point number type:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;concepts&gt;</span></span>
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> A&gt;
+<span class="hljs-function"><span class="hljs-keyword">requires</span> std::FloatingPoint&lt;A&gt;
+<span class="hljs-keyword">auto</span> <span class="hljs-title">half</span><span class="hljs-params">(A a)</span> </span>{ <span class="hljs-keyword">return</span> a / <span class="hljs-built_in">A</span>(<span class="hljs-number">2</span>); }
+</code></div></div></pre><p>This concept checks if the type <code>A</code> is a floating point type that satisfies the requirements of the <code>std::floating_point</code> type category, which includes types like <code>float</code>, <code>double</code>, and <code>long double</code>.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">I'd like to provide ways to combine multiple solvers. Here are some code comments to get started:
+
+/**
+ * We may compose solvers to generate more robust solvers.
+ * 
+ * This is a simple example of a composition of two solvers. Suppose we
+ * have the gradient ascent solver and the simulated annealing solver, but
+ * the final solution is perturbed by noise. We can use another solver to
+ * start with the solution of the gradient ascent with simulated
+ * annealing and improve it with the second solver.
+ * 
+ * We might call this a sequence solver. We can of course combine a
+ * sequence solver with other solvers, too, e.g., creating a chain of
+ * sequence solvers.
+ * 
+ * The first sequence solver may be a grid-type search, perhaps to find a
+ * reasonable global maximum. The second sequence solver may be a
+ * gradient ascent solver with simulated annealing. The third sequence solver
+ * may be a gradient ascent solver with backtracking line search.
+ */</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Here is an example implementation of a <code>sequence_solver</code> that combines multiple solvers:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span>... Solvers&gt;
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">sequence_solver</span>
+{
+    <span class="hljs-comment">/**
+     * @brief Solve the optimization problem.
+     * 
+     * This function solves the optimization problem by composing multiple solvers.
+     * 
+     * @param x0 Initial guess.
+     * @param f Objective function.
+     * @param args Additional arguments passed to each solver.
+     * @return a solution object.
+     */</span>
+    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> F, <span class="hljs-keyword">typename</span>... Args&gt;
+    <span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(X x0, F f, Args&amp;&amp;... args)</span>
+    </span>{
+        (Solver{}(x0, f, std::forward&lt;Args&gt;(args)...), ...);
+        <span class="hljs-keyword">return</span> opt_sol&lt;X, <span class="hljs-keyword">decltype</span>(<span class="hljs-built_in">f</span>(x0))&gt;{x0, <span class="hljs-built_in">f</span>(x0), <span class="hljs-number">0</span>};
+    }
+};
+</code></div></div></pre><p>This <code>sequence_solver</code> takes multiple solvers as template parameters and composes them by calling each solver one after another with the same initial guess, objective function, and additional arguments.</p><p>Here is an example usage of <code>sequence_solver</code>:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">auto</span> sol = sequence_solver&lt;grad_ascent_solver, simulated_annealing_solver&gt;{}(x0, f, alpha, beta, iter);
+</code></div></div></pre></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Here's another object type. I've gave you hints about it in the comments too. I want to know how I should approach returning the solution to a maximization (optimization) problem.
+
+I guess I'm mostly interested in the concept which this object type should model. So, generate a concept in C++ which I would like for this object to satisfy. It is okay to add additional requirements to the concept.
+
+```cpp
+/**
+ * @brief Models the concept of a solution to maximiation optimization problems.
+ * 
+ * In general, the solution may be a set of points, but this object models
+ * a singular solution. The solution object contains the following information:
+ * - the maximum value of the objective function
+ * 
+ * - the argument at which the maximum value is attained
+ *  (i.e., the point that maximizes the objective function)
+ * 
+ * - the number of iterations performed
+ * 
+ * - whether the algorithm converged to a solution
+ * 
+ * The solution object also provides member functions to access the above
+ * information. 
+ * 
+ * @tparam X The type of the argument at which the maximum value is attained.
+ * @tparam Y The type of the maximum value.
+ */
+template &lt;typename X, typename Y&gt;
+struct opt_sol
+{
+    X x0;
+    Y y0;
+    int iter;
+    bool converged;
+
+    auto max() { return y0; }
+    auto arg_max() { return x0; }
+    auto iterations() { return iter; }
+    auto is_converged() { return converged; }
+};
+```</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Here's a concept for <code>opt_sol</code>:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> Y&gt;
+<span class="hljs-keyword">concept</span> OptimalSolution = <span class="hljs-built_in">requires</span>(X x, Y y, <span class="hljs-type">int</span> i, <span class="hljs-type">bool</span> b) {
+    { x.x0 } -&gt; X;
+    { x.y0 } -&gt; Y;
+    { x.iter } -&gt; <span class="hljs-type">int</span>;
+    { x.converged } -&gt; <span class="hljs-type">bool</span>;
+
+    { x.<span class="hljs-built_in">max</span>() } -&gt; Y;
+    { x.<span class="hljs-built_in">arg_max</span>() } -&gt; X;
+    { x.<span class="hljs-built_in">iterations</span>() } -&gt; <span class="hljs-type">int</span>;
+    { x.<span class="hljs-built_in">is_converged</span>() } -&gt; <span class="hljs-type">bool</span>;
+};
+</code></div></div></pre></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">I don't want the concept to require particular variables, like `x0`. It should have only methods/functions like `max` method and the other methods listed, in addition to other methods/functions that you think are appropriate for an optimal solution.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Understood! Here's the concept for an <code>opt_sol</code>:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T, <span class="hljs-keyword">typename</span> U&gt;
+<span class="hljs-keyword">concept</span> OptimalSolution = <span class="hljs-built_in">requires</span>(T t, U u)
+{
+    { t.<span class="hljs-built_in">max</span>() } -&gt; U;
+    { t.<span class="hljs-built_in">arg_max</span>() } -&gt; T;
+    { t.<span class="hljs-built_in">iterations</span>() } -&gt; <span class="hljs-type">int</span>;
+    { t.<span class="hljs-built_in">is_converged</span>() } -&gt; <span class="hljs-type">bool</span>;
+};
+</code></div></div></pre></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">How might we incorporate other aspects into this? For instance, what if we're not certain that `argmax` is at a particular value, but maybe a set of values, like a bounding hyper-rectangle? </div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>In that case, the <code>arg_max</code> function could return a different type that models a set of possible arguments, instead of just a single argument. This type could be a custom type, like a bounding hyper-rectangle or a set of points. It could also be a standard container type like <code>std::vector</code> or <code>std::set</code> that holds the set of possible arguments. The implementation of the <code>arg_max</code> function would then need to be changed to return the appropriate type. Additionally, the concept for the optimal solution type would need to be updated to reflect the change in the return type of the <code>arg_max</code> function.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Let's generate a concept for a solver, like `grad_ascent_solver` and `grad_ascent_annealing_solver`, that both object types must satisfy.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Sure, here's a concept for a solver:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> X, <span class="hljs-keyword">typename</span> F&gt;
+<span class="hljs-keyword">concept</span> Solver = <span class="hljs-built_in">requires</span>(X x0, X alpha, <span class="hljs-type">int</span> iter, F f) {
+    <span class="hljs-comment">// requires a function call operator which takes in</span>
+    <span class="hljs-comment">// an initial guess x0, an objective function f,</span>
+    <span class="hljs-comment">// a step size alpha, and an optional number of iterations</span>
+    <span class="hljs-comment">// and returns an optimal solution object</span>
+    { (*<span class="hljs-keyword">this</span>)(x0, f, alpha, iter) } -&gt; opt_sol&lt;X, <span class="hljs-keyword">decltype</span>(<span class="hljs-built_in">f</span>(x0))&gt;;
+
+    <span class="hljs-comment">// requires the solver to have a default constructor</span>
+    <span class="hljs-built_in">Solver</span>() -&gt; Solver&lt;X, F&gt;;
+};
+</code></div></div></pre></div></div></div><div class="flex justify-between lg:block"></div></div></div></div></body></html>

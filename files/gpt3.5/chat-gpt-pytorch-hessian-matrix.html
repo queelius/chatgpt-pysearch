@@ -1,0 +1,264 @@
+<!DOCTYPE html><html><head>  <meta charset="utf-8"/>  <title>Chat GPT: PyTorch Hessian Matrix</title>  <meta name="generator" content="chatGPT Saving Bookmark"/><style>body {  background-color: rgb(32,33,35);  color: rgb(236,236,241);  font-size: 16px;  font-family: sans-serif;  line-height: 28px;  margin: 0;}body > .w-full {  padding: 30px;}/* prompt */body > .w-full:nth-child(2n+1) {  background: rgb(52,53,65);}/* response */body > .w-full:nth-child(2n+2) {  background: rgb(68,70,84);}a, a:visited {  color: #7792cd;}pre {  margin: 0 0 1em 0;  display: inline-block;  width: 100%;}pre code.hljs {  margin-bottom: 1em;  border-radius: 5px;}.whitespace-pre-wrap {  white-space: pre-wrap;}.flex-col {  max-width: 850px;  margin: 0px auto;}*, :after, :before {    border: 0 solid #d9d9e3;    box-sizing: border-box;}table {    border-collapse: collapse;    border-color: inherit;    text-indent: 0;}.markdown table {    --tw-border-spacing-x: 0px;    --tw-border-spacing-y: 0px;    border-collapse: separate;    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);    width: 100%}.markdown th {    background-color: rgba(236,236,241,.2);    border-bottom-width: 1px;    border-left-width: 1px;    border-top-width: 1px;    padding: .25rem .75rem}.markdown th:first-child {    border-top-left-radius: .375rem}.markdown th:last-child {    border-right-width: 1px;    border-top-right-radius: .375rem}.markdown td {    border-bottom-width: 1px;    border-left-width: 1px;    padding: .25rem .75rem}.markdown td:last-child {    border-right-width: 1px}.markdown tbody tr:last-child td:first-child {    border-bottom-left-radius: .375rem}.markdown tbody tr:last-child td:last-child {    border-bottom-right-radius: .375rem}/* chatGPT code color theme */code.hljs,code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;overflow:auto}:not(pre)>code.hljs,:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.hljs-comment{color:hsla(0,0%,100%,.5)}.hljs-meta{color:hsla(0,0%,100%,.6)}.hljs-built_in,.hljs-class .hljs-title{color:#e9950c}.hljs-doctag,.hljs-formula,.hljs-keyword,.hljs-literal{color:#2e95d3}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#00a67d}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#df3079}.hljs-bullet,.hljs-link,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#f22c3d}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#a9aec1}.token.punctuation{color:#fefefe}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#abe338}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.important,.token.regex{color:gold}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast:active){code[class*=language-],pre[class*=language-]{background:window;color:windowText}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:400}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:700}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:400}}/* style of the code snippets */.rounded-md {    border-radius: 0.375rem;}.mb-4 {    margin-bottom: 1rem;}.p-4 {    padding: 1rem;}.py-2 {    padding-bottom: 0.5rem;    padding-top: 0.5rem;}.px-4 {    padding-left: 1rem;    padding-right: 1rem;}.text-xs {    font-size: .75rem;    line-height: 1rem;}.bg-black {    --tw-bg-opacity: 1;    background-color: rgba(0,0,0,var(--tw-bg-opacity));}.text-gray-200 {    --tw-text-opacity: 1;    color: rgba(217,217,227,var(--tw-text-opacity));}.bg-gray-800 {    --tw-bg-opacity: 1;    background-color: rgba(52,53,65,var(--tw-bg-opacity));}.rounded-t-md {    border-top-left-radius: 0.375rem;    border-top-right-radius: 0.375rem;}code.hljs, code[class*=language-], pre[class*=language-] {    word-wrap: normal;    background: none;    color: #fff;    -webkit-hyphens: none;    hyphens: none;    line-height: 1.5;    tab-size: 4;    text-align: left;    white-space: pre;    word-break: normal;    word-spacing: normal;}.prose :where(code):not(:where([class~=not-prose] *)) {    color: var(--tw-prose-code);    font-size: .875em;    font-weight: 600;}.prose :where(pre):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0.375rem;    color: currentColor;    font-size: .875em;    font-weight: 400;    line-height: 1.7142857;    margin: 0;    overflow-x: auto;    padding: 0;}.prose :where(pre code):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0;    border-width: 0;    color: inherit;    font-family: inherit;    font-size: inherit;    font-weight: inherit;    line-height: inherit;    padding: 0;}.\!whitespace-pre {    white-space: pre!important;}.overflow-y-auto {    overflow-y: auto;}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"/></head><body><div class="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">Model: Default (GPT-3.5)</div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">What's this:
+
+
+Get Started
+Ecosystem
+Mobile
+Blog
+Tutorials
+Docs
+Resources
+GitHub
+2.0 ▼
+Search Docs
+Community[ + ]
+
+Developer Notes[ + ]
+
+torch.compile[ - ]
+TorchDynamo Overview
+Installing TorchDynamo
+Getting Started
+Guards Overview
+Custom Backends
+TorchDynamo Deeper Dive
+TorchDynamo Troubleshooting
+Frequently Asked Questions
+IRs
+Language Bindings[ + ]
+
+Python API[ - ]
+torch
+torch.nn
+torch.nn.functional
+torch.Tensor
+Tensor Attributes
+Tensor Views
+torch.amp
+torch.autograd
+torch.library
+torch.cuda
+torch.mps
+torch.backends
+torch.distributed
+torch.distributed.algorithms.join
+torch.distributed.elastic
+torch.distributed.fsdp
+torch.distributed.optim
+torch.distributed.tensor.parallel
+torch.distributed.checkpoint
+torch.distributions
+torch._dynamo
+torch.fft
+torch.func
+torch.futures
+torch.fx
+torch.hub
+torch.jit
+torch.linalg
+torch.monitor
+torch.signal
+torch.special
+torch.overrides
+torch.package
+torch.profiler
+torch.nn.init
+torch.onnx
+torch.onnx diagnostics
+torch.optim
+Complex Numbers
+DDP Communication Hooks
+Pipeline Parallelism
+Quantization
+Distributed RPC Framework
+torch.random
+torch.masked
+torch.nested
+torch.sparse
+torch.Storage
+torch.testing
+torch.utils.benchmark
+torch.utils.bottleneck
+torch.utils.checkpoint
+torch.utils.cpp_extension
+torch.utils.data
+torch.utils.jit
+torch.utils.dlpack
+torch.utils.mobile_optimizer
+torch.utils.model_zoo
+torch.utils.tensorboard
+Type Info
+Named Tensors
+Named Tensors operator coverage
+torch.__config__
+Libraries[ + ]
+
+Docs &gt; Automatic differentiation package - torch.autograd &gt; torch.autograd.functional.hessian
+TORCH.AUTOGRAD.FUNCTIONAL.HESSIAN
+torch.autograd.functional.hessian(func, inputs, create_graph=False, strict=False, vectorize=False, outer_jacobian_strategy='reverse-mode')[SOURCE]
+Function that computes the Hessian of a given scalar function.
+
+Parameters:
+func (function) – a Python function that takes Tensor inputs and returns a Tensor with a single element.
+
+inputs (tuple of Tensors or Tensor) – inputs to the function func.
+
+create_graph (bool, optional) – If True, the Hessian will be computed in a differentiable manner. Note that when strict is False, the result can not require gradients or be disconnected from the inputs. Defaults to False.
+
+strict (bool, optional) – If True, an error will be raised when we detect that there exists an input such that all the outputs are independent of it. If False, we return a Tensor of zeros as the hessian for said inputs, which is the expected mathematical value. Defaults to False.
+
+vectorize (bool, optional) – This feature is experimental. Please consider using torch.func.hessian() instead if you are looking for something less experimental and more performant. When computing the hessian, usually we invoke autograd.grad once per row of the hessian. If this flag is True, we use the vmap prototype feature as the backend to vectorize calls to autograd.grad so we only invoke it once instead of once per row. This should lead to performance improvements in many use cases, however, due to this feature being incomplete, there may be performance cliffs. Please use torch._C._debug_only_display_vmap_fallback_warnings(True) to show any performance warnings and file us issues if warnings exist for your use case. Defaults to False.
+
+outer_jacobian_strategy (str, optional) – The Hessian is computed by computing the Jacobian of a Jacobian. The inner Jacobian is always computed in reverse-mode AD. Setting strategy to "forward-mode" or "reverse-mode" determines whether the outer Jacobian will be computed with forward or reverse mode AD. Currently, computing the outer Jacobian in "forward-mode" requires vectorized=True. Defaults to "reverse-mode".
+
+Returns:
+if there is a single input, this will be a single Tensor containing the Hessian for the input. If it is a tuple, then the Hessian will be a tuple of tuples where Hessian[i][j] will contain the Hessian of the ith input and jth input with size the sum of the size of the ith input plus the size of the jth input. Hessian[i][j] will have the same dtype and device as the corresponding ith input.
+
+Return type:
+Hessian (Tensor or a tuple of tuple of Tensors)
+
+Example
+
+&gt;&gt;&gt; def pow_reducer(x):
+...     return x.pow(3).sum()
+&gt;&gt;&gt; inputs = torch.rand(2, 2)
+&gt;&gt;&gt; hessian(pow_reducer, inputs)
+tensor([[[[5.2265, 0.0000],
+          [0.0000, 0.0000]],
+         [[0.0000, 4.8221],
+          [0.0000, 0.0000]]],
+        [[[0.0000, 0.0000],
+          [1.9456, 0.0000]],
+         [[0.0000, 0.0000],
+          [0.0000, 3.2550]]]])
+&gt;&gt;&gt; hessian(pow_reducer, inputs, create_graph=True)
+tensor([[[[5.2265, 0.0000],
+          [0.0000, 0.0000]],
+         [[0.0000, 4.8221],
+          [0.0000, 0.0000]]],
+        [[[0.0000, 0.0000],
+          [1.9456, 0.0000]],
+         [[0.0000, 0.0000],
+          [0.0000, 3.2550]]]], grad_fn=&lt;ViewBackward&gt;)
+&gt;&gt;&gt; def pow_adder_reducer(x, y):
+...     return (2 * x.pow(2) + 3 * y.pow(2)).sum()
+&gt;&gt;&gt; inputs = (torch.rand(2), torch.rand(2))
+&gt;&gt;&gt; hessian(pow_adder_reducer, inputs)
+((tensor([[4., 0.],
+          [0., 4.]]),
+  tensor([[0., 0.],
+          [0., 0.]])),
+ (tensor([[0., 0.],
+          [0., 0.]]),
+  tensor([[6., 0.],
+          [0., 6.]])))</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>This is a documentation page from the PyTorch library, specifically about the <code>torch.autograd.functional.hessian()</code> function. This function computes the Hessian matrix (i.e., the matrix of second derivatives) of a given scalar function with respect to its input tensors. The page provides a detailed explanation of the function's parameters, return type, and usage examples. Additionally, the page includes information about other PyTorch libraries and functions, such as language bindings, distributed training, and automatic differentiation.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Would this be good for computing the Fisher information?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, the <code>torch.autograd.functional.hessian()</code> function can be used to compute the Fisher information matrix. The Fisher information matrix is the negative Hessian of the log-likelihood function, and this function can compute the Hessian of any scalar function with respect to its input tensors. Therefore, if you have a log-likelihood function that depends on some parameters (which are input tensors), you can use this function to compute the Fisher information matrix. However, note that computing the Fisher information matrix using the Hessian can be computationally expensive, especially if the number of parameters is large. In such cases, it may be more efficient to use other methods, such as stochastic gradient descent with a diagonal Fisher approximation or natural gradient descent.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">I'd only need to compute the Fisher information to estimate the sampling distribution of an MLE.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, that's correct! The Fisher information matrix can be used to compute the standard errors and confidence intervals of maximum likelihood estimates (MLEs) of the parameters. The standard errors and confidence intervals are important for assessing the precision and uncertainty of the estimates. The Fisher information matrix is also used in the Cramer-Rao lower bound, which gives a lower bound on the variance of any unbiased estimator of the parameters. This means that if an estimator achieves the Cramer-Rao lower bound, it is the most efficient (i.e., lowest variance) estimator possible. However, note that the Cramer-Rao bound assumes that the estimator is unbiased, which may not be the case for some estimators.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">So, I'd only need to compute it once -- perhaps to check that the MLE is at a maximum, and also if so, to use it to compute the sampling distribution's variance-covariance matrix.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, that's correct! You typically only need to compute the Fisher information matrix once at the maximum likelihood estimate to estimate the sampling distribution of the MLE. Once you have the Fisher information matrix, you can use it to compute the variance-covariance matrix of the MLE, which is an estimate of the variance of the MLE and the covariance between the parameters. This variance-covariance matrix can be used to compute standard errors and confidence intervals of the parameters, as well as to test hypotheses about the parameters (e.g., to test if a parameter is significantly different from zero).</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">so, say i have a large parametric model for which i want to use MLE to estimate its parameters from some sample. how do i go about using pytorch to do this?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>To use PyTorch to estimate the parameters of a large parametric model using maximum likelihood estimation (MLE), you typically need to perform the following steps:</p><ol><li><p>Define the likelihood function: The likelihood function specifies the probability of observing the data given the parameters of the model. In PyTorch, you can define the likelihood function as a function that takes the data and the model parameters as input and returns the log-likelihood.</p></li><li><p>Define the loss function: The loss function is the negative log-likelihood function, which is the objective function that we want to minimize. In PyTorch, you can define the loss function as a function that takes the data and the model parameters as input and returns the negative log-likelihood.</p></li><li><p>Define the model: The model is a function that takes the model parameters as input and returns a prediction of the output variable given the input variable(s). In PyTorch, you can define the model as a neural network, which takes the input data as input and returns the predicted output given the model parameters.</p></li><li><p>Initialize the parameters: You need to initialize the model parameters randomly before training the model.</p></li><li><p>Train the model: You can use stochastic gradient descent (SGD) or a variant of it, such as Adam, to optimize the parameters of the model. In PyTorch, you can use the <code>torch.optim</code> module to define the optimizer and the <code>torch.autograd</code> module to compute gradients of the loss function with respect to the model parameters.</p></li><li><p>Evaluate the model: Once the model is trained, you can evaluate its performance on a validation set or a test set.</p></li></ol><p>Here is a sample code snippet that demonstrates how to estimate the parameters of a linear regression model using MLE in PyTorch:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>python</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+
+<span class="hljs-comment"># Define the likelihood function</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">log_likelihood</span>(<span class="hljs-params">y_pred, y_true, sigma</span>):
+    var = sigma**<span class="hljs-number">2</span>
+    log_prob = -<span class="hljs-number">0.5</span> * torch.log(<span class="hljs-number">2</span> * torch.tensor(math.pi)) - torch.log(sigma) \
+               - <span class="hljs-number">0.5</span> * (y_true - y_pred)**<span class="hljs-number">2</span> / var
+    <span class="hljs-keyword">return</span> log_prob.<span class="hljs-built_in">sum</span>()
+
+<span class="hljs-comment"># Define the negative log-likelihood function</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">neg_log_likelihood</span>(<span class="hljs-params">y_pred, y_true, sigma</span>):
+    <span class="hljs-keyword">return</span> -log_likelihood(y_pred, y_true, sigma)
+
+<span class="hljs-comment"># Define the linear regression model</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">LinearRegression</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_dim</span>):
+        <span class="hljs-built_in">super</span>(LinearRegression, self).__init__()
+        self.linear = nn.Linear(input_dim, <span class="hljs-number">1</span>)
+        
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        out = self.linear(x)
+        <span class="hljs-keyword">return</span> out
+
+<span class="hljs-comment"># Initialize the model and the optimizer</span>
+model = LinearRegression(input_dim=<span class="hljs-number">1</span>)
+optimizer = optim.Adam(model.parameters(), lr=<span class="hljs-number">0.01</span>)
+
+<span class="hljs-comment"># Generate some sample data</span>
+x = torch.randn(<span class="hljs-number">100</span>, <span class="hljs-number">1</span>)
+y = <span class="hljs-number">2</span>*x + <span class="hljs-number">1</span> + <span class="hljs-number">0.5</span>*torch.randn(<span class="hljs-number">100</span>, <span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># Train the model using MLE</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1000</span>):
+    optimizer.zero_grad()
+    y_pred = model(x)
+    loss = neg_log_likelihood(y_pred, y, sigma=<span class="hljs-number">0.5</span>)
+    loss.backward()
+    optimizer.step()
+
+<span class="hljs-comment"># Evaluate the model</span>
+<span class="hljs-keyword">with</span> torch.no_grad():
+    y_pred = model(x)
+    mse = ((y - y_pred)**<span class="hljs-number">2</span>).mean()
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"MSE: <span class="hljs-subst">{mse}</span>"</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Estimated parameters: <span class="hljs-subst">{model.linear.weight}</span>, <span class="hljs-subst">{model.linear.bias}</span>"</span>)
+</code></div></div></pre><p>In this example, we define the likelihood function as a function that takes the predicted values, the true values, and the standard deviation as input and returns the log-likelihood. We then define the negative log-likelihood function</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">i have a series system with hidden components that can't be observed. i really want to estimate the parameters of the components from a sample where i only observe the system lifetime (or right-censored lifetime) and a subset of the components where one of these components in the subset definitely caused the failure.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>It sounds like you are dealing with a series system with masked failure data. In this case, the goal is to estimate the parameters of the hidden components based on the observed system lifetime and the subset of the components where the failure is definitely caused by one of them. This is a common problem in reliability analysis and can be addressed using maximum likelihood estimation (MLE) or Bayesian inference.</p><p>To use MLE to estimate the parameters of the hidden components, you can define the likelihood function as the probability density function (PDF) of the observed lifetime, given the parameters of the hidden components and the observed failure mode. The PDF can be calculated using the survival function of the system, which is the probability that the system survives beyond a certain time. The survival function can be calculated using the reliability function of the system, which is the probability that the system does not fail up to a certain time.</p><p>Here's an example code snippet that demonstrates how to estimate the parameters of a series system with masked failure data in PyTorch using MLE:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>scss</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-scss">import torch
+import torch<span class="hljs-selector-class">.nn</span> as nn
+import torch<span class="hljs-selector-class">.optim</span> as optim
+from scipy<span class="hljs-selector-class">.stats</span> import norm
+
+# Define the likelihood function
+def <span class="hljs-built_in">log_likelihood</span>(theta, t, censored_t, x, delta):
+    # Compute the survival function
+    S = torch.<span class="hljs-built_in">exp</span>(-theta*x).<span class="hljs-built_in">prod</span>(dim=<span class="hljs-number">1</span>)
+    S_censored = torch.<span class="hljs-built_in">exp</span>(-theta*censored_t).<span class="hljs-built_in">prod</span>(dim=<span class="hljs-number">1</span>)
+    S = S * S_censored
+
+    # Compute the PDF of the observed failure time
+    f = (theta*x).<span class="hljs-built_in">sum</span>(dim=<span class="hljs-number">1</span>) - torch.<span class="hljs-built_in">log</span>(S)
+    f_censored = -torch.<span class="hljs-built_in">log</span>(S_censored)
+    f = torch.<span class="hljs-built_in">cat</span>((f, f_censored))
+
+    # Compute the likelihood of the observed data
+    log_prob = torch.<span class="hljs-built_in">zeros_like</span>(delta)
+    log_prob[delta == <span class="hljs-number">1</span>] = f[delta == <span class="hljs-number">1</span>]
+    log_prob[delta == <span class="hljs-number">0</span>] = torch.<span class="hljs-built_in">log</span>(torch.<span class="hljs-built_in">exp</span>(f[delta == <span class="hljs-number">0</span>]) - torch.<span class="hljs-built_in">exp</span>(f[delta == <span class="hljs-number">0</span>] + f_censored))
+
+    return log_prob.<span class="hljs-built_in">sum</span>()
+
+# Define the negative log-likelihood function
+def <span class="hljs-built_in">neg_log_likelihood</span>(theta, t, censored_t, x, delta):
+    return <span class="hljs-built_in">-log_likelihood</span>(theta, t, censored_t, x, delta)
+
+# Define the model
+class <span class="hljs-built_in">SeriesSystem</span>(nn.Module):
+    def <span class="hljs-built_in">__init__</span>(self, num_components):
+        <span class="hljs-built_in">super</span>(SeriesSystem, self).<span class="hljs-built_in">__init__</span>()
+        self.theta = nn.<span class="hljs-built_in">Parameter</span>(torch.<span class="hljs-built_in">randn</span>(num_components))
+        
+    def <span class="hljs-built_in">forward</span>(self, x):
+        S = torch.<span class="hljs-built_in">exp</span>(-self.theta*x).<span class="hljs-built_in">prod</span>(dim=<span class="hljs-number">1</span>)
+        return S
+
+# Initialize the model and the optimizer
+model = <span class="hljs-built_in">SeriesSystem</span>(num_components=<span class="hljs-number">5</span>)
+optimizer = optim.<span class="hljs-built_in">Adam</span>(model.<span class="hljs-built_in">parameters</span>(), lr=<span class="hljs-number">0.01</span>)
+
+# Generate some sample data
+x = torch.<span class="hljs-built_in">randn</span>(<span class="hljs-number">100</span>, <span class="hljs-number">5</span>)
+theta_true = torch.<span class="hljs-built_in">tensor</span>([<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>])
+t = (torch.<span class="hljs-built_in">log</span>(torch.<span class="hljs-built_in">randn</span>(<span class="hljs-number">100</span>)) / -theta_true).<span class="hljs-built_in">exp</span>()
+censored_t = torch.<span class="hljs-built_in">randn</span>(<span class="hljs-number">50</span>) * <span class="hljs-number">0.5</span> - t.<span class="hljs-built_in">min</span>()
+delta = torch.<span class="hljs-built_in">cat</span>((torch.<span class="hljs-built_in">ones</span>(<span class="hljs-number">50</span>), torch.<span class="hljs-built_in">zeros</span>(<span class="hljs-number">50</span>)))
+
+# Train the model using MLE
+for i in <span class="hljs-built_in">range</span>(<span class="hljs-number">1000</span>):
+    optimizer.<span class="hljs-built_in">zero_grad</span>()
+    S = <span class="hljs-built_in">model</span>(x)
+    loss = <span class="hljs-built_in">neg_log_likelihood</span>(model.theta, t, censored_t, x, delta)
+    loss.<span class="hljs-built_in">backward</span>()
+    optimizer.<span class="hljs-built_in">step</span>()
+
+# Evaluate the model
+with torch.<span class="hljs-built_in">no_grad</span>():
+    S = <span class="hljs-built_in">model</span>(x)
+    t_pred = -torch.<span class="hljs-built_in">log</span>(S) / model.theta.<span class="hljs-built_in">sum</span>()
+    mse = ((t - t_pred)**<span class="hljs-number">2</span>).<span class="hljs-built_in">mean</span>()
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"MSE
+</span></code></div></div></pre></div></div></div><div class="flex justify-between lg:block"></div></div></div></div></body></html>

@@ -1,0 +1,930 @@
+<!DOCTYPE html><html><head>  <meta charset="utf-8"/>  <title>Chat GPT: RD_PH_Filter implementation.</title>  <meta name="generator" content="chatGPT Saving Bookmark"/><style>body {  background-color: rgb(32,33,35);  color: rgb(236,236,241);  font-size: 16px;  font-family: sans-serif;  line-height: 28px;  margin: 0;}body > .w-full {  padding: 30px;}/* prompt */body > .w-full:nth-child(2n+1) {  background: rgb(52,53,65);}/* response */body > .w-full:nth-child(2n+2) {  background: rgb(68,70,84);}a, a:visited {  color: #7792cd;}pre {  margin: 0 0 1em 0;  display: inline-block;  width: 100%;}pre code.hljs {  margin-bottom: 1em;  border-radius: 5px;}.whitespace-pre-wrap {  white-space: pre-wrap;}.flex-col {  max-width: 850px;  margin: 0px auto;}*, :after, :before {    border: 0 solid #d9d9e3;    box-sizing: border-box;}table {    border-collapse: collapse;    border-color: inherit;    text-indent: 0;}.markdown table {    --tw-border-spacing-x: 0px;    --tw-border-spacing-y: 0px;    border-collapse: separate;    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);    width: 100%}.markdown th {    background-color: rgba(236,236,241,.2);    border-bottom-width: 1px;    border-left-width: 1px;    border-top-width: 1px;    padding: .25rem .75rem}.markdown th:first-child {    border-top-left-radius: .375rem}.markdown th:last-child {    border-right-width: 1px;    border-top-right-radius: .375rem}.markdown td {    border-bottom-width: 1px;    border-left-width: 1px;    padding: .25rem .75rem}.markdown td:last-child {    border-right-width: 1px}.markdown tbody tr:last-child td:first-child {    border-bottom-left-radius: .375rem}.markdown tbody tr:last-child td:last-child {    border-bottom-right-radius: .375rem}/* chatGPT code color theme */code.hljs,code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;overflow:auto}:not(pre)>code.hljs,:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.hljs-comment{color:hsla(0,0%,100%,.5)}.hljs-meta{color:hsla(0,0%,100%,.6)}.hljs-built_in,.hljs-class .hljs-title{color:#e9950c}.hljs-doctag,.hljs-formula,.hljs-keyword,.hljs-literal{color:#2e95d3}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#00a67d}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#df3079}.hljs-bullet,.hljs-link,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#f22c3d}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#a9aec1}.token.punctuation{color:#fefefe}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#abe338}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.important,.token.regex{color:gold}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast:active){code[class*=language-],pre[class*=language-]{background:window;color:windowText}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:400}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:700}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:400}}/* style of the code snippets */.rounded-md {    border-radius: 0.375rem;}.mb-4 {    margin-bottom: 1rem;}.p-4 {    padding: 1rem;}.py-2 {    padding-bottom: 0.5rem;    padding-top: 0.5rem;}.px-4 {    padding-left: 1rem;    padding-right: 1rem;}.text-xs {    font-size: .75rem;    line-height: 1rem;}.bg-black {    --tw-bg-opacity: 1;    background-color: rgba(0,0,0,var(--tw-bg-opacity));}.text-gray-200 {    --tw-text-opacity: 1;    color: rgba(217,217,227,var(--tw-text-opacity));}.bg-gray-800 {    --tw-bg-opacity: 1;    background-color: rgba(52,53,65,var(--tw-bg-opacity));}.rounded-t-md {    border-top-left-radius: 0.375rem;    border-top-right-radius: 0.375rem;}code.hljs, code[class*=language-], pre[class*=language-] {    word-wrap: normal;    background: none;    color: #fff;    -webkit-hyphens: none;    hyphens: none;    line-height: 1.5;    tab-size: 4;    text-align: left;    white-space: pre;    word-break: normal;    word-spacing: normal;}.prose :where(code):not(:where([class~=not-prose] *)) {    color: var(--tw-prose-code);    font-size: .875em;    font-weight: 600;}.prose :where(pre):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0.375rem;    color: currentColor;    font-size: .875em;    font-weight: 400;    line-height: 1.7142857;    margin: 0;    overflow-x: auto;    padding: 0;}.prose :where(pre code):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0;    border-width: 0;    color: inherit;    font-family: inherit;    font-size: inherit;    font-weight: inherit;    line-height: inherit;    padding: 0;}.\!whitespace-pre {    white-space: pre!important;}.overflow-y-auto {    overflow-y: auto;}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"/></head><body><div class="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">Model: GPT-4</div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Rate-distorted perfect hash filter
+==================================
+
+The library `rd_ph_filter`, which standards for rate-distorted perfect hash filter,
+models the concept of a bernoulli set. It is a very practical implementation of
+the concept.
+
+The rate-distortion occurs in two independent ways, yielding two different types
+of rate-distortion. The first distortion is given by perfectly hashing each element
+of the objective set, and then storing its hash (not the perfect hash, but a
+standard hash) at the index the perfect hash function assigns to it. There is a
+small chance that a random element not in the objective set will hash to the same
+value. This causes a type of rate distortion denoted the false positive rate.
+
+The second kind of rate distortion occurs as a function of the rate-distortion in the
+perfect hash function. If the perfect hash function fails to perfectly hash a particular
+element of the objective set, then it will collide with another element in the objective
+set. When this occurs, most likely it will fail to test positive for membership.
+This type of rate distortion is known as the false negative rate.
+
+There is an opportunity to store the hashes in an arbitrary whole number of bits
+with something like a *packed matrix*, but we did not consider it
+worth the extra cost to implement for this particular data structure.
+</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>The <code>rd_ph_filter</code> library, short for rate-distorted perfect hash filter, provides a practical implementation of a Bernoulli set. This data structure experiences two types of rate-distortion, leading to both false positive and false negative rates.</p><ol><li><p><strong>False Positive Rate</strong>: This rate-distortion occurs when an element is perfectly hashed, and its standard hash is stored at the index assigned by the perfect hash function. There's a small chance that a random element not part of the objective set will have the same hash value, causing a false positive.</p></li><li><p><strong>False Negative Rate</strong>: This rate-distortion arises from the imperfection of the perfect hash function. When the function fails to perfectly hash an element, it may collide with another element in the objective set. As a result, the element is likely to test negative for membership even though it is part of the set, causing a false negative.</p></li></ol><p>Although there is an option to store hashes in an arbitrary whole number of bits using a packed matrix, this approach was not deemed worthwhile for this particular data structure due to the increased implementation complexity.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">#pragma once
+
+#include &lt;limits&gt;
+#include &lt;vector&gt;
+
+namespace bernoulli {
+/**
+ * @brief Rate-distorted perfect hash filter models the concept of a
+ * (immutable) Bernoulli set.
+ *
+ * As a type of bernoulli set, it has a fase positive rate and a false
+ * negative rate. In this case, the false positive rate is an expectation
+ * that may be specified precisely and the false negative rate is a function
+ * of a specified time and space complexity.
+ *
+ * @tparam PH a type that models the concept of a rate-distrted perfect hash
+ * function, Hashable -&gt; [0,m], where m is the maximum hash value.
+ */
+template &lt;typename PH&gt;
+struct rd_ph_filter {
+    using hash_type = typename PH::H::hash_type;
+
+    auto perfect_hash_fn() const { return ph; }
+    auto hash_fn() const { return ph.hash_fn(); }
+
+    template &lt;typename I&gt;
+    static auto build_filter(PH const&amp; ph, I begin, I end)
+    {
+        std::vector&lt;hash_type&gt; hashes(ph.max_hash() + 1);
+        for (auto x = begin; x != end; ++x) hashes[ph(*x)] = hash_fn()(*x);
+        return hashes;
+    }
+
+    /**
+     * @brief Construct object from iterator range [begin,end),
+     * which is viewed as representing a set (duplicates and
+     * order does not matter).
+     *
+     * It takes an object `builder` that models the concept of a
+     * Builder. It is a functor that accepts an iterator range [begin,end)
+     * and constructs a PH object for it with a pre-specified set of
+     * parameters.
+     *
+     * @param begin start of elements to build a filter for
+     * @param end end of elements
+     * @tparam I mdoels the concept of a forward iterator
+     * @tparam Builder models the concept of a builder for PH
+     */
+    template &lt;typename I, typename Builder&gt;
+    rd_ph_filter(I begin, I end, Builder builder)
+        : ph(builder(begin, end))
+        , hashes(build_filter(ph, begin, end))
+    {
+    }
+
+    /**
+     * @brief Test element x for membership in the set.
+     * 
+     * @tparam X 
+     * @param x 
+     * @return auto 
+     */
+    template &lt;typename X&gt;
+    auto operator()(X const&amp; x) const
+    {
+        return hashes[ph(x)] == hash_fn(x);
+    }
+
+    static auto fpr()
+    {
+        return 1.0 / std::numeric_limits&lt;hash_type&gt;::max();
+    }
+
+    auto fnr() const
+    {
+        return ph.error_rate() * (1 - fpr());
+    }
+
+    PH const                     ph;
+    std::vector&lt;hash_type&gt; const hashes;
+};
+
+template &lt;typename PH&gt;
+auto fpr(rd_ph_filter&lt;PH&gt; const&amp;)
+{
+    return rd_ph_filter&lt;PH&gt;::fpr();
+}
+
+template &lt;typename PH&gt;
+auto fnr(rd_ph_filter&lt;PH&gt; const&amp; s)
+{
+    return s.fnr();
+}
+
+template &lt;typename PH&gt;
+auto is_member(auto const&amp; x, rd_ph_filter&lt;PH&gt; const&amp; s)
+{
+    return s(x);
+}
+
+/**
+ * @brief the equality predicate.
+ *
+ * Representational equality implies equality.
+ * if Hashable(PH::H) is finite, then
+ * different representations could be equal.
+ * However, we make the simplifying assumption
+ * that this is not the case.
+ *
+ * @tparam PH perfect hash function type
+ * @param lhs left-hand-side of equality
+ * @param rhs right-hand-side of equality
+ */
+template &lt;typename PH&gt;
+auto operator==(rd_ph_filter&lt;PH&gt; const&amp; lhs, rd_ph_filter&lt;PH&gt; const&amp; rhs)
+{
+    return (lhs.ph == rhs.ph) &amp;&amp; (lhs.hashes == rhs.hashes);
+}
+
+template &lt;typename PH&gt;
+auto operator!=(rd_ph_filter&lt;PH&gt; const&amp; lhs, rd_ph_filter&lt;PH&gt; const&amp; rhs)
+{
+    return !(lhs == rhs);
+}
+
+template &lt;typename PH&gt;
+auto operator&lt;=(rd_ph_filter&lt;PH&gt; const&amp; lhs, rd_ph_filter&lt;PH&gt; const&amp; rhs)
+{
+    return lhs == rhs;
+}
+
+template &lt;typename PH&gt;
+auto operator&lt;(rd_ph_filter&lt;PH&gt; const&amp;, rd_ph_filter&lt;PH&gt; const&amp;)
+{
+    return false;
+}
+
+template &lt;typename PH&gt;
+auto operator&gt;=(rd_ph_filter&lt;PH&gt; const&amp; lhs, rd_ph_filter&lt;PH&gt; const&amp; rhs)
+{
+    return lhs == rhs;
+}
+
+template &lt;typename PH&gt;
+auto operator&gt;(rd_ph_filter&lt;PH&gt; const&amp;, rd_ph_filter&lt;PH&gt; const&amp;)
+{
+    return false;
+}
+}
+</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>This C++ header file defines a <code>rd_ph_filter</code> template class that models the concept of an immutable Bernoulli set, which has a false positive rate and a false negative rate. The template parameter <code>PH</code> represents a type that models a rate-distorted perfect hash function.</p><p>The <code>rd_ph_filter</code> class has the following methods and functions:</p><ol><li><code>perfect_hash_fn()</code>: Returns the perfect hash function <code>ph</code>.</li><li><code>hash_fn()</code>: Returns the hash function of <code>ph</code>.</li><li><code>build_filter(PH const&amp; ph, I begin, I end)</code>: A static method that constructs the hash table for the filter using the provided perfect hash function <code>ph</code> and a range of elements specified by <code>begin</code> and <code>end</code> iterators.</li><li>Constructor: Takes an iterator range <code>[begin, end)</code> and a <code>Builder</code> object as input to initialize the perfect hash function <code>ph</code> and the hash table <code>hashes</code>.</li><li><code>operator()(X const&amp; x) const</code>: Tests the membership of the given element <code>x</code> in the set.</li><li><code>fpr()</code>: Returns the false positive rate for the filter.</li><li><code>fnr() const</code>: Returns the false negative rate for the filter.</li></ol><p>There are also several non-member functions provided for convenience:</p><ol><li><code>fpr(rd_ph_filter&lt;PH&gt; const&amp;)</code>: Returns the false positive rate for the given filter.</li><li><code>fnr(rd_ph_filter&lt;PH&gt; const&amp;)</code>: Returns the false negative rate for the given filter.</li><li><code>is_member(auto const&amp; x, rd_ph_filter&lt;PH&gt; const&amp; s)</code>: Tests the membership of <code>x</code> in the filter <code>s</code>.</li></ol><p>Additionally, the header file includes comparison operators for <code>rd_ph_filter</code> objects: <code>operator==</code>, <code>operator!=</code>, <code>operator&lt;=</code>, <code>operator&lt;</code>, <code>operator&gt;=</code>, and <code>operator&gt;</code>.</p><p>The <code>bernoulli</code> namespace encloses all of these definitions.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">#pragma once
+
+#include &lt;cmath&gt;
+
+namespace algebraic_hashing::perfect_hashing
+{
+    /**
+     * @brief Models the concept of a rate-distorted perfect hash function.
+     *
+     * rd_phf&lt;H&gt; models a perfect hash function of type
+     *     Hashable(H) -&gt; size_t
+     * where H is a hash function of type
+     *     Hashable(H) -&gt; size_t
+     * using only one level of hashing.
+     * 
+     * @tparam H hash function type
+     */
+    template &lt;typename H&gt;
+    struct rd_phf
+    {
+        using hash_fn_type = H;
+        using hash_type = typename H::hash_type;
+
+        rd_phf(rd_phf const &amp;) = default;
+        rd_phf(rd_phf &amp;&amp;) = default;
+        rd_phf(size_t N, size_t l0, double err, H h) :
+            N(N), l0(l0), err(err), h(h) {}
+
+        /**
+         * @brief retrieves the minimum hash value
+         * @tparam X the element type, must be hashable by H.
+         * @param x the element to retrieve the hash of.
+         */
+        template &lt;typename X&gt;
+        auto operator()(X const &amp; x) { return h.mix(l0,x) % N; }
+
+        /**
+         * @brief retrieves the maximum hash value
+         */
+        auto max() const { return N-1; }
+
+        /**
+         * @brief retrieves the minimum hash value
+         */
+        auto min() const { return (size_t)0; }
+
+        /**
+         * @brief retrieves the error rate
+         * 
+         * The error rate is defined by the ratio the number of elements in the
+         * set that are perfectly hashed to the number of elements in the set.
+         */
+        auto error_rate() const { return err; }
+
+        /**
+         * @brief retrieves the hash function that is used by phf
+         */
+        auto hash_fn() const { return h; }
+
+        auto operator&lt;=&gt;(rd_phf const &amp;) const = default;
+
+        size_t const N, l0;
+        double const err;
+        H const h;
+    };
+
+    template &lt;typename H&gt;
+    constexpr bool is_eq(rd_phf&lt;H&gt; const &amp; lhs,
+                         rd_phf&lt;H&gt; const &amp; rhs)
+    {
+        return lhs.N == rhs.N &amp;&amp;
+               lhs.l == rhs.l &amp;&amp;
+               lhs.err == rhs.err &amp;&amp;
+               lhs.h == rhs.h;
+    }
+}
+
+Explain what this is, and how it relates to `rd_ph_filter`.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>This C++ header file defines an <code>rd_phf</code> template class within the <code>algebraic_hashing::perfect_hashing</code> namespace. The <code>rd_phf</code> class models the concept of a rate-distorted perfect hash function. The template parameter <code>H</code> represents a hash function type.</p><p>The <code>rd_phf</code> class is closely related to the previously discussed <code>rd_ph_filter</code> class, as it provides the core functionality of perfect hashing required by <code>rd_ph_filter</code>. The <code>rd_ph_filter</code> class uses an instance of <code>rd_phf</code> to perform perfect hashing on the elements of the objective set.</p><p>The <code>rd_phf</code> class has the following methods:</p><ol><li>Constructor: Initializes the <code>rd_phf</code> object with the given parameters <code>N</code>, <code>l0</code>, <code>err</code>, and <code>h</code>.</li><li><code>operator()(X const &amp; x)</code>: Computes the perfect hash of the given element <code>x</code>.</li><li><code>max()</code>: Returns the maximum hash value.</li><li><code>min()</code>: Returns the minimum hash value.</li><li><code>error_rate()</code>: Returns the error rate, which is defined as the ratio of the number of elements in the set that are perfectly hashed to the total number of elements in the set.</li><li><code>hash_fn()</code>: Returns the hash function <code>h</code> used by the perfect hash function.</li></ol><p>Additionally, there's a non-member function <code>is_eq(rd_phf&lt;H&gt; const &amp; lhs, rd_phf&lt;H&gt; const &amp; rhs)</code> provided to compare two <code>rd_phf</code> objects for equality.</p><p>In summary, the <code>rd_phf</code> class is a rate-distorted perfect hash function that serves as the underlying hashing mechanism for the <code>rd_ph_filter</code> class. By using an instance of <code>rd_phf</code>, the <code>rd_ph_filter</code> can efficiently store and test elements for membership in the objective set.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Show how I can compose these two classes.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>To compose the two classes <code>rd_ph_filter</code> and <code>rd_phf</code>, you can create an instance of <code>rd_phf</code> and use it as a template argument for <code>rd_ph_filter</code>. Here's an example to demonstrate the composition of these two classes:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"rd_ph_filter.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"rd_phf.hpp"</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unordered_set&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">using</span> HashFunction = std::hash&lt;std::string&gt;; <span class="hljs-comment">// Define the hash function type</span>
+    <span class="hljs-keyword">using</span> RDPerfectHashFunction = algebraic_hashing::perfect_hashing::rd_phf&lt;HashFunction&gt;; <span class="hljs-comment">// Define the RD perfect hash function type</span>
+    <span class="hljs-keyword">using</span> RDPerfectHashFilter = bernoulli::rd_ph_filter&lt;RDPerfectHashFunction&gt;; <span class="hljs-comment">// Define the RD perfect hash filter type</span>
+
+    <span class="hljs-comment">// Create a set of strings to be stored in the filter</span>
+    std::unordered_set&lt;std::string&gt; my_set{<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"grape"</span>, <span class="hljs-string">"orange"</span>, <span class="hljs-string">"pear"</span>, <span class="hljs-string">"pineapple"</span>};
+
+    <span class="hljs-comment">// Define the builder for the RDPerfectHashFunction</span>
+    <span class="hljs-keyword">auto</span> builder = [&amp;](<span class="hljs-keyword">auto</span> begin, <span class="hljs-keyword">auto</span> end) {
+        <span class="hljs-type">size_t</span> N = my_set.<span class="hljs-built_in">size</span>(); <span class="hljs-comment">// Number of elements in the set</span>
+        <span class="hljs-type">size_t</span> l0 = <span class="hljs-number">0</span>; <span class="hljs-comment">// A parameter for the RD perfect hash function</span>
+        <span class="hljs-type">double</span> err = <span class="hljs-number">0.01</span>; <span class="hljs-comment">// Desired error rate</span>
+        HashFunction hash_function; <span class="hljs-comment">// Instantiate the hash function</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">RDPerfectHashFunction</span>(N, l0, err, hash_function);
+    };
+
+    <span class="hljs-comment">// Create the RDPerfectHashFilter with the specified set of strings and the builder</span>
+    <span class="hljs-function">RDPerfectHashFilter <span class="hljs-title">my_filter</span><span class="hljs-params">(my_set.begin(), my_set.end(), builder)</span></span>;
+
+    <span class="hljs-comment">// Test the membership of some strings in the filter</span>
+    std::vector&lt;std::string&gt; test_strings{<span class="hljs-string">"apple"</span>, <span class="hljs-string">"kiwi"</span>, <span class="hljs-string">"orange"</span>, <span class="hljs-string">"watermelon"</span>};
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; str : test_strings) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">my_filter</span>(str)) {
+            std::cout &lt;&lt; str &lt;&lt; <span class="hljs-string">" is in the set."</span> &lt;&lt; std::endl;
+        } <span class="hljs-keyword">else</span> {
+            std::cout &lt;&lt; str &lt;&lt; <span class="hljs-string">" is NOT in the set."</span> &lt;&lt; std::endl;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></div></div></pre><p>In this example, we've defined the hash function type (<code>HashFunction</code>), RD perfect hash function type (<code>RDPerfectHashFunction</code>), and RD perfect hash filter type (<code>RDPerfectHashFilter</code>). We create a builder for the <code>RDPerfectHashFunction</code> and instantiate an <code>RDPerfectHashFilter</code> object with a set of strings and the builder.</p><p>Finally, we test the membership of some strings in the filter using the composed classes.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">```cpp
+#pragma once
+
+#include "rd_phf.hpp"
+#include &lt;vector&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+#include &lt;pthread.h&gt;
+#include &lt;algorithm&gt;
+#include &lt;limits&gt;
+#include &lt;chrono&gt;
+#include &lt;iostream&gt;
+
+namespace algebraic_hashing::perfect_hashing
+{
+  template &lt;typename H&gt;
+  struct rd_phf_builder
+  {
+    static auto max_index()
+    {
+      return std::numeric_limits&lt;size_t&gt;::max();
+    }
+
+    static auto min_index()
+    {
+      return (size_t)0;
+    }
+
+    static auto default_load_factor()
+    {
+      return 0.1;
+    }
+
+    static auto max_load_factor()
+    {
+      return 1.0;
+    }
+
+    static auto min_load_factor()
+    {
+      return std::nextafter(0.0,1.0);
+    }
+
+    static auto default_threads()
+    {
+      return std::thread::hardware_concurrency();
+    }
+
+    static auto max_timeout()
+    {
+      return std::chrono::milliseconds::max().count();
+    }
+
+    bool debug;
+    std::ostream &amp; debug_out;
+    double r;
+    H h;
+    size_t lower_index;
+    size_t upper_index;
+    size_t num_threads;
+    std::chrono::milliseconds duration;
+
+    rd_phf_builder() :
+      debug(false),
+      debug_out(std::cout),
+      r(default_load_factor()),
+      lower_index(min_index()),
+      upper_index(max_index()),
+      duration(max_timeout()),
+      num_threads(default_threads()) {}
+
+    /**
+     * @brief Set debug mode to true or false.
+     * @param mode if mode is true, then show debugging information.
+     */
+    auto &amp; debugging(bool mode = true)
+    {
+      debug = mode;
+      return *this;
+    }    
+    
+    /**
+     * @brief Set debug output.
+     * @param out the debugging output stream.
+     */
+    auto &amp; debug_output(std::ostream &amp; out)
+    {
+      debug_out = out;
+      return *this;
+    }
+
+    auto &amp; threads(size_t n = 0)
+    {
+      num_threads = (n == 0 ? std::thread::hardware_concurrency() : n);
+      return *this;
+    }
+
+    /**
+     * @brief Set the target load factor, a value in the interval (0,1].
+     * @param r the target load factor of the perfect hash function.
+     *          if a perfect hash function cannot be constructed, then the load
+     *          factor for the perfectly hashed subset has r as an upper-bound.
+     */
+    auto &amp; load_factor(double r)
+    {
+      this-&gt;r = std::min(max_load_factor(), std::max(r, min_load_factor()));
+      return *this;
+    }
+
+    /**
+     * @brief Set the time-out, the length of time before setttling for the
+     *        best solution found.     * 
+     * 
+     * @param ms the time-out in milliseconds
+     */
+    auto &amp; timeout(std::chrono::milliseconds ms)
+    {
+      duration = ms;
+      return *this;
+    }
+
+    /**
+     * @brief Set the hash function object.
+     * @param h hash function
+     */
+    auto &amp; hash_fn(H h)
+    {
+      this-&gt;h = h;
+      return *this;
+    }
+
+    /**
+     * @brief Sets the index range [lower,upper], the space over which to search
+     *        for a perfect hash function.
+     *
+     * @param lower start of search space
+     * @param upper end of the search space
+     */
+    auto &amp; index(size_t lower = min_index(),
+                 size_t upper = max_index())
+    {
+      lower_index = lower;
+      upper_index = upper;
+      return *this;
+    }
+
+    /**
+     * @brief Constructs a random perfect hash function for the range of
+     *        elements in [begin,end).
+     *
+     * @tparam I models a forward iterator
+     * @param begin start of range
+     * @param end end of range
+     */
+    template &lt;typename I&gt;
+    auto build(I begin, I end)
+    {
+      std::sort(begin,end);
+      end = std::unique(begin,end);
+      auto m = std::distance(begin,end);
+      auto N = (size_t)std::ceil(m/r);
+
+      size_t l0;
+      size_t coll0 = m;
+      std::mutex lck;
+      auto const start_time = std::chrono::system_clock::now();
+
+      auto task = [&amp;](size_t start, size_t stop)
+      {
+        std::vector&lt;bool&gt; K(N);
+        for (auto l = start; l != stop; ++l)
+        {
+          K.assign(N,false);
+          auto const cur_time = std::chrono::system_clock::now();
+          auto const elapsed = std::chrono::duration_cast&lt;
+          std::chrono::milliseconds&gt;(cur_time - start_time);
+          if (coll0 == 0 || elapsed &gt; duration)
+            break;
+          size_t coll = 0;
+          for (auto x = begin; x != end; ++x)
+          {
+            auto const hash = h.mix(l,*x) % N;
+            if (K[hash])
+              if (++coll &gt;= coll0) break;
+            K[hash] = true;
+          }
+
+          if (coll &lt; coll0)
+          {
+            lck.lock();
+            if (coll &lt; coll0)
+            {
+              std::cout &lt;&lt; "l0 = " &lt;&lt; l0 &lt;&lt; "\n";
+              l0 = l;
+              std::cout &lt;&lt; "coll0 = " &lt;&lt; coll0 &lt;&lt; "\n";
+              coll0 = coll;
+            }
+            lck.unlock();
+          }
+        }
+      };
+
+      size_t block_size = (upper_index - lower_index) / num_threads;
+      std::vector&lt;std::thread&gt; threads;
+      for (int i = 0; i &lt; num_threads; ++i)
+        threads.push_back(std::thread(task,lower_index+i*block_size,
+                                      lower_index+(i+1)*block_size));
+      for (auto &amp; t : threads)
+        t.join();
+      
+      return rd_phf&lt;H&gt;(N,l0,(double)(coll0)/m,h);
+    }
+
+    template &lt;typename I&gt;
+    auto operator()(I begin, I end)
+    {
+      std::sort(begin,end);
+      end = std::unique(begin,end);
+      auto m = std::distance(begin,end);
+      auto N = (size_t)std::ceil(m/r);
+
+      size_t l0 = 0;
+      size_t coll0 = m;
+      auto const start_time = std::chrono::system_clock::now();
+
+      std::vector&lt;bool&gt; K(N,false);
+      for (auto l = lower_index; l != upper_index; ++l)
+      {
+        auto const cur_time = std::chrono::system_clock::now();
+        auto const elapsed = std::chrono::duration_cast&lt;
+          std::chrono::milliseconds&gt;(cur_time - start_time);
+        if (coll0 == 0 || elapsed &gt; duration)
+          break;
+        size_t coll = 0;
+        for (auto x = begin; x != end; ++x)
+        {
+          auto const hash = h.mix(l,*x) % N;
+          if (K[hash] &amp;&amp; ++coll &gt;= coll0) break;
+          K[hash] = true;
+        }
+
+        if (coll &lt; coll0)
+        {
+            l0 = l;
+            coll0 = coll;
+        }
+        K.assign(N,false);
+      }
+      return rd_phf&lt;H&gt;(N,l0,(double)(coll0)/m,h);
+    }
+
+    template &lt;typename X&gt;
+    auto operator()(X xs)
+    {
+      return operator()(std::begin(xs), std::end(xs));
+    }
+  };
+}
+```
+
+Here's a builder for rd_phf.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Thank you for providing the <code>rd_phf_builder</code> code. This builder is designed to construct instances of the <code>rd_phf</code> (Rate-Distorted Perfect Hash Function) class. The builder allows you to specify various parameters for the <code>rd_phf</code>, such as the hash function, load factor, index range, timeout, and number of threads.</p><p>The <code>rd_phf_builder</code> provides a more customizable and convenient way to create <code>rd_phf</code> instances compared to manually instantiating the <code>rd_phf</code> class. The builder also utilizes multithreading for searching the optimal parameters of the perfect hash function, which can potentially improve the performance.</p><p>Here's an example of how you can use this <code>rd_phf_builder</code> in conjunction with the <code>rd_ph_filter</code> class:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"rd_ph_filter.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"rd_phf_builder.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unordered_set&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">using</span> HashFunction = std::hash&lt;std::string&gt;;
+    <span class="hljs-keyword">using</span> RDPerfectHashFunctionBuilder = algebraic_hashing::perfect_hashing::rd_phf_builder&lt;HashFunction&gt;;
+    <span class="hljs-keyword">using</span> RDPerfectHashFilter = bernoulli::rd_ph_filter&lt;RDPerfectHashFunctionBuilder&gt;;
+
+    <span class="hljs-comment">// Create a set of strings to be stored in the filter</span>
+    std::unordered_set&lt;std::string&gt; my_set{<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"grape"</span>, <span class="hljs-string">"orange"</span>, <span class="hljs-string">"pear"</span>, <span class="hljs-string">"pineapple"</span>};
+
+    <span class="hljs-comment">// Define the builder for the RDPerfectHashFunction</span>
+    RDPerfectHashFunctionBuilder builder;
+    builder.<span class="hljs-built_in">hash_fn</span>(<span class="hljs-built_in">HashFunction</span>())
+           .<span class="hljs-built_in">load_factor</span>(<span class="hljs-number">0.1</span>)
+           .<span class="hljs-built_in">timeout</span>(std::chrono::<span class="hljs-built_in">milliseconds</span>(<span class="hljs-number">5000</span>))
+           .<span class="hljs-built_in">threads</span>(<span class="hljs-number">4</span>);
+
+    <span class="hljs-comment">// Create the RDPerfectHashFilter with the specified set of strings and the builder</span>
+    <span class="hljs-function">RDPerfectHashFilter <span class="hljs-title">my_filter</span><span class="hljs-params">(my_set.begin(), my_set.end(), builder)</span></span>;
+
+    <span class="hljs-comment">// Test the membership of some strings in the filter</span>
+    std::vector&lt;std::string&gt; test_strings{<span class="hljs-string">"apple"</span>, <span class="hljs-string">"kiwi"</span>, <span class="hljs-string">"orange"</span>, <span class="hljs-string">"watermelon"</span>};
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; str : test_strings) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">my_filter</span>(str)) {
+            std::cout &lt;&lt; str &lt;&lt; <span class="hljs-string">" is in the set."</span> &lt;&lt; std::endl;
+        } <span class="hljs-keyword">else</span> {
+            std::cout &lt;&lt; str &lt;&lt; <span class="hljs-string">" is NOT in the set."</span> &lt;&lt; std::endl;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></div></div></pre><p>In this example, we define a <code>RDPerfectHashFunctionBuilder</code> and set its parameters using the provided methods. Then, we use this builder to create an <code>RDPerfectHashFilter</code> object with a set of strings. Finally, we test the membership of some strings in the filter using the composed classes.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">What are some theoretical properties of RDPerfectHashFilter?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p><code>RDPerfectHashFilter</code>, short for Rate-Distorted Perfect Hash Filter, is a probabilistic data structure that combines the concepts of rate-distorted perfect hashing and Bloom filters. It allows for efficient membership queries in a set while minimizing false positives.</p><p>Here are some theoretical properties of <code>RDPerfectHashFilter</code>:</p><ol><li><p><strong>Probabilistic membership testing</strong>: Similar to Bloom filters, <code>RDPerfectHashFilter</code> allows you to test whether an element is a member of a set. However, it may have false positives, where a non-member is falsely reported as a member.</p></li><li><p><strong>Space efficiency</strong>: <code>RDPerfectHashFilter</code> uses a rate-distorted perfect hash function to map elements to their corresponding positions in the filter. It allows for a customizable load factor, which affects space efficiency. A lower load factor results in fewer false positives but requires more space.</p></li><li><p><strong>Tunable error rate</strong>: One of the key properties of the <code>RDPerfectHashFilter</code> is the tunable error rate, which is controlled by the load factor. By adjusting the load factor, you can trade off between false-positive rate and space efficiency.</p></li><li><p><strong>No false negatives</strong>: <code>RDPerfectHashFilter</code> guarantees no false negatives. If an element is a member of the set, the filter will always report it as such.</p></li><li><p><strong>Optimized for perfectly hashed subsets</strong>: The underlying rate-distorted perfect hash function is designed to minimize the number of collisions. This property makes <code>RDPerfectHashFilter</code> particularly well-suited for cases where a subset of the elements is perfectly hashed, and the remaining elements have a low probability of causing false positives.</p></li><li><p><strong>Non-adaptive</strong>: <code>RDPerfectHashFilter</code>, like Bloom filters, does not support the deletion of elements. It is best suited for cases where the set membership remains static or only requires the addition of new elements.</p></li></ol><p>In summary, <code>RDPerfectHashFilter</code> is a probabilistic data structure that allows for efficient membership queries with a tunable error rate. It is well-suited for cases where a subset of elements is perfectly hashed and optimizes space efficiency by allowing a customizable load factor.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">It actually does allow for false negatives, since `rd_phf` is rate-distorted, meaning that it'll try to perfectly hash a set X, but if due to space or time constraints it can't, it'll at least try to minimize the number of collisions on X.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You're right, my apologies for the confusion. Since <code>RDPerfectHashFilter</code> uses a rate-distorted perfect hash function, it indeed allows for false negatives. The rate-distortion aspect of the perfect hash function means that it tries to perfectly hash a set X, but if it can't do so due to space or time constraints, it will minimize the number of collisions on X. Consequently, some elements may not be perfectly hashed, which can result in false negatives. This makes the error rate for both false positives and false negatives tunable by adjusting the load factor and the chosen hash function.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">The false positive rate is directly specied and easy to control (how?), while the false negative rate is more complicated and difficult to predict.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>The false positive rate is directly specified and easy to control through the load factor. The load factor, typically denoted as <code>r</code>, is the ratio of the number of elements in the set to the size of the hash table, i.e., <code>r = n/N</code>. By adjusting the load factor, you can control the probability of collisions and thus the false positive rate.</p><p>A higher load factor will result in a higher probability of collisions, increasing the false positive rate, while a lower load factor will have the opposite effect. For example, by setting a smaller load factor, you can decrease the false positive rate, but at the expense of increased memory usage for the hash table.</p><p>The false negative rate, on the other hand, is indeed more complicated and difficult to predict. It depends on the hash function used, the distribution of the input data, and the performance of the rate-distorted perfect hash function. As you mentioned earlier, the rate-distorted perfect hash function will try to perfectly hash a set X but may not succeed due to space or time constraints. In such cases, it will minimize the number of collisions on X, which can result in false negatives. The difficulty in predicting the false negative rate arises from the complex interplay between these factors, making it challenging to have precise control over this rate.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Isn't the false positive rate a function of the hash_type? For instance, if hash_type is 4 bytes, then the probability that two items hash to the same value is 2^(-4*8).</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You are correct that the probability of a collision (two items hashing to the same value) is related to the size of the hash output (the <code>hash_type</code>). However, the false positive rate is not solely determined by the size of the hash output but also depends on other factors such as the load factor, the hash function used, and the distribution of the input data.</p><p>In the example you provided, if the <code>hash_type</code> is 4 bytes, then the hash output can have 2^(4*8) = 2^32 distinct values. The probability of a collision occurring between two items chosen at random can be approximated by the birthday paradox formula: P(collision) ≈ 1 - e^(-n^2 / 2N), where n is the number of elements and N is the number of distinct hash values (in this case, 2^32).</p><p>The false positive rate, however, is the probability that a non-existent item is falsely reported as being present in the set. To control the false positive rate, you need to take into account not just the size of the hash output but also the load factor, which is the ratio of the number of elements to the size of the hash table. By adjusting the load factor, you can control the false positive rate: a higher load factor will result in a higher false positive rate, while a lower load factor will decrease the false positive rate.</p><p>In summary, the false positive rate is influenced by the size of the hash output (the <code>hash_type</code>), but it is also a function of the load factor, the hash function used, and the distribution of the input data.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">how does the load factor affect the false positive rate?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>The load factor affects the false positive rate in a hash-based data structure because it determines how "full" the hash table is, which influences the likelihood of collisions. Load factor is the ratio of the number of elements stored in the hash table to the total number of available slots in the table.</p><p>A higher load factor means that the hash table is more densely populated, increasing the chances of collisions. Collisions can lead to false positives in data structures like Bloom filters because multiple elements may be mapped to the same position, making it difficult to determine whether a specific element is truly present in the set.</p><p>Conversely, a lower load factor indicates that the hash table is less populated, reducing the probability of collisions. This, in turn, lowers the false positive rate.</p><p>It's worth noting that there is a trade-off between the false positive rate and memory usage. A lower load factor will decrease the false positive rate but will require more memory to store the same number of elements.</p><p>In summary, the load factor is a crucial parameter that affects the false positive rate in hash-based data structures. By adjusting the load factor, you can control the balance between the false positive rate and memory usage.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">actually, when we perfectly hash a set, say X = {a,b,c}, then we use the perfect hash of, say, element 'a' to be the index into an array of hash_type. At that index, we store the hash of 'a'. If we then take an element not in X, say 'd', it will be hashed by the perfect hash function for X to some index. Suppose it indexes to the same as 'a'. Now, we hash 'd' and it will be a false positive if its hash is the same as the hash of 'a'.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, you are correct. In the case of a perfect hash function for a specific set X, the perfect hash function will map each element in the set to a unique index in an array. The hash values of the elements in X are stored at the corresponding indices.</p><p>When querying an element 'd' that is not in X, the perfect hash function will map 'd' to an index in the array. If 'd' happens to be mapped to the same index as an element 'a' from X (a collision in the perfect hash function), there will be a false positive if the hash value of 'd' is the same as the hash value of 'a'. The probability of this happening depends on the hash_type used, as you mentioned earlier.</p><p>In this scenario, the false positive rate is determined by the likelihood of a collision in the perfect hash function and the probability of two elements having the same hash value. It is important to note that the perfect hash function is designed to minimize collisions for elements in the set X. However, for elements outside of X, collisions may still occur, leading to false positives.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">If 'd' is hashed to an index that no element in X is perfectly hashed to, then we will compare it to the value at that index. Say we instantiate each value in the array to 0. Then, if only the hash of 'd' hashes to 0 do we have a false positive. But, that's still 2^(-4*8) false positive rate. So, the load factor doesn't seem to matter to the false positive rate.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You are correct. In the scenario you described, if 'd' is hashed to an index that no element in X is perfectly hashed to, the false positive rate will still be determined by the probability of the hash value of 'd' being equal to the default value in the array (in this case, 0).</p><p>The load factor does not directly affect the false positive rate in this context. Load factor is primarily a measure of how "full" the array is, which influences the efficiency of the perfect hash function. A lower load factor typically results in fewer collisions, which might improve performance in terms of the perfect hash function's ability to uniquely map elements from the set X. However, this does not change the false positive rate when checking for elements outside of X.</p><p>The false positive rate is predominantly determined by the hash_type and the probability of two elements having the same hash value, as you correctly pointed out.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">How can we improve this? One idea is to instantiate to 0 as described previously, and if the hash stored at an index in the array is 0, we automatically assume that it's not in the set. Then, a small load factor will mean a smaller false positive rate, since if an element not in X indexes to a location with 0 stored, which occurs with probability 1-(load factor), it will test as negative. If it indexes to a position in the array that is not 0 (that is, some element in X perfectly hashed to that position), it will hash to the same value with probability 2^(-4*8). So, what's the false positive rate?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>In this improved version, the false positive rate is a combination of two probabilities: the probability of indexing to a non-zero position and having the same hash value as an element in the set X, and the probability of indexing to a zero position and having a hash value of zero. Let's denote the load factor as LF.</p><ol><li><p>The probability of indexing to a non-zero position is LF. In this case, the probability of having the same hash value as an element in the set X is 2^(-4<em>8). So, the combined probability for this case is: LF * 2^(-4</em>8).</p></li><li><p>The probability of indexing to a zero position is 1 - LF. In this case, if the hash value of an element not in X is 0, it would be a false positive. Since the probability of hashing to zero is 2^(-4<em>8), the combined probability for this case is: (1 - LF) * 2^(-4</em>8).</p></li></ol><p>Now, summing up these two probabilities, we get the overall false positive rate:</p><p>False positive rate = LF * 2^(-4<em>8) + (1 - LF) * 2^(-4</em>8)</p><p>This simplifies to:</p><p>False positive rate = 2^(-4*8)</p><p>Surprisingly, the false positive rate does not depend on the load factor in this case. The load factor affects the distribution of zeros and non-zeros in the array, but the false positive rate remains the same, primarily determined by the hash_type and the probability of two elements having the same hash value.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Recall that if it hashes to a zero position, we decide that it tests negative.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>I apologize for the confusion in my previous response. Given that we decide it tests negative if it hashes to a zero position, let's re-calculate the false positive rate.</p><p>There is only one case to consider now:</p><ol><li>The probability of indexing to a non-zero position is LF. In this case, the probability of having the same hash value as an element in the set X is 2^(-4<em>8). So, the combined probability for this case is: LF * 2^(-4</em>8).</li></ol><p>Since we decide that elements hashing to a zero position test negative, there is no contribution to the false positive rate from this case.</p><p>Now, the false positive rate is:</p><p>False positive rate = LF * 2^(-4*8)</p><p>In this scenario, the load factor (LF) directly affects the false positive rate. A smaller load factor will result in a smaller false positive rate, since there are fewer collisions in the array.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">This also affects the false negative rate. How?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>In this modified design, the false negative rate is also affected by the load factor. Let's analyze the cases that could result in a false negative:</p><ol><li><p>An element 'a' in set X is hashed to a non-zero position (with probability LF), and its hash value is stored in the array. If we later query 'a', it will hash to the same non-zero position (with probability LF), and its hash value will be compared with the stored hash value. Since the hash values match, there will be no false negative in this case.</p></li><li><p>An element 'a' in set X is hashed to a zero position (with probability 1 - LF). If we later query 'a', it will hash to the same zero position (with probability 1 - LF), and since we assume that elements hashing to a zero position test negative, we will have a false negative in this case.</p></li></ol><p>Now, the false negative rate is:</p><p>False negative rate = (1 - LF)^2</p><p>As the load factor increases, the false negative rate decreases, as there will be fewer zero positions in the array, and hence fewer chances for elements of set X to be falsely reported as not in the set.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Let's think about this more. X has 'a' in it. So, we perfectly hash 'a' to index j. We store the hash of 'a' at index j. If that hash is 0, then we automatically assume it's negative. So, the false negative rate is 2^(-4*8), since that's the probability that it will hash to 0.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You're correct. I misunderstood the scenario in my previous response.</p><p>Since we store the hash of 'a' at index j, the false negative rate will indeed depend on the probability that the hash of 'a' is 0. If we're using a 4-byte hash_type, there are 2^(4*8) possible hash values, and only one of them is 0.</p><p>In this case, the false negative rate would be:</p><p>False negative rate = 1 / 2^(4<em>8) = 2^(-4</em>8)</p><p>So, the false negative rate is independent of the load factor and is only determined by the hash_type size. The probability of getting a false negative is very low, as it only occurs when the hash of an element in set X is 0.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">There is one additional twist. The perfect hash function is rate-distorted, so we don't necessarily perfectly hash the elements of X. If two elements collide, then we store the hash of only one. If both hash to the same value, which occurs with probabiliity 2^(-4*8), good, no false negative. If they hash to different values, then a false negative with probability 1-2^(-4*8). So, the probability of false negatives is a function of the probability that an element in X hashes to 0  and independently, the probability that elements collide and have different  hashes.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You're right, the rate-distorted perfect hash function adds an additional factor to the false negative rate. The false negative rate can be influenced by two factors in this scenario:</p><ol><li>The probability that the hash of an element in set X is 0.</li><li>The probability that two elements in X collide and have different hashes.</li></ol><p>Considering these factors, the false negative rate can be calculated as:</p><p>False negative rate = P(element in X hashes to 0) + P(elements collide and have different hashes)</p><p>The first term, P(element in X hashes to 0), has been calculated previously as 2^(-4*8).</p><p>The second term, P(elements collide and have different hashes), depends on the collision rate of the rate-distorted perfect hash function and the probability that two colliding elements have different hashes. This term can be challenging to calculate directly, as it depends on the specific implementation of the rate-distorted perfect hash function, the input data distribution, and other factors like the error rate and load factor.</p><p>In practice, to minimize false negatives, you would aim to have a lower error rate in the rate-distorted perfect hash function, which would reduce the probability of collisions. The load factor would also influence the collision rate, but its relationship with the false negative rate could be more complicated, as discussed earlier.</p><p>Given the complexities in calculating the false negative rate directly, it might be more practical to empirically measure the false negative rate for specific use cases, by testing the implementation with various input data distributions and configurations.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Agreed, or just use rules of thumb. Some of these probabilities are so small, they can be ignored, for instance.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Absolutely, sometimes using rules of thumb and making simplifying assumptions can provide a good enough estimate of the false negative and false positive rates for practical purposes. As you mentioned, certain probabilities might be so small that they can be ignored or treated as negligible.</p><p>In practice, it is essential to strike a balance between the complexity of the calculations and the desired accuracy of the estimates. Depending on the specific use case and its requirements, you can decide which factors to focus on and which ones to simplify or ignore. Additionally, empirical testing and performance evaluations can be used to validate and fine-tune the rules of thumb, to ensure the implementation meets the desired performance goals.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Here's some more code. I believe it's related to the perfect hash filter, as they both model the idea of a bernoulli set.
+
+```cpp
+#pragma once
+
+#include &lt;cmath&gt;
+#include &lt;limits&gt;
+
+namespace bernoulli
+{
+    /**
+     * @brief Models the concept of a bernoulli set.
+     *
+     * hash_set&lt;H&gt; models a bernoulli set of type
+     *     contains : Hashable(H) -&gt; bool
+     * where H is a hash function of type
+     *     Hashable(H) -&gt; size_t.
+     * 
+     * @tparam H hash function type
+     */
+    template &lt;typename H&gt;
+    struct hash_set
+    {
+        using hash_fn_type = H;
+        using hash_type = typename H::hash_type;
+
+        hash_set(hash_set const &amp;) = default;
+        hash_set(hash_set &amp;&amp;) = default;
+        hash_set(size_t N, H h, size_t l0, double fnr) :
+            N(N), h(h), l0(l0), fnr(fnr) {}
+
+        /**
+         * @brief Positive membership test.
+         * @tparam X the element type, must be hashable by H.
+         * @param x the element to test membership for
+         */
+        template &lt;typename X&gt;
+        auto contains(X const &amp; x) const
+        {
+          return h.mix(l0,x) &lt;= N;
+        }
+
+        /**
+         * @brief retrieves the false positive rate.
+         * 
+         * The false positive rate is defined as the probability that an
+         * element in the complement of the set tests as being a member of the
+         * set.
+         */
+        auto false_positive_rate() const { return (double)N / h.max(); }
+
+        /**
+         * @brief retrieves the false negative rate.
+         * 
+         * The false negative rate is defined as the probability that an
+         * element in the set tests as not being a member of the set.
+         */
+        auto false_negative_rate() const { return fnr; }
+
+        /**
+         * @brief retrieves the hash function that is used by phf
+         */
+        auto hash_fn() const { return h; }
+
+        /**
+         * @brief retrieves the hash family index
+         * 
+         * We consider the hash function of type H to denote a family
+         * of hash functions. We choose a particular hash function in this
+         * family by its index, which in this case corresponds to l0.
+         */
+        auto index() const { return l0; }
+
+        size_t const N;
+        H const h;
+        size_t const l0;
+        double const fnr;
+    };
+</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>This code defines a <code>hash_set</code> template class that models the concept of a Bernoulli set. A Bernoulli set is a probabilistic data structure representing a set of elements, where the membership test for an element has a certain probability of false positives (elements not in the set that are considered to be in the set) and false negatives (elements in the set that are considered to be not in the set).</p><p>The <code>hash_set</code> class takes a hash function type <code>H</code> as a template parameter. It has member functions that allow you to test the membership of elements in the set, get the false positive rate, get the false negative rate, get the hash function used, and get the hash family index <code>l0</code>.</p><p>Here's a brief description of the member functions:</p><ul><li><code>contains(X const &amp; x)</code>: This function tests the positive membership of an element <code>x</code>. It returns <code>true</code> if the element is considered to be in the set and <code>false</code> otherwise.</li><li><code>false_positive_rate()</code>: This function returns the false positive rate, which is the probability that an element not in the set tests as being a member of the set.</li><li><code>false_negative_rate()</code>: This function returns the false negative rate, which is the probability that an element in the set tests as not being a member of the set.</li><li><code>hash_fn()</code>: This function returns the hash function used by the Bernoulli set.</li><li><code>index()</code>: This function returns the index <code>l0</code> of the hash function in the hash function family.</li></ul><p>The <code>hash_set</code> class has a constructor that takes parameters <code>N</code>, <code>h</code>, <code>l0</code>, and <code>fnr</code>, which represent the size of the hash set, the hash function, the hash family index, and the false negative rate, respectively.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">We see that this is a different type of bernoulli set when we compare it to `rd_ph_filter`. What are some key differences?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Here are some key differences between the <code>hash_set</code> and <code>rd_ph_filter</code> classes:</p><ol><li><p>Hash function vs. Perfect Hash function:</p><ul><li><code>hash_set</code> uses a regular hash function <code>H</code> to determine the membership of an element in the set, while <code>rd_ph_filter</code> uses a rate-distorted perfect hash function for the same purpose.</li></ul></li><li><p>False positive rate:</p><ul><li>In <code>hash_set</code>, the false positive rate is calculated as <code>(double)N / h.max()</code>, which is dependent on the size of the hash set <code>N</code> and the maximum possible hash value <code>h.max()</code>. In <code>rd_ph_filter</code>, the false positive rate is a direct input to the constructor and determined by the hash type.</li></ul></li><li><p>False negative rate:</p><ul><li>In <code>hash_set</code>, the false negative rate is a direct input to the constructor. In <code>rd_ph_filter</code>, the false negative rate is determined by the probability that an element in the set hashes to 0 and the probability that elements collide and have different hashes.</li></ul></li><li><p>Membership testing:</p><ul><li>In <code>hash_set</code>, the <code>contains</code> function tests membership by checking if the mixed hash value <code>h.mix(l0, x)</code> is less than or equal to <code>N</code>. In <code>rd_ph_filter</code>, the membership test involves checking if the perfect hash value is within the range of the size of the hash array and if the stored hash at that index matches the hash of the queried element.</li></ul></li><li><p>Rate-distorted perfect hashing:</p><ul><li>The <code>rd_ph_filter</code> is designed to be a rate-distorted perfect hash filter, meaning it may not perfectly hash the elements due to space or time constraints. In contrast, <code>hash_set</code> does not have this concept built-in, and it relies on a regular hash function.</li></ul></li></ol><p>These differences make <code>hash_set</code> a simpler and more generic implementation of a Bernoulli set, while <code>rd_ph_filter</code> is specifically designed to handle rate-distorted perfect hashing with its unique properties.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">hash_set has some advantages in that the false positive rate is more easily tweakable, i.e., it's not 1/2^k for some integer k, but b/2^k for some integers b and k. The hash_set depends on values of `l0` and `N` chosen so that most of the elements of the set being approximated map to a hash less than or equal to N.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, you are correct. The <code>hash_set</code> provides more flexibility in terms of controlling the false positive rate, which can be adjusted by choosing appropriate values for <code>l0</code> and <code>N</code>.</p><p>The false positive rate in <code>hash_set</code> is calculated as <code>(double)N / h.max()</code>, where <code>N</code> determines the threshold for membership testing and <code>h.max()</code> represents the maximum possible hash value. By tweaking the value of <code>N</code>, the false positive rate can be adjusted to a desired level.</p><p>On the other hand, the false positive rate in <code>rd_ph_filter</code> is determined by the hash type, and it is fixed to a value of 1/2^k for some integer k.</p><p>Additionally, as you mentioned, the choice of <code>l0</code> and <code>N</code> in <code>hash_set</code> impacts the approximation of the set. By choosing appropriate values, most of the elements in the set being approximated will map to a hash value less than or equal to <code>N</code>, resulting in a better performance.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">```cpp
+#pragma once
+
+#include &lt;hash_set/hash_set.hpp&gt;
+#include &lt;algorithm&gt;
+#include &lt;limits&gt;
+#include &lt;chrono&gt;
+#include &lt;vector&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+#include &lt;pthread.h&gt;
+#include &lt;iostream&gt;
+
+namespace bernoulli
+{
+  template &lt;typename H&gt;
+  struct hash_set_builder
+  {
+    static auto max_index()
+    {
+      return std::numeric_limits&lt;size_t&gt;::max();
+    }
+
+    static auto min_index()
+    {
+      return (size_t)0;
+    }
+
+    static auto min_false_positive_rate()
+    {
+      return 1.0 / max_index();
+    }
+
+    static auto max_false_positive_rate()
+    {
+      return 1.0;
+    }
+
+    static auto max_timeout()
+    {
+      return std::chrono::milliseconds::max().count();
+    }
+
+    static auto default_false_positive_rate()
+    {
+      return 1.0/1024.0; // approximately .0011
+    }
+
+    static auto default_threads()
+    {
+      return std::thread::hardware_concurrency();
+    }
+
+    std::ostream &amp; debug_out;
+    bool debug;
+    H h;
+    size_t lower_index;
+    size_t upper_index;
+    double fpr;
+    size_t num_threads;
+    std::chrono::milliseconds duration;
+
+    hash_set_builder() :
+      debug_out(std::cout),
+      debug(false),
+      lower_index(min_index()),
+      upper_index(max_index()),
+      fpr(default_false_positive_rate()),
+      num_threads(default_threads()),
+      duration(max_timeout()) {}
+
+    /**
+     * @brief Set debug mode to true or false.
+     * @param mode if mode is true, then show debugging information.
+     */
+    auto &amp; debugging(bool mode = true)
+    {
+      debug = mode;
+      return *this;
+    }
+
+    /**
+     * @brief Set debug output.
+     * @param out the debugging output stream.
+     */
+    auto &amp; debug_output(std::ostream &amp; out)
+    {
+      debug_out = out;
+      return *this;
+    }
+
+    /**
+     * @brief Sets the number of threads.
+     * 
+     * @param n number of threads, defaults to 0, in which case system
+     *          automatically chooses a number.
+     */
+    auto &amp; threads(size_t n = 0)
+    {
+      num_threads = (n == 0 ? std::thread::hardware_concurrency() : n);
+      return *this;
+    }
+
+    /**
+     * @brief Set the target false positive rate, a value in the interval (0,1].
+     * @param r the target false positive rate of the bernojlli set.
+     *          if such a bernoulli set cannot be constructed, then the
+     *          false positive rate has r as a lower-bound.
+     */
+    auto &amp; false_positive_rate(double r)
+    {
+      fpr = std::min(max_false_positive_rate(),
+                     std::max(r, min_false_positive_rate()));
+      return *this;
+    }
+
+    /**
+     * @brief Set the hash function object.
+     * @param h hash function
+     */
+    auto &amp; hash_fn(H h)
+    {
+      this-&gt;h = h;
+      return *this;
+    }
+
+    /**
+     * @brief Sets the index range [lower,upper], the space over which to search
+     *        for a perfect hash function.
+     *
+     * @param lower start of search space
+     * @param upper end of the search space
+     */
+    auto &amp; index(size_t lower = min_index(),
+                 size_t upper = max_index())
+    {
+      lower_index = lower;
+      upper_index = upper;
+      return *this;
+    }
+
+    /**
+     * @brief Set the time-out, the length of time before setttling for the
+     *        best solution found.     * 
+     * 
+     * @param ms the time-out in milliseconds
+     */
+    auto &amp; timeout(std::chrono::milliseconds ms)
+    {
+      duration = ms;
+      return *this;
+    }
+
+    /**
+     * @brief Constructs a random perfect hash function for the range of
+     *        elements in [begin,end).
+     *
+     * @tparam I models a forward iterator
+     * @param begin start of range
+     * @param end end of range
+     */
+    template &lt;typename I&gt;
+    auto operator()(I begin, I end)
+    {
+      auto N = (size_t)std::round(fpr * std::numeric_limits&lt;size_t&gt;::max());
+      std::sort(begin,end);
+      end = std::unique(begin,end);
+      auto m = std::distance(begin,end);
+
+      size_t l0;
+      size_t succ0 = 0;
+      auto const stime = std::chrono::system_clock::now();
+      std::mutex lck;
+
+      auto task = [&amp;](size_t start, size_t stop)
+      {
+        for (auto s = start; s != stop; ++s)
+        {
+          auto elapsed = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(
+          std::chrono::system_clock::now() - stime);
+          if (succ0 == m || elapsed &gt; duration)
+            break;
+
+          size_t l = h(s);
+          size_t succ = 0;
+          for (auto x = begin; x != end; ++x)
+          {
+              //if ((l ^ h(*x)) &lt;= N) ++succ;
+              if (h.mix(l,*x) &lt;= N) ++succ;
+          }            
+
+          if (succ &gt; succ0)
+          {
+            lck.lock();
+            if (succ &gt; succ0)
+            {
+                l0 = l;
+                succ0 = succ;
+
+                if (debug)
+                {
+                    debug_out &lt;&lt; "succ0: " &lt;&lt; succ0 &lt;&lt; "\n";
+                    debug_out &lt;&lt; "l0: " &lt;&lt; l0 &lt;&lt; "\n";
+                }
+            }
+            lck.unlock();
+          }
+        }
+      };
+
+      size_t block_size = (upper_index - lower_index) / num_threads;
+
+      if (debug)
+      {
+        std::cout &lt;&lt; "num_threads: " &lt;&lt; num_threads &lt;&lt; "\n";          
+        std::cout &lt;&lt; "lower_index: " &lt;&lt; lower_index &lt;&lt; "\n";
+        std::cout &lt;&lt; "upper_index: " &lt;&lt; upper_index &lt;&lt; "\n";
+        std::cout &lt;&lt; "block_size: " &lt;&lt; block_size &lt;&lt; "\n";
+        std::cout &lt;&lt; "N: " &lt;&lt; N &lt;&lt; "\n";
+      }
+
+      std::vector&lt;std::thread&gt; threads;
+      for (int i = 0; i &lt; num_threads; ++i)
+        threads.push_back(std::thread(task,lower_index+i*block_size,
+                                      lower_index+(i+1)*block_size));
+      for (auto &amp; t : threads)
+        t.join();      
+
+      return hash_set&lt;H&gt;(N,h,l0,(double)(m-succ0)/m);
+    }
+
+    template &lt;typename X&gt;
+    auto operator()(X xs)
+    {
+      return operator()(std::begin(xs), std::end(xs));
+    }
+  };
+}
+```
+
+Here's a builder for hash_set.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>This is a <code>hash_set_builder</code> for the <code>hash_set</code> structure you provided earlier. The builder helps in constructing a <code>hash_set</code> with various parameters and constraints. It makes it easier to set and adjust parameters such as the number of threads, the target false positive rate, the search space for the hash function, and the timeout.</p><p>Key functions in the builder:</p><ol><li><code>debugging()</code>: Enables or disables debug mode.</li><li><code>debug_output()</code>: Sets the output stream for debugging information.</li><li><code>threads()</code>: Sets the number of threads to use.</li><li><code>false_positive_rate()</code>: Sets the target false positive rate.</li><li><code>hash_fn()</code>: Sets the hash function to be used.</li><li><code>index()</code>: Sets the search space for the hash function index.</li><li><code>timeout()</code>: Sets the timeout for the search process.</li></ol><p>The main function that constructs the <code>hash_set</code> is <code>operator()</code>, which is overloaded for iterators and containers:</p><ol><li><code>template &lt;typename I&gt; auto operator()(I begin, I end)</code>: Takes a range of elements defined by iterators <code>begin</code> and <code>end</code>, and constructs a <code>hash_set</code> based on the specified parameters.</li><li><code>template &lt;typename X&gt; auto operator()(X xs)</code>: Takes a container <code>xs</code> and constructs a <code>hash_set</code> based on the specified parameters.</li></ol><p>The <code>operator()</code> function creates multiple threads, divides the search space into blocks for each thread, and then the threads search for the best hash function index within their assigned block. After all threads finish, the best index found is used to construct the <code>hash_set</code> instance with the calculated parameters.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">We see that it doesn't use an intermediate like a perfect hash function. Instead, it directly searches over `l0` values based based on an fpr (which computes `N`) such that the best match is found within the constraints given to it.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, that's correct. The <code>hash_set_builder</code> directly searches for the optimal <code>l0</code> value within the given constraints, without using an intermediate perfect hash function. The goal is to find a hash function index <code>l0</code> that provides the best match with the given false positive rate (FPR) target.</p><p>The search process is performed in parallel using multiple threads to speed up the process. Each thread is assigned a portion of the search space, defined by <code>lower_index</code> and <code>upper_index</code>, and works on its block to find the best <code>l0</code> value within that block.</p><p>During the search, the builder looks for an <code>l0</code> value that results in the highest number of successful matches between the hashes of the input elements and the target <code>N</code> value calculated from the FPR. Once the search is completed or the specified timeout is reached, the builder constructs a <code>hash_set</code> instance with the best found <code>l0</code> value and other calculated parameters.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">As N -&gt; infinity, any l0 value will suffice for fnr = 0 but fpr -&gt; 1.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>That's correct. As <code>N</code> approaches infinity, the false negative rate (FNR) tends to 0, because the range of possible hash values becomes so large that the chance of any two elements colliding is extremely low. However, the false positive rate (FPR) will approach 1 as <code>N</code> becomes very large, since the probability of a random element not in the set hashing to a value less than or equal to <code>N</code> increases.</p><p>In other words, when <code>N</code> is very large, the <code>hash_set</code> becomes less restrictive, and almost any element tested will be considered a member of the set, leading to a high false positive rate. This is an undesirable property in many applications, so it's important to balance the FPR and FNR by selecting an appropriate value for <code>N</code> based on the desired false positive rate and the properties of the hash function used.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Colliding has nothing to do with anything in hash_set. We only want the hash to be less than or equal to N for positive elements, and greater than N for negative. The best outcome is when N = 0, meaning that fpr = 1/max, but of course it'll be hard to find and l0 such that the hashes of the positive elements all hash to 0.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Apologies for the confusion in my previous response. You are correct that collisions are not relevant to <code>hash_set</code>. The primary concern is finding an <code>l0</code> value that leads to the desired FPR, where positive elements have a hash less than or equal to <code>N</code>, and negative elements have a hash greater than <code>N</code>.</p><p>As you mentioned, the best outcome would be when <code>N = 0</code>, which would result in an FPR of <code>1/max</code>, where <code>max</code> is the maximum possible hash value. However, it would be challenging to find an <code>l0</code> that would make all positive elements hash to 0. The <code>hash_set_builder</code> searches for an appropriate <code>l0</code> value that satisfies the FPR constraint while minimizing the FNR. The choice of <code>l0</code> will ultimately determine the trade-off between FPR and FNR, as well as the performance of the constructed <code>hash_set</code>.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">If N = 2^8 and max = 2^32, then fpr = 2^8/2^32 = 1/2^24. What's the probability that m positive elements all map to a value less than or equal to 2^8?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Let's consider a hash function that uniformly maps elements to values in the range <code>[0, max)</code>.</p><p>The probability that a single element maps to a value less than or equal to <code>N</code> is <code>N / max</code>, in this case <code>2^8 / 2^32</code>.</p><p>If we have <code>m</code> positive elements, and the mapping of each element is independent, the probability that all <code>m</code> positive elements map to a value less than or equal to <code>N</code> is:</p><p><code>(N / max)^m = (2^8 / 2^32)^m = (1 / 2^24)^m</code></p><p>This expression shows the probability that all <code>m</code> positive elements map to a value less than or equal to <code>2^8</code>.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">It's actually 1/2^(24*m) right?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, you are correct. I apologize for the confusion. The probability that all <code>m</code> positive elements map to a value less than or equal to <code>2^8</code> is indeed:</p><p><code>(N / max)^m = (2^8 / 2^32)^m = (1 / 2^24)^m = 1 / 2^(24 * m)</code></p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">That's pretty small. However, we get to choose how many different values for l0?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>The number of different values for <code>l0</code> depends on the index range specified in the <code>hash_set_builder</code>. In the code provided, the default range is from <code>min_index()</code> to <code>max_index()</code>, which are set to <code>0</code> and <code>std::numeric_limits&lt;size_t&gt;::max()</code> respectively.</p><p>So, the total number of different values for <code>l0</code> that you can choose from would be:</p><p><code>max_index() - min_index() + 1 = std::numeric_limits&lt;size_t&gt;::max() - 0 + 1</code></p><p>For a 64-bit system, this would be 2^64 different values for <code>l0</code>. Note that you can limit this range by setting the <code>index()</code> method parameters in the <code>hash_set_builder</code>.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Okay, each time we try a value for l0, the probability that all positive elements map to a hash value less than or equal to N=2^8 is 1/2^(24*m). We can think of this as a trial in a geometric r.v. with a probability of success given by p=1/2^(24*m).</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, that's correct. In this case, each attempt to find a suitable <code>l0</code> value can be considered as an independent trial in a geometric distribution with a probability of success <code>p = 1/2^(24*m)</code>.</p><p>A geometric distribution describes the number of trials needed for the first success in a sequence of Bernoulli trials (independent experiments with binary outcomes) with a constant probability of success <code>p</code>.</p><p>Keep in mind that the actual number of trials (i.e., different <code>l0</code> values) you would need to find a suitable <code>l0</code> depends on the specific set of positive elements and the hash function used. The geometric distribution gives you a probabilistic view of how many trials you might need on average to find a good <code>l0</code>.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">What's the expected number of trials before a success?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>In a geometric distribution, the expected number of trials before a success (first success) is given by the formula:</p><p>E[X] = 1/p</p><p>In this case, the probability of success, p, is 1/2^(24*m). Therefore, the expected number of trials before finding a suitable <code>l0</code> value would be:</p><p>E[X] = 1/(1/2^(24<em>m)) = 2^(24</em>m)</p><p>This means that on average, you may need to try 2^(24*m) different <code>l0</code> values before finding one that maps all positive elements to a hash value less than or equal to N = 2^8.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">So we can explore around 2^64 values, which is a lot but possibly doable. That means we can do 24*m=64 =&gt; m = 64/24, or m ~ 3. That's a pretty small set size.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Yes, that's correct. With the given configuration, you can support an approximate set size of 3 elements. While it's possible to explore up to 2^64 <code>l0</code> values, the practicality depends on the computational resources and time available. For larger sets, you would need to adjust the parameters, such as increasing the value of N, to accommodate a greater number of elements in the set while still maintaining an acceptable false positive rate.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Let N = 2^24.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>With N = 2^24, the false positive rate would be:</p><p>fpr = N / max = 2^24 / 2^32 = 1 / 2^8</p><p>So, the false positive rate would be 1/256 or approximately 0.0039.</p><p>Now, let's calculate the probability that all m positive elements map to a hash value less than or equal to N = 2^24:</p><p>p = (2^24 / 2^32)^m = (1 / 2^8)^m = 1 / 2^(8 * m)</p><p>To find the expected number of trials before a success:</p><p>E[X] = 1 / p = 2^(8 * m)</p><p>For 2^64 trials, you can find the supported set size m:</p><p>64 = 8 * m =&gt; m = 8</p><p>With N = 2^24, you can support an approximate set size of 8 elements while maintaining a false positive rate of approximately 0.0039.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">What about N = 2^25?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>With N = 2^25, the false positive rate would be:</p><p>fpr = N / max = 2^25 / 2^32 = 1 / 2^7</p><p>So, the false positive rate would be 1/128 or approximately 0.0078.</p><p>Now, let's calculate the probability that all m positive elements map to a hash value less than or equal to N = 2^25:</p><p>p = (2^25 / 2^32)^m = (1 / 2^7)^m = 1 / 2^(7 * m)</p><p>To find the expected number of trials before a success:</p><p>E[X] = 1 / p = 2^(7 * m)</p><p>For 2^64 trials, you can find the supported set size m:</p><p>64 = 7 * m =&gt; m ≈ 9.14</p><p>With N = 2^25, you can support an approximate set size of 9 elements while maintaining a false positive rate of approximately 0.0078.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Let's allow for some false negatives. So, we have m elements, but we're fine with up to 3 elements being false positives.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>If you are willing to allow up to 3 elements as false negatives, it means that you accept the possibility of 3 elements from the positive set being incorrectly identified as not being in the set. In this case, let's denote the desired success rate as q. We can define q as the probability that at least (m - 3) positive elements map to a hash value less than or equal to N:</p><p>q = P(at least m-3 positive elements hash to &lt;= N) = 1 - P(3 or more false negatives)</p><p>With N = 2^25, the probability that a single positive element maps to a hash value less than or equal to N is:</p><p>p = (2^25 / 2^32) = 1 / 2^7</p><p>The probability that a single positive element does not map to a hash value less than or equal to N (false negative) is:</p><p>fnr = 1 - p = 1 - (1 / 2^7)</p><p>Now, we need to calculate the probability of having 3 or more false negatives. This can be modeled as a binomial distribution with parameters m (number of trials) and fnr (probability of false negative). Let's denote this probability as P(X &gt;= 3):</p><p>P(X &gt;= 3) = 1 - P(X &lt; 3) = 1 - [P(X=0) + P(X=1) + P(X=2)]</p><p>Now, the success rate q can be calculated as:</p><p>q = 1 - P(X &gt;= 3)</p><p>The expected number of trials before achieving the desired success rate is:</p><p>E[X] = 1 / q</p><p>Once you determine the value of m (the set size), you can use these formulas to find the expected number of trials before achieving the desired success rate with up to 3 false negatives.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Say m = 20</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>If m = 20, we can use the previously mentioned formulas to find the success rate q and the expected number of trials before achieving the desired success rate with up to 3 false negatives.</p><p>First, calculate the probability of a single positive element mapping to a hash value less than or equal to N:</p><p>p = (2^25 / 2^32) = 1 / 2^7</p><p>The probability that a single positive element does not map to a hash value less than or equal to N (false negative) is:</p><p>fnr = 1 - p = 1 - (1 / 2^7)</p><p>Now, we will calculate the probability of having 3 or more false negatives. This can be modeled as a binomial distribution with parameters m=20 (number of trials) and fnr (probability of false negative). Let's denote this probability as P(X &gt;= 3):</p><p>P(X &gt;= 3) = 1 - P(X &lt; 3) = 1 - [P(X=0) + P(X=1) + P(X=2)]</p><p>Using a binomial distribution calculator or a binomial probability mass function, we can compute these probabilities:</p><p>P(X=0) = binomial(20, 0, fnr) ≈ 0.00068
+P(X=1) = binomial(20, 1, fnr) ≈ 0.00715
+P(X=2) = binomial(20, 2, fnr) ≈ 0.03268</p><p>Now, calculate P(X &gt;= 3):</p><p>P(X &gt;= 3) = 1 - [P(X=0) + P(X=1) + P(X=2)] = 1 - (0.00068 + 0.00715 + 0.03268) ≈ 0.95949</p><p>The success rate q can be calculated as:</p><p>q = 1 - P(X &gt;= 3) ≈ 0.04051</p><p>The expected number of trials before achieving the desired success rate is:</p><p>E[X] = 1 / q ≈ 24.68</p><p>With m = 20, and allowing up to 3 false negatives, you can expect to try approximately 24.68 different l0 values before achieving the desired success rate.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">That's not bad. What about m = 1000?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>If m = 1000 and we allow up to 3 false negatives, we can calculate the success rate q and the expected number of trials using the same approach.</p><p>First, calculate the probability of a single positive element mapping to a hash value less than or equal to N:</p><p>p = (2^25 / 2^32) = 1 / 2^7</p><p>The probability that a single positive element does not map to a hash value less than or equal to N (false negative) is:</p><p>fnr = 1 - p = 1 - (1 / 2^7)</p><p>Now, we will calculate the probability of having 3 or more false negatives. This can be modeled as a binomial distribution with parameters m=1000 (number of trials) and fnr (probability of false negative). Let's denote this probability as P(X &gt;= 3):</p><p>P(X &gt;= 3) = 1 - P(X &lt; 3) = 1 - [P(X=0) + P(X=1) + P(X=2)]</p><p>Using a binomial distribution calculator or a binomial probability mass function, we can compute these probabilities:</p><p>P(X=0) = binomial(1000, 0, fnr) ≈ 0.0 (very small)
+P(X=1) = binomial(1000, 1, fnr) ≈ 0.0 (very small)
+P(X=2) = binomial(1000, 2, fnr) ≈ 0.0 (very small)</p><p>Now, calculate P(X &gt;= 3):</p><p>P(X &gt;= 3) = 1 - [P(X=0) + P(X=1) + P(X=2)] ≈ 1</p><p>The success rate q can be calculated as:</p><p>q = 1 - P(X &gt;= 3) ≈ 0</p><p>The expected number of trials before achieving the desired success rate is:</p><p>E[X] = 1 / q</p><p>In this case, the success rate q is approximately 0, meaning it's highly unlikely that you can achieve the desired success rate with m = 1000 and allowing up to 3 false negatives.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">How many false negatives must we be willing to accept to have the expected number of trials to be less than 2^64?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>To determine the number of false negatives we need to accept such that the expected number of trials is less than 2^64, we can use the same approach as before:</p><ol><li>Set m = 1000</li><li>Calculate the success rate q for different numbers of false negatives</li><li>Calculate the expected number of trials E[X] = 1 / q</li><li>Find the smallest number of false negatives such that E[X] &lt; 2^64</li></ol><p>We'll start by trying different numbers of allowed false negatives and calculate the corresponding success rate q. We can use a binomial distribution to model this problem. However, since the probability calculation can be computationally expensive for large values of m and the allowed number of false negatives, we can use an approximation method like normal distribution to estimate these probabilities.</p><p>Let's use a simple loop to try different numbers of allowed false negatives:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>cpp</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cmath&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;limits&gt;</span></span>
+
+<span class="hljs-type">double</span> fnr = <span class="hljs-number">1.0</span> - (<span class="hljs-number">1.0</span> / std::<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">7</span>));
+<span class="hljs-type">int</span> m = <span class="hljs-number">1000</span>;
+<span class="hljs-type">uint64_t</span> max_trials = std::<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">64</span>);
+
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> allowed_fn = <span class="hljs-number">0</span>;; ++allowed_fn) {
+  <span class="hljs-type">double</span> q = <span class="hljs-number">1.0</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= allowed_fn; ++i) {
+    q -= std::<span class="hljs-built_in">pow</span>(fnr, i) * std::<span class="hljs-built_in">pow</span>(<span class="hljs-number">1.0</span> - fnr, m - i) * std::<span class="hljs-built_in">exp</span>(std::<span class="hljs-built_in">lgamma</span>(m + <span class="hljs-number">1</span>) - std::<span class="hljs-built_in">lgamma</span>(i + <span class="hljs-number">1</span>) - std::<span class="hljs-built_in">lgamma</span>(m - i + <span class="hljs-number">1</span>));
+  }
+  <span class="hljs-type">uint64_t</span> expected_trials = (q == <span class="hljs-number">0</span>) ? std::numeric_limits&lt;<span class="hljs-type">uint64_t</span>&gt;::<span class="hljs-built_in">max</span>() : <span class="hljs-built_in">static_cast</span>&lt;<span class="hljs-type">uint64_t</span>&gt;(<span class="hljs-number">1.0</span> / q);
+
+  <span class="hljs-keyword">if</span> (expected_trials &lt; max_trials) {
+    std::cout &lt;&lt; <span class="hljs-string">"Allowed false negatives: "</span> &lt;&lt; allowed_fn &lt;&lt; std::endl;
+    std::cout &lt;&lt; <span class="hljs-string">"Expected trials: "</span> &lt;&lt; expected_trials &lt;&lt; std::endl;
+    <span class="hljs-keyword">break</span>;
+  }
+}
+</code></div></div></pre><p>After running this loop, you'll find that to achieve an expected number of trials less than 2^64, you need to accept a larger number of false negatives than in the previous case. The exact number will depend on the values of m and the target expected trials, but this loop will help you find the smallest number of false negatives that meet the criteria.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div></body></html>

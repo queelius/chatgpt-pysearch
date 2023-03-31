@@ -1,0 +1,145 @@
+<!DOCTYPE html><html><head>  <meta charset="utf-8"/>  <title>Chat GPT: Solomonoff Induction Approximation.</title>  <meta name="generator" content="chatGPT Saving Bookmark"/><style>body {  background-color: rgb(32,33,35);  color: rgb(236,236,241);  font-size: 16px;  font-family: sans-serif;  line-height: 28px;  margin: 0;}body > .w-full {  padding: 30px;}/* prompt */body > .w-full:nth-child(2n+1) {  background: rgb(52,53,65);}/* response */body > .w-full:nth-child(2n+2) {  background: rgb(68,70,84);}a, a:visited {  color: #7792cd;}pre {  margin: 0 0 1em 0;  display: inline-block;  width: 100%;}pre code.hljs {  margin-bottom: 1em;  border-radius: 5px;}.whitespace-pre-wrap {  white-space: pre-wrap;}.flex-col {  max-width: 850px;  margin: 0px auto;}*, :after, :before {    border: 0 solid #d9d9e3;    box-sizing: border-box;}table {    border-collapse: collapse;    border-color: inherit;    text-indent: 0;}.markdown table {    --tw-border-spacing-x: 0px;    --tw-border-spacing-y: 0px;    border-collapse: separate;    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);    width: 100%}.markdown th {    background-color: rgba(236,236,241,.2);    border-bottom-width: 1px;    border-left-width: 1px;    border-top-width: 1px;    padding: .25rem .75rem}.markdown th:first-child {    border-top-left-radius: .375rem}.markdown th:last-child {    border-right-width: 1px;    border-top-right-radius: .375rem}.markdown td {    border-bottom-width: 1px;    border-left-width: 1px;    padding: .25rem .75rem}.markdown td:last-child {    border-right-width: 1px}.markdown tbody tr:last-child td:first-child {    border-bottom-left-radius: .375rem}.markdown tbody tr:last-child td:last-child {    border-bottom-right-radius: .375rem}/* chatGPT code color theme */code.hljs,code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;overflow:auto}:not(pre)>code.hljs,:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.hljs-comment{color:hsla(0,0%,100%,.5)}.hljs-meta{color:hsla(0,0%,100%,.6)}.hljs-built_in,.hljs-class .hljs-title{color:#e9950c}.hljs-doctag,.hljs-formula,.hljs-keyword,.hljs-literal{color:#2e95d3}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#00a67d}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#df3079}.hljs-bullet,.hljs-link,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#f22c3d}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#a9aec1}.token.punctuation{color:#fefefe}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#abe338}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.important,.token.regex{color:gold}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast:active){code[class*=language-],pre[class*=language-]{background:window;color:windowText}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:400}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:700}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:400}}/* style of the code snippets */.rounded-md {    border-radius: 0.375rem;}.mb-4 {    margin-bottom: 1rem;}.p-4 {    padding: 1rem;}.py-2 {    padding-bottom: 0.5rem;    padding-top: 0.5rem;}.px-4 {    padding-left: 1rem;    padding-right: 1rem;}.text-xs {    font-size: .75rem;    line-height: 1rem;}.bg-black {    --tw-bg-opacity: 1;    background-color: rgba(0,0,0,var(--tw-bg-opacity));}.text-gray-200 {    --tw-text-opacity: 1;    color: rgba(217,217,227,var(--tw-text-opacity));}.bg-gray-800 {    --tw-bg-opacity: 1;    background-color: rgba(52,53,65,var(--tw-bg-opacity));}.rounded-t-md {    border-top-left-radius: 0.375rem;    border-top-right-radius: 0.375rem;}code.hljs, code[class*=language-], pre[class*=language-] {    word-wrap: normal;    background: none;    color: #fff;    -webkit-hyphens: none;    hyphens: none;    line-height: 1.5;    tab-size: 4;    text-align: left;    white-space: pre;    word-break: normal;    word-spacing: normal;}.prose :where(code):not(:where([class~=not-prose] *)) {    color: var(--tw-prose-code);    font-size: .875em;    font-weight: 600;}.prose :where(pre):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0.375rem;    color: currentColor;    font-size: .875em;    font-weight: 400;    line-height: 1.7142857;    margin: 0;    overflow-x: auto;    padding: 0;}.prose :where(pre code):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0;    border-width: 0;    color: inherit;    font-family: inherit;    font-size: inherit;    font-weight: inherit;    line-height: inherit;    padding: 0;}.\!whitespace-pre {    white-space: pre!important;}.overflow-y-auto {    overflow-y: auto;}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"/></head><body><div class="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">Model: GPT-4</div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">in python, give me a simple approximation of solomnoff induction</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Solomonoff Induction is a theoretical framework for predicting future data based on past data, and it is not directly implementable due to its infinite computational requirements. However, we can provide a simple approximation using a basic compression algorithm and a probabilistic model.</p><p>Here's a Python implementation using LZ77 compression as an approximation for Solomonoff Induction:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>python</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-python"><span class="hljs-keyword">import</span> lz77
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">lz77_compress</span>(<span class="hljs-params">data</span>):
+    compressor = lz77.LZ77Compressor()
+    compressed_data = compressor.compress(data)
+    <span class="hljs-keyword">return</span> compressed_data
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">compute_probability</span>(<span class="hljs-params">data</span>):
+    counts = defaultdict(<span class="hljs-built_in">int</span>)
+    <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> data:
+        counts[c] += <span class="hljs-number">1</span>
+
+    total_chars = <span class="hljs-built_in">len</span>(data)
+    probabilities = {char: count / total_chars <span class="hljs-keyword">for</span> char, count <span class="hljs-keyword">in</span> counts.items()}
+    <span class="hljs-keyword">return</span> probabilities
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">solomonoff_approximation</span>(<span class="hljs-params">data, new_data</span>):
+    compressed_data = lz77_compress(data + new_data)
+    compressed_old_data = lz77_compress(data)
+
+    extra_compression = <span class="hljs-built_in">len</span>(compressed_data) - <span class="hljs-built_in">len</span>(compressed_old_data)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> ** (-extra_compression)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    data = <span class="hljs-string">"Here is some example data to approximate Solomonoff Induction. "</span>
+    new_data = <span class="hljs-string">"This is a new piece of data. "</span>
+    
+    probabilities = compute_probability(data)
+    solomonoff_prob = solomonoff_approximation(data, new_data)
+    
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Probabilities based on frequency:"</span>)
+    <span class="hljs-keyword">for</span> char, prob <span class="hljs-keyword">in</span> probabilities.items():
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{char}</span>: <span class="hljs-subst">{prob:<span class="hljs-number">.4</span>f}</span>"</span>)
+    
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"\nSolomonoff approximation for new data: <span class="hljs-subst">{solomonoff_prob:<span class="hljs-number">.4</span>f}</span>"</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()
+</code></div></div></pre><p>In this example, we use LZ77 compression as a basic compression algorithm to approximate the Kolmogorov complexity. We compute the probability of each character in the data based on its frequency, and then we calculate the probability of the new data using the Solomonoff approximation. Note that this is a very simple approximation and may not provide accurate results for all cases.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Traceback (most recent call last):
+  File "/home/spinoza/code/solomonoff/pred.py", line 1, in &lt;module&gt;
+    import lz77
+ModuleNotFoundError: No module named 'lz77'
+</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>I apologize for the confusion. It seems I provided a code snippet using the <code>lz77</code> module, which is not a built-in Python module. You can install it using pip:</p><pre><div class="bg-black rounded-md mb-4"><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs">pip install lz77
+</code></div></div></pre><p>However, if you prefer not to install an additional package, here's an alternative implementation using the built-in <code>zlib</code> library for compression:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>python</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-python"><span class="hljs-keyword">import</span> zlib
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">compress</span>(<span class="hljs-params">data</span>):
+    compressed_data = zlib.compress(data.encode())
+    <span class="hljs-keyword">return</span> compressed_data
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">compute_probability</span>(<span class="hljs-params">data</span>):
+    counts = defaultdict(<span class="hljs-built_in">int</span>)
+    <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> data:
+        counts[c] += <span class="hljs-number">1</span>
+
+    total_chars = <span class="hljs-built_in">len</span>(data)
+    probabilities = {char: count / total_chars <span class="hljs-keyword">for</span> char, count <span class="hljs-keyword">in</span> counts.items()}
+    <span class="hljs-keyword">return</span> probabilities
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">solomonoff_approximation</span>(<span class="hljs-params">data, new_data</span>):
+    compressed_data = compress(data + new_data)
+    compressed_old_data = compress(data)
+
+    extra_compression = <span class="hljs-built_in">len</span>(compressed_data) - <span class="hljs-built_in">len</span>(compressed_old_data)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> ** (-extra_compression)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    data = <span class="hljs-string">"Here is some example data to approximate Solomonoff Induction. "</span>
+    new_data = <span class="hljs-string">"This is a new piece of data. "</span>
+    
+    probabilities = compute_probability(data)
+    solomonoff_prob = solomonoff_approximation(data, new_data)
+    
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Probabilities based on frequency:"</span>)
+    <span class="hljs-keyword">for</span> char, prob <span class="hljs-keyword">in</span> probabilities.items():
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{char}</span>: <span class="hljs-subst">{prob:<span class="hljs-number">.4</span>f}</span>"</span>)
+    
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"\nSolomonoff approximation for new data: <span class="hljs-subst">{solomonoff_prob:<span class="hljs-number">.4</span>f}</span>"</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()
+</code></div></div></pre><p>This implementation uses the <code>zlib</code> library, which is included in the Python Standard Library, so you don't need to install any additional packages.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">(pyenv) spinoza@gimli:~/code/solomonoff$ python sol_induc.py 
+Probabilities based on frequency:
+H: 0.0159
+e: 0.0952
+r: 0.0317
+ : 0.1429
+i: 0.0476
+s: 0.0317
+o: 0.1270
+m: 0.0635
+x: 0.0317
+a: 0.0794
+p: 0.0476
+l: 0.0317
+d: 0.0317
+t: 0.0635
+S: 0.0159
+n: 0.0476
+f: 0.0317
+I: 0.0159
+u: 0.0159
+c: 0.0159
+.: 0.0159
+
+Solomonoff approximation for new data: 0.0000
+</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>My apologies for the confusion. The Solomonoff approximation value of 0.0000 might not be very informative. The implementation I provided is quite simplistic and may not give accurate results for all cases.</p><p>However, here's an alternative approach to obtain a more meaningful approximation using the cross-entropy of character-based n-grams. This is not a direct approximation of Solomonoff induction, but it could provide a more informative metric.</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>python</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict, Counter
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">build_ngram_counts</span>(<span class="hljs-params">data, n</span>):
+    ngram_counts = defaultdict(Counter)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(data) - n):
+        context = data[i:i + n - <span class="hljs-number">1</span>]
+        next_char = data[i + n - <span class="hljs-number">1</span>]
+        ngram_counts[context][next_char] += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> ngram_counts
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">cross_entropy</span>(<span class="hljs-params">data, ngram_counts, n</span>):
+    context_counts = defaultdict(<span class="hljs-built_in">int</span>)
+    <span class="hljs-keyword">for</span> context, next_chars <span class="hljs-keyword">in</span> ngram_counts.items():
+        context_counts[context] = <span class="hljs-built_in">sum</span>(next_chars.values())
+
+    total_entropy = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(data) - n):
+        context = data[i:i + n - <span class="hljs-number">1</span>]
+        next_char = data[i + n - <span class="hljs-number">1</span>]
+        probability = ngram_counts[context][next_char] / context_counts[context]
+        total_entropy += -np.log2(probability)
+
+    <span class="hljs-keyword">return</span> total_entropy / (<span class="hljs-built_in">len</span>(data) - n)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    n = <span class="hljs-number">3</span>  <span class="hljs-comment"># Set the n-gram size</span>
+    data = <span class="hljs-string">"Here is some example data to approximate Solomonoff Induction. "</span>
+    new_data = <span class="hljs-string">"This is a new piece of data. "</span>
+    
+    ngram_counts = build_ngram_counts(data, n)
+    ce = cross_entropy(new_data, ngram_counts, n)
+    
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Cross-entropy for new data: <span class="hljs-subst">{ce:<span class="hljs-number">.4</span>f}</span>"</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()
+</code></div></div></pre><p>This implementation calculates the cross-entropy of the new data with respect to the character-based n-grams from the original data. A lower cross-entropy value indicates that the new data is more predictable based on the original data.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div></body></html>

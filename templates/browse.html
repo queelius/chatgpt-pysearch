@@ -10,19 +10,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Browse Files</h1>
-    <a href="/">Back to search</a>
-    <ul>
-        {% for group, files in file_tree.items() if files %}
-            <li>
-                <h2>{{ group }}</h2>
-                <ul>
-                    {% for file in files %}
-                        <li><a href="{{ url_for('browse', filepath=file) }}">{{ file }}</a></li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Browse Files</h1>
+        <a href="/">Back to search</a>
+        <ul class="list-unstyled">
+            {% for group, files in file_tree.items() if files %}
+                <li>
+                    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#{{ group }}" aria-expanded="false" aria-controls="{{ group }}">
+                        {{ group }}
+                    </button>
+                    <ul class="collapse" id="{{ group }}">
+                        {% for file in files %}
+                            <li><a href="{{ url_for('browse', filepath=file) }}">{{ file }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

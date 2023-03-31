@@ -1,0 +1,94 @@
+<!DOCTYPE html><html><head>  <meta charset="utf-8"/>  <title>Chat GPT: Symbol Grounding for LLMs.</title>  <meta name="generator" content="chatGPT Saving Bookmark"/><style>body {  background-color: rgb(32,33,35);  color: rgb(236,236,241);  font-size: 16px;  font-family: sans-serif;  line-height: 28px;  margin: 0;}body > .w-full {  padding: 30px;}/* prompt */body > .w-full:nth-child(2n+1) {  background: rgb(52,53,65);}/* response */body > .w-full:nth-child(2n+2) {  background: rgb(68,70,84);}a, a:visited {  color: #7792cd;}pre {  margin: 0 0 1em 0;  display: inline-block;  width: 100%;}pre code.hljs {  margin-bottom: 1em;  border-radius: 5px;}.whitespace-pre-wrap {  white-space: pre-wrap;}.flex-col {  max-width: 850px;  margin: 0px auto;}*, :after, :before {    border: 0 solid #d9d9e3;    box-sizing: border-box;}table {    border-collapse: collapse;    border-color: inherit;    text-indent: 0;}.markdown table {    --tw-border-spacing-x: 0px;    --tw-border-spacing-y: 0px;    border-collapse: separate;    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);    width: 100%}.markdown th {    background-color: rgba(236,236,241,.2);    border-bottom-width: 1px;    border-left-width: 1px;    border-top-width: 1px;    padding: .25rem .75rem}.markdown th:first-child {    border-top-left-radius: .375rem}.markdown th:last-child {    border-right-width: 1px;    border-top-right-radius: .375rem}.markdown td {    border-bottom-width: 1px;    border-left-width: 1px;    padding: .25rem .75rem}.markdown td:last-child {    border-right-width: 1px}.markdown tbody tr:last-child td:first-child {    border-bottom-left-radius: .375rem}.markdown tbody tr:last-child td:last-child {    border-bottom-right-radius: .375rem}/* chatGPT code color theme */code.hljs,code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;overflow:auto}:not(pre)>code.hljs,:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.hljs-comment{color:hsla(0,0%,100%,.5)}.hljs-meta{color:hsla(0,0%,100%,.6)}.hljs-built_in,.hljs-class .hljs-title{color:#e9950c}.hljs-doctag,.hljs-formula,.hljs-keyword,.hljs-literal{color:#2e95d3}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#00a67d}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#df3079}.hljs-bullet,.hljs-link,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#f22c3d}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#a9aec1}.token.punctuation{color:#fefefe}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#abe338}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.important,.token.regex{color:gold}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast:active){code[class*=language-],pre[class*=language-]{background:window;color:windowText}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:400}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:700}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:400}}/* style of the code snippets */.rounded-md {    border-radius: 0.375rem;}.mb-4 {    margin-bottom: 1rem;}.p-4 {    padding: 1rem;}.py-2 {    padding-bottom: 0.5rem;    padding-top: 0.5rem;}.px-4 {    padding-left: 1rem;    padding-right: 1rem;}.text-xs {    font-size: .75rem;    line-height: 1rem;}.bg-black {    --tw-bg-opacity: 1;    background-color: rgba(0,0,0,var(--tw-bg-opacity));}.text-gray-200 {    --tw-text-opacity: 1;    color: rgba(217,217,227,var(--tw-text-opacity));}.bg-gray-800 {    --tw-bg-opacity: 1;    background-color: rgba(52,53,65,var(--tw-bg-opacity));}.rounded-t-md {    border-top-left-radius: 0.375rem;    border-top-right-radius: 0.375rem;}code.hljs, code[class*=language-], pre[class*=language-] {    word-wrap: normal;    background: none;    color: #fff;    -webkit-hyphens: none;    hyphens: none;    line-height: 1.5;    tab-size: 4;    text-align: left;    white-space: pre;    word-break: normal;    word-spacing: normal;}.prose :where(code):not(:where([class~=not-prose] *)) {    color: var(--tw-prose-code);    font-size: .875em;    font-weight: 600;}.prose :where(pre):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0.375rem;    color: currentColor;    font-size: .875em;    font-weight: 400;    line-height: 1.7142857;    margin: 0;    overflow-x: auto;    padding: 0;}.prose :where(pre code):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0;    border-width: 0;    color: inherit;    font-family: inherit;    font-size: inherit;    font-weight: inherit;    line-height: inherit;    padding: 0;}.\!whitespace-pre {    white-space: pre!important;}.overflow-y-auto {    overflow-y: auto;}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"/></head><body><div class="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">Model: GPT-4</div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"># autoregressive LLM
+
+suppose we have a sequence $x = x[t] x[t-1] ... x[1]$.
+given a context length $n$, we can sample from
+$P(X[t+1] = a | x)$ to generate a new sequence $a∥x$. rince and repeat.
+
+## misalignment
+we can use this to generate as large of a sequence as we want.
+however, only some of these sequences will be "good", where
+by "good" we mean aligned with what we humans find useful.
+this is the AI alignment problem, which has a lot of big
+philosophical ideas that we won't go into
+
+suppose we have an aligned sequence $x$. then, if we
+sample a new token $a$, what's the probability that
+$a∥x$ is aligned? this is actually a difficult,
+perhaps ill-posed problem. for instance, if we had an
+aligned sequence
+```
+    "the cat in the
+```
+and then generate $a=hello$, then
+```
+    "the cat in the hello
+```
+seems misaligned. however, if we keep generating
+tokens, it may become re-aligned, for instance,
+```
+    "the cat in the hello" is meaningless text.
+```
+there are many other such complications that
+allow a sequence to go from aligned to misaligned and
+back to aligned an a strictly autoregressive
+model.
+
+as a possibly over-simplifying assumption,
+let's suppose that the probability of generating a token $a$
+that causes an aligned sequence $x$ to become misaligned is
+given by $e$, and that these errors are independent and we
+consider the probability that it will go from misaligned to
+aligned negligible. then, we see that the probability that generating
+$n$ new tokens has a probability $(1-e)^n$ of still being aligned.
+(or a probability $1-(1-e)^n$ of being misaligned).
+
+this may or may not be a problem.
+
+## symbol grounding
+one way to "break" this misalignment is to steer the model
+back to good outputs. this is, of course, the AI alignment problem.
+there are many approaches being considered.
+
+symbol grounding is one possible approach (note that this means
+it's no longer a strictly autoregressive model). the idea is get
+feedback from an environment to "get you back to reality." this
+is essentially evidence-based thinking.
+
+### chatbots
+humans conversing with a chatbot is a form of symbol grounding.
+for instance, let's consider a variation of the earlier example
+of misalignment:
+
+```
+    chatbot: the cat in the hello.
+```
+the human may respond with
+```
+    human: that's nonsense!
+```
+the new sequence
+```
+    chatbot: the cat in the hello. human: that's nonsense!
+```
+is now arguably placing the LLM autoregressive model back
+into an aligned region, from which it can generate new useful
+and aligned text.
+
+
+### output from tools
+autoregressive LLMs with tools can provide a lot ofsymbol grounding.
+for instance, if the LLM produces non-sense python code, and
+its executed where the output, errors, and warnings are
+fed back into the model, then we see that it can be realigned
+in the same way the chatbot was aligned. we might say that
+in the chatbot example, the "tool" was human feedback.
+
+### agentic architecture
+now we're getting far removed from the autoregressive model.
+the idea is to use the LLM as one part of the agent architecture,
+where at the top-level we have a reinforcement learning agent
+with goals, from the intrinsic (like curiosity) to the explicit,
+like "maximize paperclip production."
+
+the LLM is still *very* useful, but it's not the final output.
+it's an input.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><h1>Autoregressive LLM and Symbol Grounding</h1><p>Autoregressive large language models (LLMs) generate sequences by sampling from the conditional probability distribution of a token given its context. While this can generate very long sequences, the alignment of the generated text with human values or usefulness can be an issue.</p><h2>Misalignment</h2><p>The probability of generating a token that causes a well-aligned sequence to become misaligned is an important consideration. Assuming a constant probability of misalignment, the chance of a generated sequence remaining aligned decreases exponentially with the number of tokens generated. Addressing this problem is crucial to the AI alignment challenge.</p><h2>Symbol Grounding</h2><p>Symbol grounding offers a potential solution to the misalignment issue. By incorporating feedback from an environment, LLMs can be steered back towards generating aligned sequences.</p><h3>Chatbots</h3><p>Chatbots can receive grounding from human users. When a chatbot generates a misaligned response, the user can provide feedback, which may help the model realign its outputs.</p><h3>Output from Tools</h3><p>LLMs that are integrated with tools can benefit from symbol grounding when the output, errors, and warnings generated by the tool are fed back into the model. This feedback can help the model realign its output.</p><h3>Agentic Architecture</h3><p>Moving beyond the autoregressive model, agentic architectures incorporate LLMs as a component within a larger reinforcement learning agent. These agents have goals ranging from intrinsic motivations to explicit objectives, and the LLM serves as an input rather than the final output. This setup allows for better alignment with human values and usefulness while still leveraging the power of LLMs.</p><p>In conclusion, symbol grounding offers a means of addressing the misalignment issue present in autoregressive LLMs. By incorporating feedback from the environment and utilizing LLMs as inputs within a larger agent architecture, these models can be steered towards generating sequences that are more closely aligned with human values and objectives.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div></body></html>

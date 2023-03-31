@@ -1,0 +1,155 @@
+<!DOCTYPE html><html><head>  <meta charset="utf-8"/>  <title>Chat GPT: Bootstrap MLE Package.</title>  <meta name="generator" content="chatGPT Saving Bookmark"/><style>body {  background-color: rgb(32,33,35);  color: rgb(236,236,241);  font-size: 16px;  font-family: sans-serif;  line-height: 28px;  margin: 0;}body > .w-full {  padding: 30px;}/* prompt */body > .w-full:nth-child(2n+1) {  background: rgb(52,53,65);}/* response */body > .w-full:nth-child(2n+2) {  background: rgb(68,70,84);}a, a:visited {  color: #7792cd;}pre {  margin: 0 0 1em 0;  display: inline-block;  width: 100%;}pre code.hljs {  margin-bottom: 1em;  border-radius: 5px;}.whitespace-pre-wrap {  white-space: pre-wrap;}.flex-col {  max-width: 850px;  margin: 0px auto;}*, :after, :before {    border: 0 solid #d9d9e3;    box-sizing: border-box;}table {    border-collapse: collapse;    border-color: inherit;    text-indent: 0;}.markdown table {    --tw-border-spacing-x: 0px;    --tw-border-spacing-y: 0px;    border-collapse: separate;    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);    width: 100%}.markdown th {    background-color: rgba(236,236,241,.2);    border-bottom-width: 1px;    border-left-width: 1px;    border-top-width: 1px;    padding: .25rem .75rem}.markdown th:first-child {    border-top-left-radius: .375rem}.markdown th:last-child {    border-right-width: 1px;    border-top-right-radius: .375rem}.markdown td {    border-bottom-width: 1px;    border-left-width: 1px;    padding: .25rem .75rem}.markdown td:last-child {    border-right-width: 1px}.markdown tbody tr:last-child td:first-child {    border-bottom-left-radius: .375rem}.markdown tbody tr:last-child td:last-child {    border-bottom-right-radius: .375rem}/* chatGPT code color theme */code.hljs,code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;overflow:auto}:not(pre)>code.hljs,:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.hljs-comment{color:hsla(0,0%,100%,.5)}.hljs-meta{color:hsla(0,0%,100%,.6)}.hljs-built_in,.hljs-class .hljs-title{color:#e9950c}.hljs-doctag,.hljs-formula,.hljs-keyword,.hljs-literal{color:#2e95d3}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#00a67d}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#df3079}.hljs-bullet,.hljs-link,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#f22c3d}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#a9aec1}.token.punctuation{color:#fefefe}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#abe338}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.important,.token.regex{color:gold}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast:active){code[class*=language-],pre[class*=language-]{background:window;color:windowText}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:400}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:700}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:400}}/* style of the code snippets */.rounded-md {    border-radius: 0.375rem;}.mb-4 {    margin-bottom: 1rem;}.p-4 {    padding: 1rem;}.py-2 {    padding-bottom: 0.5rem;    padding-top: 0.5rem;}.px-4 {    padding-left: 1rem;    padding-right: 1rem;}.text-xs {    font-size: .75rem;    line-height: 1rem;}.bg-black {    --tw-bg-opacity: 1;    background-color: rgba(0,0,0,var(--tw-bg-opacity));}.text-gray-200 {    --tw-text-opacity: 1;    color: rgba(217,217,227,var(--tw-text-opacity));}.bg-gray-800 {    --tw-bg-opacity: 1;    background-color: rgba(52,53,65,var(--tw-bg-opacity));}.rounded-t-md {    border-top-left-radius: 0.375rem;    border-top-right-radius: 0.375rem;}code.hljs, code[class*=language-], pre[class*=language-] {    word-wrap: normal;    background: none;    color: #fff;    -webkit-hyphens: none;    hyphens: none;    line-height: 1.5;    tab-size: 4;    text-align: left;    white-space: pre;    word-break: normal;    word-spacing: normal;}.prose :where(code):not(:where([class~=not-prose] *)) {    color: var(--tw-prose-code);    font-size: .875em;    font-weight: 600;}.prose :where(pre):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0.375rem;    color: currentColor;    font-size: .875em;    font-weight: 400;    line-height: 1.7142857;    margin: 0;    overflow-x: auto;    padding: 0;}.prose :where(pre code):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0;    border-width: 0;    color: inherit;    font-family: inherit;    font-size: inherit;    font-weight: inherit;    line-height: inherit;    padding: 0;}.\!whitespace-pre {    white-space: pre!important;}.overflow-y-auto {    overflow-y: auto;}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"/></head><body><div class="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">Model: GPT-4</div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Help me write an R package vignette demonstating the use of the following code:
+
+#' @title Bootstrap MLE
+#' A function for estimating the empirical sampling distribution the
+#' MLE given a MLE solver and a sample using the Bootstrap method.
+#'
+#' @param mle_solver given a data, find the MLE.
+#' @param data data for resampling, where for each resample we generate an MLE
+#' @param R bootstrap replicates
+#' @param ... additional arguments to pass.
+#' @importFrom boot boot
+#' @export
+#' @examples
+#' data &lt;- rnorm(100)
+#' mle_boot(mle_norm, data, 100)
+#' mle_boot(mle_norm, data, 100, parallel = "multicore")
+mle_boot &lt;- function(mle_solver, data, R, ...) {
+    stopifnot(!is.function(mle_solver))
+    boot::boot(
+        data = data,
+        statistic = function(x, idx) point(mle_solver(x[idx, ])),
+        R = R, ...
+    )
+}
+
+#' Method for obtaining the parameters of an \code{boot} object.
+#'
+#' @param x the \code{boot} object to obtain the parameters of.
+#' @export
+params.boot &lt;- function(x) x$t0
+
+#' Method for obtaining the number of parameters of an \code{boot} object.
+#'
+#' @param x the \code{boot} object to obtain the number of parameters of
+#'
+#' @export
+nparams.boot &lt;- function(x) length(x$t0)
+
+#' Method for obtaining the number of observations in the sample used by
+#' an \code{mle}.
+#'
+#' @param object the \code{mle} object to obtain the number of observations for
+#' @param ... additional arguments to pass
+#' @importFrom stats nobs
+#' @export
+nobs.boot &lt;- function(object, ...) length(object$data)
+
+#' Method for obtaining the observations used by the \code{mle}.
+#'
+#' @param object the \code{mle} object to obtain the number of observations for
+#' @param ... additional arguments to pass
+#' @export
+obs.boot &lt;- function(object, ...) object$data
+
+#' Computes the variance-covariance matrix of \code{boot} object.
+#'
+#' @param object the \code{boot} object to obtain the variance-covariance of
+#' @param ... additional arguments to pass
+#'
+#' @importFrom stats cov
+#' @export
+vcov.boot &lt;- function(object, ...) {
+    cov(object$t)
+}
+
+#' Computes the variance-covariance matrix of \code{boot} object.
+#'
+#' @param object the \code{boot} object to obtain the variance-covariance of
+#' @param ... additional arguments to pass
+#'
+#' @importFrom MASS ginv
+#' @export
+fim.boot &lt;- function(object, ...) {
+    ginv(vcov(object))
+}
+
+
+#' Computes the estimate of the MSE of a \code{boot} object.
+#'
+#' @param x the \code{boot} object to compute the MSE of.
+#' @param par if the true parameter value is known, you may provide it;
+#'            otherwise we use the MLE of \code{par}.
+#' @param ... pass additional arguments
+#' @export
+mse.boot &lt;- function(x, par = NULL, ...) {
+    if (is.null(par)) {
+        par &lt;- point(x)
+    }
+    mean(rowSums(t(t(x$t) - as.vector(par))^2))
+}
+
+#' Computes the estimate of the bias of a \code{boot} object.
+#'
+#' @param x the \code{boot} object to compute the bias of.
+#' @param par if the true parameter value is known, you may provide it;
+#'            otherwise we use the MLE of \code{par}.
+#' @param ... pass additional arguments
+#' @export
+bias.boot &lt;- function(x, par = NULL, ...) {
+    if (is.null(par)) {
+        par &lt;- point(x)
+    }
+
+    mean(x$t) - par
+}
+
+#' Computes the point estimate of an \code{mle} object.
+#'
+#' @param x the \code{boot} object.
+#' @param ... pass additional arguments
+#' @export
+point.boot &lt;- function(x, ...) {
+    x$t0
+}
+
+#' Function for obtaining an estimate of the standard error of the bootstrap of
+#' the MLE \code{object}.
+#'
+#' @param object the bootstrapped MLE object
+#' @export
+se.boot &lt;- function(object) {
+    summary(object)$bootSE
+    # sqrt(diag(vcov(object)))
+}
+</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><h1>Bootstrap MLE Vignette</h1><p>This vignette demonstrates the use of the <code>mle_boot</code> package, which provides functions for estimating the empirical sampling distribution of the Maximum Likelihood Estimator (MLE) using the Bootstrap method. The package also includes additional functions for obtaining various statistics of the MLE and the Bootstrap distribution.</p><h2>Installation</h2><p>You can install the package from CRAN:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">install.packages<span class="hljs-punctuation">(</span><span class="hljs-string">"mle_boot"</span><span class="hljs-punctuation">)</span>
+</code></div></div></pre><p>Or from the development version on GitHub:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R"><span class="hljs-comment"># install.packages("devtools")</span>
+devtools<span class="hljs-operator">::</span>install_github<span class="hljs-punctuation">(</span><span class="hljs-string">"user/mle_boot"</span><span class="hljs-punctuation">)</span>
+</code></div></div></pre><h2>Load the package</h2><p>Load the <code>mle_boot</code> package:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">library<span class="hljs-punctuation">(</span>mle_boot<span class="hljs-punctuation">)</span>
+</code></div></div></pre><h2>Example: Normal Distribution</h2><p>To demonstrate the use of the <code>mle_boot</code> package, we will generate random samples from a normal distribution and estimate the empirical sampling distribution of the MLE.</p><h3>Generate Data</h3><p>First, we need to generate data from a normal distribution with a known mean and standard deviation:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">set.seed<span class="hljs-punctuation">(</span><span class="hljs-number">123</span><span class="hljs-punctuation">)</span>
+mu <span class="hljs-operator">&lt;-</span> 0
+sigma <span class="hljs-operator">&lt;-</span> 1
+data <span class="hljs-operator">&lt;-</span> rnorm<span class="hljs-punctuation">(</span><span class="hljs-number">100</span><span class="hljs-punctuation">,</span> mean <span class="hljs-operator">=</span> mu<span class="hljs-punctuation">,</span> sd <span class="hljs-operator">=</span> sigma<span class="hljs-punctuation">)</span>
+</code></div></div></pre><h3>Define MLE Solver</h3><p>We need to define an MLE solver for the normal distribution. The MLE solver should be a function that takes the data as input and returns the MLE of the parameters.</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">mle_norm <span class="hljs-operator">&lt;-</span> <span class="hljs-keyword">function</span><span class="hljs-punctuation">(</span>data<span class="hljs-punctuation">)</span> <span class="hljs-punctuation">{</span>
+    mle_mean <span class="hljs-operator">&lt;-</span> mean<span class="hljs-punctuation">(</span>data<span class="hljs-punctuation">)</span>
+    mle_sd <span class="hljs-operator">&lt;-</span> <span class="hljs-built_in">sqrt</span><span class="hljs-punctuation">(</span>var<span class="hljs-punctuation">(</span>data<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span>
+    <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span>mean <span class="hljs-operator">=</span> mle_mean<span class="hljs-punctuation">,</span> sd <span class="hljs-operator">=</span> mle_sd<span class="hljs-punctuation">)</span>
+<span class="hljs-punctuation">}</span>
+</code></div></div></pre><h3>Perform Bootstrap</h3><p>Now we can use the <code>mle_boot</code> function to perform the Bootstrap:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">R <span class="hljs-operator">&lt;-</span> 1000 <span class="hljs-comment"># number of bootstrap replicates</span>
+bootstrap_results <span class="hljs-operator">&lt;-</span> mle_boot<span class="hljs-punctuation">(</span>mle_norm<span class="hljs-punctuation">,</span> data<span class="hljs-punctuation">,</span> R<span class="hljs-punctuation">)</span>
+</code></div></div></pre><h3>Results</h3><p>We can now obtain various statistics from the Bootstrap MLE:</p><h4>Point estimate</h4><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">point_estimate <span class="hljs-operator">&lt;-</span> point.boot<span class="hljs-punctuation">(</span>bootstrap_results<span class="hljs-punctuation">)</span>
+point_estimate
+</code></div></div></pre><h4>Variance-covariance matrix</h4><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">vcov_matrix <span class="hljs-operator">&lt;-</span> vcov.boot<span class="hljs-punctuation">(</span>bootstrap_results<span class="hljs-punctuation">)</span>
+vcov_matrix
+</code></div></div></pre><h4>Standard error</h4><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">standard_error <span class="hljs-operator">&lt;-</span> se.boot<span class="hljs-punctuation">(</span>bootstrap_results<span class="hljs-punctuation">)</span>
+standard_error
+</code></div></div></pre><h4>Bias</h4><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">bias_estimate <span class="hljs-operator">&lt;-</span> bias.boot<span class="hljs-punctuation">(</span>bootstrap_results<span class="hljs-punctuation">,</span> par <span class="hljs-operator">=</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span>mean <span class="hljs-operator">=</span> mu<span class="hljs-punctuation">,</span> sd <span class="hljs-operator">=</span> sigma<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span>
+bias_estimate
+</code></div></div></pre><h4>Mean squared error (MSE)</h4><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R">mse_estimate <span class="hljs-operator">&lt;-</span> mse.boot<span class="hljs-punctuation">(</span>bootstrap_results<span class="hljs-punctuation">,</span> par <span class="hljs-operator">=</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span>mean <span class="hljs-operator">=</span> mu<span class="hljs-punctuation">,</span> sd <span class="hljs-operator">=</span> sigma<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span>
+mse_estimate
+</code></div></div></pre><h2>Parallel Bootstrap</h2><p>You can also use parallel computing to speed up the bootstrap process. For this, you need to install the <code>parallel</code> package and set the <code>parallel</code> argument in the <code>mle_boot</code> function.</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>R</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-R"><span class="hljs-comment"># install.packages("parallel")</span>
+library<span class="hljs-punctuation">(</span>parallel<span class="hljs-punctuation">)</span>
+
+R <span class="hljs-operator">&lt;-</span> 1000 <span class="hljs-comment"># number of bootstrap replicates</span>
+bootstrap_results_parallel <span class="hljs-operator">&lt;-</span> mle_boot<span class="hljs-punctuation">(</span>mle_norm<span class="hljs-punctuation">,</span> data<span class="hljs-punctuation">,</span> R<span class="hljs-punctuation">,</span> parallel <span class="hljs-operator">=</span> <span class="hljs-string">"multicore"</span><span class="hljs-punctuation">,</span> ncpus <span class="hljs-operator">=</span> <span class="hljs-number">4</span><span class="hljs-punctuation">)</span>
+</code></div></div></pre><p>Now you can use the same functions as before to obtain the statistics from the parallel Bootstrap results.</p><h2>Conclusion</h2><p>In this vignette, we demonstrated how to use the <code>mle_boot</code> package to estimate the empirical sampling distribution of the MLE using the Bootstrap method. The package provides various functions for obtaining statistics of the MLE and the Bootstrap distribution, allowing for a deeper understanding of the properties of your estimator.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div></body></html>

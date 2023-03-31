@@ -1,0 +1,373 @@
+<!DOCTYPE html><html><head>  <meta charset="utf-8"/>  <title>Chat GPT: C++ binary encoded decimals.</title>  <meta name="generator" content="chatGPT Saving Bookmark"/><style>body {  background-color: rgb(32,33,35);  color: rgb(236,236,241);  font-size: 16px;  font-family: sans-serif;  line-height: 28px;  margin: 0;}body > .w-full {  padding: 30px;}/* prompt */body > .w-full:nth-child(2n+1) {  background: rgb(52,53,65);}/* response */body > .w-full:nth-child(2n+2) {  background: rgb(68,70,84);}a, a:visited {  color: #7792cd;}pre {  margin: 0 0 1em 0;  display: inline-block;  width: 100%;}pre code.hljs {  margin-bottom: 1em;  border-radius: 5px;}.whitespace-pre-wrap {  white-space: pre-wrap;}.flex-col {  max-width: 850px;  margin: 0px auto;}*, :after, :before {    border: 0 solid #d9d9e3;    box-sizing: border-box;}table {    border-collapse: collapse;    border-color: inherit;    text-indent: 0;}.markdown table {    --tw-border-spacing-x: 0px;    --tw-border-spacing-y: 0px;    border-collapse: separate;    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);    width: 100%}.markdown th {    background-color: rgba(236,236,241,.2);    border-bottom-width: 1px;    border-left-width: 1px;    border-top-width: 1px;    padding: .25rem .75rem}.markdown th:first-child {    border-top-left-radius: .375rem}.markdown th:last-child {    border-right-width: 1px;    border-top-right-radius: .375rem}.markdown td {    border-bottom-width: 1px;    border-left-width: 1px;    padding: .25rem .75rem}.markdown td:last-child {    border-right-width: 1px}.markdown tbody tr:last-child td:first-child {    border-bottom-left-radius: .375rem}.markdown tbody tr:last-child td:last-child {    border-bottom-right-radius: .375rem}/* chatGPT code color theme */code.hljs,code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;overflow:auto}:not(pre)>code.hljs,:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.hljs-comment{color:hsla(0,0%,100%,.5)}.hljs-meta{color:hsla(0,0%,100%,.6)}.hljs-built_in,.hljs-class .hljs-title{color:#e9950c}.hljs-doctag,.hljs-formula,.hljs-keyword,.hljs-literal{color:#2e95d3}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#00a67d}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#df3079}.hljs-bullet,.hljs-link,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#f22c3d}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#a9aec1}.token.punctuation{color:#fefefe}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#abe338}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.important,.token.regex{color:gold}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast:active){code[class*=language-],pre[class*=language-]{background:window;color:windowText}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:400}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:700}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:400}}/* style of the code snippets */.rounded-md {    border-radius: 0.375rem;}.mb-4 {    margin-bottom: 1rem;}.p-4 {    padding: 1rem;}.py-2 {    padding-bottom: 0.5rem;    padding-top: 0.5rem;}.px-4 {    padding-left: 1rem;    padding-right: 1rem;}.text-xs {    font-size: .75rem;    line-height: 1rem;}.bg-black {    --tw-bg-opacity: 1;    background-color: rgba(0,0,0,var(--tw-bg-opacity));}.text-gray-200 {    --tw-text-opacity: 1;    color: rgba(217,217,227,var(--tw-text-opacity));}.bg-gray-800 {    --tw-bg-opacity: 1;    background-color: rgba(52,53,65,var(--tw-bg-opacity));}.rounded-t-md {    border-top-left-radius: 0.375rem;    border-top-right-radius: 0.375rem;}code.hljs, code[class*=language-], pre[class*=language-] {    word-wrap: normal;    background: none;    color: #fff;    -webkit-hyphens: none;    hyphens: none;    line-height: 1.5;    tab-size: 4;    text-align: left;    white-space: pre;    word-break: normal;    word-spacing: normal;}.prose :where(code):not(:where([class~=not-prose] *)) {    color: var(--tw-prose-code);    font-size: .875em;    font-weight: 600;}.prose :where(pre):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0.375rem;    color: currentColor;    font-size: .875em;    font-weight: 400;    line-height: 1.7142857;    margin: 0;    overflow-x: auto;    padding: 0;}.prose :where(pre code):not(:where([class~=not-prose] *)) {    background-color: transparent;    border-radius: 0;    border-width: 0;    color: inherit;    font-family: inherit;    font-size: inherit;    font-weight: inherit;    line-height: inherit;    padding: 0;}.\!whitespace-pre {    white-space: pre!important;}.overflow-y-auto {    overflow-y: auto;}</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"/></head><body><div class="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">Model: Default (GPT-3.5)</div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">#pragma once
+
+#include &lt;limits&gt;
+#include &lt;string.h&gt;
+#include &lt;utility&gt;
+#include &lt;algorithm&gt;
+#include "math.hpp"
+using std::pair;
+using std::numeric_limits;
+
+/**
+ * bounded_nat&lt;N&gt; uses a binary encoded decimal representation of unsigned
+ * integers (natural numbers) using a fixed-size array of N digits of type
+ * digit_type. Thus, bounded_nat&lt;N&gt; may represent any value in the set
+ * {0,1,...,d^N} where d is the cardinality of digit_type.
+ */
+template &lt;size_t N&gt;
+struct bounded_nat
+{
+    using digit_type = unsigned char;
+
+    constexpr static auto max_digit = static_cast&lt;int&gt;(numeric_limits&lt;digit_type&gt;::max());
+    
+    bounded_nat() :
+        memset(digits, 0, N * sizeof(digit_type)) {}
+
+    bounded_nat(nat const &amp; copy) :
+        memcpy(digits, copy.digits, N * sizeof(digit_type)) {}
+
+    // msd is digits[N-1].
+    // lsd is digits[0].
+    digit_type digits[N];
+};
+
+template &lt;size_t N&gt;
+bool operator&gt;(bounded_nat&lt;N&gt; const &amp; lhs, bounded_nat&lt;N&gt; const &amp; rhs)
+{
+    return rhs &lt; lhs;
+}
+
+template &lt;size_t N&gt;
+bool operator&gt;=(bounded_nat&lt;N&gt; const &amp; lhs, bounded_nat&lt;N&gt; const &amp; rhs)
+{
+    return rhs &lt;= lhs;
+}
+
+template &lt;size_t N&gt;
+bool operator&lt;(bounded_nat&lt;N&gt; const &amp; lhs, bounded_nat&lt;N&gt; const &amp; rhs)
+{
+	for (size_t i = N-1; i &lt; N; --i)
+	{
+		if (lhs.digits[i] != rhs.digits[i])
+			return lhs.digits[i] &lt; rhs.digits[i];
+	}
+    return false;
+}
+
+template &lt;size_t N&gt;
+bool operator&lt;=(bounded_nat&lt;N&gt; const &amp; lhs, bounded_nat&lt;N&gt; const &amp; rhs)
+{
+	for (size_t i = N-1; i &lt; N; --i)
+	{
+		if (lhs.digits[i] != rhs.digits[i])
+            return lhs.digits[i] &lt; rhs.digits[i];
+    }
+    return true;
+}
+
+template &lt;size_t N&gt;
+bool operator==(bounded_nat&lt;N&gt; const &amp; lhs, bounded_nat&lt;N&gt; const &amp; rhs)
+{
+	for (size_t i = 0; i &lt; N; ++i)
+	{
+		if (lhs.digits[i] != rhs.digits[i])
+			return false;
+	}
+	return true;
+}
+
+template &lt;size_t N&gt;
+bool operator!=(bounded_nat&lt;N&gt; const &amp; lhs, bounded_nat&lt;N&gt; const &amp; rhs)
+{
+	for (size_t i = 0; i &lt; N; ++i)
+	{
+		if (lhs.digits[i] == rhs.digits[i])
+			return false;
+	}
+	return true;
+
+}
+
+template &lt;size_t N&gt;
+bool even(bounded_nat&lt;N&gt; const &amp; n) { return n.digits[0] % 2 == 0; }
+
+/**
+ * twice and half are sufficient to implement other operations, like
+ * multiplication, division, and so on. Since these operations are very
+ * efficient, we employ generic algorithms for these other operations that may
+ * be implemented with respect to these two operations.
+ */
+template &lt;size_t N&gt;
+bounded_nat&lt;N&gt; twice(bounded_nat&lt;N&gt; n)
+{
+    for (size_t i = N-1; ; ++i)
+    {
+        n.digits[i] &gt;&gt;= 1;
+	    if (i == 0)
+            break;
+	    n.digits[i] |= (n.digits[i-1] &lt;&lt; 8*sizeof(digit_type));
+    }
+    return n;
+}
+
+template &lt;size_t N&gt;
+bounded_nat&lt;N&gt; half(bounded_nat&lt;N&gt; n)
+{
+    for (size_t i = 0; i &lt; N; ++i)
+    {
+        n.digits[i] &lt;&lt;= 1;
+	if (i != N-1)
+	    n.digits[i] |= (n.digits[i+1] &gt;&gt; 8*sizeof(digit_type));
+    }
+    return n;
+}
+
+template &lt;size_t N&gt;
+auto increment_with_carry(bounded_nat&lt;N&gt; n)
+{
+    using digit_type = typename bounded_nat&lt;N&gt;::digit_type;
+
+    digit_type carry = (digit_type)0;
+    for (size_t i = 0; i &lt; N; ++i)
+    {
+        if (n.digits[i] == typename bounded_nat&lt;N&gt;::max_digit)
+        {
+            n.digits[i] = carry;
+            carry = (digit_type)1;
+        }
+        else
+        {
+            ++n.digits[i];
+            if (carry)
+            {
+                if (n.digits[i] == typename bounded_nat&lt;N&gt;::max_digit)
+                    n.digits[i] = 0;
+                else
+                {
+                    ++n.digits[i];
+                    carry = (digit_type)0;
+                }
+            }
+        }
+    }
+    return make_pair(n,carry);
+}
+
+template &lt;size_t N&gt;
+bounded_nat&lt;N&gt; increment(bounded_nat&lt;N&gt; n)
+{
+    return increment_with_carry(n).first;
+}
+
+template &lt;size_t N&gt;
+bounded_nat&lt;N&gt; operator*(bounded_nat&lt;N&gt; lhs, bounded_nat&lt;N&gt; rhs)
+{
+    return product(lhs,rhs);
+}
+
+template &lt;size_t N&gt;
+bounded_nat&lt;N&gt; operator+(bounded_nat&lt;N&gt; lhs, bounded_nat&lt;N&gt; rhs)
+{
+    return sum(lhs,rhs);
+}
+
+
+/*
+// (product, carry)
+template &lt;size_t N&gt;
+pair&lt;nat&lt;N&gt;,int&gt; mult(nat&lt;N&gt; x, nat&lt;N&gt; y)
+{
+    nat&lt;N&gt; z;
+    int carry = 0;
+    for (size_t i = 0; i &lt; N; ++i)
+    {
+        nat&lt;N&gt; tmp;
+        int c = 0;
+        for (size_t j = 0; j &lt; N; ++j)
+        {
+            auto r = (int)x.digits[i] * (int)y.digits[j] + c;
+            tmp.digits[i] = static_cast&lt;unsigned char&gt;(r / N);
+            c = r % N;
+        }
+        auto s = sum(z,tmp);
+        z = s.first;
+
+        // if s.second != 0 then we have overflowed. we could either let this
+        // be undefined or roll over like unsigned int. we let it roll over,
+        // i.e., a ring mod 2^(8*N)
+        z = z + s.second;
+    }
+    return make_pair{z,c};
+}
+*/
+
+/*
+template &lt;size_t N&gt;
+nat&lt;N&gt; sum(nat&lt;N&gt; x, nat&lt;N&gt; y)
+{
+    nat&lt;N&gt; z;
+    int c = 0;
+    for (size_t i = 0; i &lt; N; ++i)
+    {
+        auto r = (int)x.digits[i] + (int)y.digits[i] + c;
+        z.digits[i] = static_cast&lt;unsigned char&gt;(r / N);
+        c = r % N;
+    }
+    return make_pair(z,c);    
+}
+*/
+
+
+</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>This is a C++ header file containing a definition for a template class called <code>bounded_nat</code>. This class represents unsigned integers using a binary encoded decimal representation, with a fixed size array of <code>digit_type</code> digits. The size of the array is specified at compile time with a template parameter <code>N</code>.</p><p>The header also includes various overloaded operators for the <code>bounded_nat</code> class, such as <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>, <code>*</code>, and <code>+</code>. Additionally, there are several utility functions such as <code>twice</code>, <code>half</code>, <code>increment_with_carry</code>, and <code>increment</code>.</p><p>The header file relies on other C++ standard libraries such as <code>limits</code> and <code>string.h</code>, as well as a custom math library.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">How can I implement addition?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>To implement addition for the <code>bounded_nat</code> class, you can use the following function:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>arduino</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-arduino"><span class="hljs-keyword">template</span> &lt;<span class="hljs-type">size_t</span> N&gt;
+<span class="hljs-function">bounded_nat&lt;N&gt; <span class="hljs-title">sum</span><span class="hljs-params">(bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; lhs, bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; rhs)</span>
+</span>{
+    bounded_nat&lt;N&gt; result;
+
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> carry = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; N; ++i)
+    {
+        <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> sum = lhs.digits[i] + rhs.digits[i] + carry;
+        result.digits[i] = sum % (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+        carry = sum / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-keyword">return</span> result;
+}
+</code></div></div></pre><p>This function iterates over each digit of the two operands <code>lhs</code> and <code>rhs</code> and adds them together along with the carry value from the previous digit. The carry is initialized to 0 and is updated to the result of the division of the sum by the maximum digit value. The sum modulo the maximum digit value is then set as the result for the current digit in the result <code>bounded_nat</code> object.</p><p>You can use this function to add two <code>bounded_nat</code> objects as follows:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>scss</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-scss">bounded_nat&lt;<span class="hljs-number">10</span>&gt; x, y, z;
+<span class="hljs-comment">// assume x and y are initialized</span>
+z = <span class="hljs-built_in">sum</span>(x, y);
+</code></div></div></pre></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">What about overflow?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>The <code>bounded_nat</code> class is designed to avoid overflow by constraining the size of the representation to a fixed number of digits <code>N</code>, which is specified at compile-time. Therefore, the <code>sum</code> function provided in my previous answer automatically takes care of overflow as it ensures that the addition of each digit is performed within the bounds of the <code>bounded_nat</code> representation.</p><p>However, if you want to check for overflow explicitly, you can add an additional check at the end of the <code>sum</code> function that verifies if the final carry value is non-zero. A non-zero carry value indicates that the sum of the two <code>bounded_nat</code> objects has exceeded the maximum representable value, and an overflow has occurred. Here's an updated version of the <code>sum</code> function that includes this check:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>arduino</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-arduino"><span class="hljs-keyword">template</span> &lt;<span class="hljs-type">size_t</span> N&gt;
+<span class="hljs-function">bounded_nat&lt;N&gt; <span class="hljs-title">sum</span><span class="hljs-params">(bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; lhs, bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; rhs)</span>
+</span>{
+    bounded_nat&lt;N&gt; result;
+
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> carry = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; N; ++i)
+    {
+        <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> sum = lhs.digits[i] + rhs.digits[i] + carry;
+        result.digits[i] = sum % (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+        carry = sum / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (carry != <span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// Overflow occurred!</span>
+        <span class="hljs-comment">// Handle the overflow as necessary.</span>
+    }
+
+    <span class="hljs-keyword">return</span> result;
+}
+</code></div></div></pre><p>Keep in mind that in a <code>bounded_nat</code> representation, overflow will not cause the number to wrap around to zero, but will instead result in an undefined value. Therefore, it's important to handle overflow appropriately based on the specific requirements of your use case.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Should `carry` variable be `unsigned char` or something else?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>The <code>carry</code> variable in the <code>sum</code> function should have the same type as the <code>digit_type</code> used to represent each digit of the <code>bounded_nat</code> object, which is typically an <code>unsigned char</code>. This is because the carry value represents the result of the division of the sum by the maximum representable digit value, which is also an <code>unsigned char</code>.</p><p>Therefore, it's appropriate to declare <code>carry</code> as an <code>unsigned char</code> like this:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>arduino</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-arduino"><span class="hljs-keyword">template</span> &lt;<span class="hljs-type">size_t</span> N&gt;
+<span class="hljs-function">bounded_nat&lt;N&gt; <span class="hljs-title">sum</span><span class="hljs-params">(bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; lhs, bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; rhs)</span>
+</span>{
+    bounded_nat&lt;N&gt; result;
+
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> carry = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; N; ++i)
+    {
+        <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> sum = lhs.digits[i] + rhs.digits[i] + carry;
+        result.digits[i] = sum % (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+        carry = sum / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (carry != <span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// Overflow occurred!</span>
+        <span class="hljs-comment">// Handle the overflow as necessary.</span>
+    }
+
+    <span class="hljs-keyword">return</span> result;
+}
+</code></div></div></pre><p>Declaring <code>carry</code> as an <code>unsigned char</code> ensures that the carry value will always fit within a single digit, which is important for ensuring that the <code>sum</code> function produces correct results.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Why not declare it as `bounded_nat&lt;N&gt;::digit_type`?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You could certainly declare the <code>carry</code> variable as <code>bounded_nat&lt;N&gt;::digit_type</code> rather than <code>unsigned char</code>, since <code>digit_type</code> is defined to be the type of the digits stored in a <code>bounded_nat&lt;N&gt;</code> object. However, this would have the same effect as declaring it as <code>unsigned char</code>, since <code>digit_type</code> is also typically an <code>unsigned char</code>.</p><p>In general, it's a good practice to use the same type for variables that represent similar kinds of data, especially when working with fixed-size representations like <code>bounded_nat</code>. By using the <code>digit_type</code> type for <code>carry</code>, you ensure that it has the same size and range as the individual digits of the <code>bounded_nat&lt;N&gt;</code> object, which can be important for preserving the consistency and correctness of your calculations.</p><p>Therefore, you could also declare <code>carry</code> as <code>bounded_nat&lt;N&gt;::digit_type</code> like this:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>arduino</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-arduino"><span class="hljs-keyword">template</span> &lt;<span class="hljs-type">size_t</span> N&gt;
+<span class="hljs-function">bounded_nat&lt;N&gt; <span class="hljs-title">sum</span><span class="hljs-params">(bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; lhs, bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; rhs)</span>
+</span>{
+    bounded_nat&lt;N&gt; result;
+
+    <span class="hljs-keyword">typename</span> bounded_nat&lt;N&gt;::digit_type carry = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; N; ++i)
+    {
+        <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> sum = lhs.digits[i] + rhs.digits[i] + carry;
+        result.digits[i] = sum % (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+        carry = sum / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (carry != <span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// Overflow occurred!</span>
+        <span class="hljs-comment">// Handle the overflow as necessary.</span>
+    }
+
+    <span class="hljs-keyword">return</span> result;
+}
+</code></div></div></pre><p>This ensures that <code>carry</code> has the same size and range as the digits stored in <code>bounded_nat&lt;N&gt;</code>, which can be helpful for maintaining the consistency of your calculations. However, since <code>digit_type</code> is typically an <code>unsigned char</code>, using <code>unsigned char</code> as the type for <code>carry</code> will have the same effect and is often simpler and more concise.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">What if N = 2, and digit_type = 10, and we call sum(99,99)?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>In this case, <code>N = 2</code> means that the <code>bounded_nat</code> object can store up to 2 decimal digits, and <code>digit_type = 10</code> means that each digit can have a maximum value of 9. Therefore, calling <code>sum(99, 99)</code> with this <code>bounded_nat</code> type will result in an overflow, since the sum of the two values is <code>198</code>, which requires 3 decimal digits to represent.</p><p>The <code>sum</code> function is designed to handle overflow by truncating the result to fit within the bounds of the <code>bounded_nat</code> representation, so the result of calling <code>sum(99, 99)</code> would be <code>97</code>, which is <code>198 % 100</code> (the maximum representable value for a 2-digit <code>bounded_nat</code> object).</p><p>In general, it's important to choose an appropriate value of <code>N</code> and <code>digit_type</code> for your <code>bounded_nat</code> representation based on the range of values you need to represent and the precision required for your calculations. If you choose values that are too small, you risk losing precision and encountering overflows or other errors. If you choose values that are too large, you may waste memory and computational resources. It's important to strike a balance between these factors based on the specific requirements of your application.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">Should I return the carry value too?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Whether or not to return the carry value from the <code>sum</code> function depends on the specific requirements of your use case.</p><p>If you are performing a series of calculations on <code>bounded_nat</code> objects and need to propagate the carry value between operations, then it may be useful to return the carry value from the <code>sum</code> function. This can be especially important if you are performing multiplication, division, or other complex operations that require multiple intermediate carry values to be propagated between operations.</p><p>On the other hand, if you simply need to add two <code>bounded_nat</code> objects and don't need to use the carry value for subsequent calculations, then there is no need to return the carry value from the <code>sum</code> function.</p><p>Here's an updated version of the <code>sum</code> function that includes an optional parameter to return the carry value:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>arduino</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-arduino"><span class="hljs-keyword">template</span> &lt;<span class="hljs-type">size_t</span> N&gt;
+<span class="hljs-function">bounded_nat&lt;N&gt; <span class="hljs-title">sum</span><span class="hljs-params">(bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; lhs, bounded_nat&lt;N&gt; <span class="hljs-type">const</span> &amp; rhs, <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> * carry = <span class="hljs-literal">nullptr</span>)</span>
+</span>{
+    bounded_nat&lt;N&gt; result;
+
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> c = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; N; ++i)
+    {
+        <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> sum = lhs.digits[i] + rhs.digits[i] + c;
+        result.digits[i] = sum % (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+        c = sum / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (carry != <span class="hljs-literal">nullptr</span>) {
+        *carry = c;
+    }
+
+    <span class="hljs-keyword">return</span> result;
+}
+</code></div></div></pre><p>This version of the <code>sum</code> function adds an optional <code>carry</code> parameter that is a pointer to an <code>unsigned char</code> variable where the carry value will be stored. If <code>carry</code> is not <code>nullptr</code>, the function sets the value pointed to by <code>carry</code> to the final carry value of the addition.</p><p>You can use this version of the <code>sum</code> function to add two <code>bounded_nat</code> objects and return the carry value like this:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>scss</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-scss">bounded_nat&lt;<span class="hljs-number">10</span>&gt; x, y, z;
+unsigned char carry;
+<span class="hljs-comment">// assume x and y are initialized</span>
+z = <span class="hljs-built_in">sum</span>(x, y, &amp;carry);
+<span class="hljs-comment">// carry now contains the final carry value of the addition</span>
+</code></div></div></pre></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">How can I implement multiplication?</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You can implement multiplication of <code>bounded_nat</code> objects using the standard "long multiplication" algorithm that you learned in elementary school. The algorithm works as follows:</p><ol><li>Initialize the result to zero.</li><li>For each digit in the second factor (the multiplicand), multiply the first factor (the multiplier) by the digit and add the result to the result so far, shifted left by the appropriate amount.</li><li>Return the result.</li></ol><p>Here's an implementation of the long multiplication algorithm for <code>bounded_nat</code> objects:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>scss</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-scss">template &lt;size_t N&gt;
+bounded_nat&lt;N&gt; <span class="hljs-built_in">product</span>(bounded_nat&lt;N&gt; const &amp; lhs, bounded_nat&lt;N&gt; const &amp; rhs)
+{
+    bounded_nat&lt;N&gt; result;
+    for (size_t i = <span class="hljs-number">0</span>; i &lt; N; ++i)
+    {
+        unsigned char carry = <span class="hljs-number">0</span>;
+        for (size_t j = <span class="hljs-number">0</span>; j &lt; N; ++j)
+        {
+            unsigned int product = lhs<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[j]</span> * rhs<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[i]</span> + carry;
+            unsigned char digit = product % (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+            carry = product / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+            result<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[i + j]</span> += digit;
+            carry += result<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[i + j]</span> / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+            result<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[i + j]</span> %= (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+        }
+        if (carry != <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">// Overflow occurred!</span>
+            <span class="hljs-comment">// Handle the overflow as necessary.</span>
+        }
+    }
+    return result;
+}
+</code></div></div></pre><p>In this implementation, the outer loop iterates over the digits of the second factor (the multiplicand), and the inner loop multiplies the first factor (the multiplier) by each digit of the second factor, adding the result to the result so far, shifted left by the appropriate amount. The carry value is propagated to the next digit of the result as needed to ensure that the result stays within the bounds of the <code>bounded_nat</code> representation.</p><p>Note that this implementation assumes that the maximum representable value of each digit is less than or equal to the square root of the maximum representable value of the <code>bounded_nat</code> object (i.e., <code>max_digit</code>). If this is not the case, then the <code>product</code> function may produce incorrect results or overflows for some inputs.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">I'd like to return accept and return a carry digit.</div></div></div></div></div><div class="group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto"><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>You can modify the <code>product</code> function to accept and return a carry digit by adding an additional parameter to the function signature and returning the final carry value after the multiplication is complete.</p><p>Here's an updated implementation of the <code>product</code> function that accepts and returns a carry digit:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>css</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-css">template &lt;size_t N&gt;
+bounded_nat&lt;N&gt; product(bounded_nat&lt;N&gt; const &amp; lhs, bounded_nat&lt;N&gt; const &amp; rhs, typename bounded_nat&lt;N&gt;::digit_type &amp; carry)
+{
+    bounded_nat&lt;N&gt; result;
+    carry = <span class="hljs-number">0</span>;
+    for (size_t <span class="hljs-selector-tag">i</span> = <span class="hljs-number">0</span>; <span class="hljs-selector-tag">i</span> &lt; N; ++<span class="hljs-selector-tag">i</span>)
+    {
+        typename bounded_nat&lt;N&gt;::digit_type c = <span class="hljs-number">0</span>;
+        for (size_t j = <span class="hljs-number">0</span>; j &lt; N; ++j)
+        {
+            unsigned int product = lhs<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[j]</span> * rhs<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[i]</span> + c;
+            typename bounded_nat&lt;N&gt;::digit_type digit = product % (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+            c = product / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+            result<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[i + j]</span> += digit;
+            c += result<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[i + j]</span> / (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+            result<span class="hljs-selector-class">.digits</span><span class="hljs-selector-attr">[i + j]</span> %= (bounded_nat&lt;N&gt;::max_digit + <span class="hljs-number">1</span>);
+        }
+        carry += c;
+    }
+    return result;
+}
+</code></div></div></pre><p>In this implementation, the <code>product</code> function accepts a reference to a <code>typename bounded_nat&lt;N&gt;::digit_type</code> variable named <code>carry</code>, which will be used to store the final carry value after the multiplication is complete. The function initializes <code>carry</code> to zero and adds the carry value for each digit multiplication to <code>carry</code> as it is computed.</p><p>You can use this version of the <code>product</code> function to compute the product of two <code>bounded_nat</code> objects and return the carry value like this:</p><pre><div class="bg-black rounded-md mb-4"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>scss</span></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-scss">bounded_nat&lt;<span class="hljs-number">10</span>&gt; x, y, z;
+unsigned char carry;
+<span class="hljs-comment">// assume x and y are initialized</span>
+z = <span class="hljs-built_in">product</span>(x, y, carry);
+<span class="hljs-comment">// carry now contains the final carry value of the multiplication</span>
+</code></div></div></pre><p>Note that in this implementation, <code>carry</code> is returned as a separate parameter rather than being included as part of the return value. This makes it easier to propagate the carry value to subsequent operations if needed.</p></div></div></div><div class="flex justify-between lg:block"></div></div></div></div></body></html>
