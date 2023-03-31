@@ -14,22 +14,52 @@
 <body>
     <div class="container">
         <h1 class="my-4">Search</h1>
-        <form action="/search" method="get" class="mb-4">
-            <div class="input-group">
-                <input type="text" name="q" placeholder="Search" class="form-control">
-                <button type="submit" class="btn btn-primary">Search</button>
+        <div class="row">
+            <div class="col-md-8">
+                <form action="/search" method="get" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" name="q" placeholder="Search" class="form-control">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+                <div id="search-results">
+                    {% if search_results %}
+                    <ul class="list-unstyled">
+                        {% for result, highlight in search_results %}
+                        <li>
+                            <a href="{{ url_for('browse', filepath=result[6:]) }}">{{ result }}</a>
+                            <p>{{ highlight|safe }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
             </div>
-        </form>
-        <a href="{{ url_for('browse_files') }}" class="btn btn-secondary">Browse Files</a>
-        {% if search_history %}
-        <h2 class="mt-4">Recent Searches</h2>
-        <ul class="list-unstyled">
-            {% for query in search_history %}
-            <li><a href="{{ url_for('search_results', q=query) }}">{{ query }}</a></li>
-            {% endfor %}
-        </ul>
-        {% endif %}   
+            <div class="col-md-4">
+                <a href="{{ url_for('browse_files') }}" class="btn btn-secondary">Browse Files</a>
+                {% if popular_searches %}
+                <br>
+                <br>
+                <h3>Popular</h3>
+                <ul class="list-unstyled">
+                    {% for query, count in popular_searches %}
+                    <li><a href="{{ url_for('search_results', q=query) }}">{{ query }} ({{ count }})</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% if search_history %}
+                <br>
+                <h3>History</h3>
+                <ul class="list-unstyled">
+                    {% for query in search_history %}
+                    <li><a href="{{ url_for('search_results', q=query) }}">{{ query }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
     </div>
+
 </body>
 
 </html>
