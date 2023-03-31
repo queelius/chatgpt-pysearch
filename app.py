@@ -5,6 +5,7 @@ from whoosh.index import create_in, open_dir
 from whoosh.qparser import QueryParser
 import os
 
+search_history = []
 app = Flask(__name__)
 
 def search(query, index_dir='indexdir'):
@@ -17,7 +18,7 @@ def search(query, index_dir='indexdir'):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', search_history=search_history)
 
 @app.route('/browse')
 def browse_files():
@@ -41,6 +42,13 @@ def browse(filepath):
 @app.route('/search')
 def search_results():
     query = request.args.get('q')
+
+    if query:
+        print(query)
+        search_history.append(query)
+        if len(search_history) > 25:
+            search_history.pop(0)
+
     results = search(query)
     return render_template('search_results.html', results=results)
 
