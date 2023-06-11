@@ -1,7 +1,9 @@
 # .gitignore
 
+
+
 # Ignore the env directory
-/env/
+./env/
 
 # You might also want to ignore other common Python files that shouldn't be in git:
 
