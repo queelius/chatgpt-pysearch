@@ -9,7 +9,6 @@ popular_searches = {}
 search_history = []
 app = Flask(__name__)
 
-
 def search(query, index_dir='indexdir'):
     ix = open_dir(index_dir)
     with ix.searcher() as searcher:
